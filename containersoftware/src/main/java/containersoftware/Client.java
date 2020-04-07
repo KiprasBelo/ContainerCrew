@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Client extends Account {
 	
-	private ArrayList<Order> shipments = new ArrayList<Order>();
+	private ArrayList<Container> shipments = new ArrayList<Container>();
 	private String referencePerson;
 	static int IDcounter = 0;
 	private int clientID;
@@ -16,7 +16,7 @@ public class Client extends Account {
 		clientID = IDcounter;
 	}
 	
-	public void addShipments(Order ship) {
+	public void addShipments(Container ship) {
 		shipments.add(ship);
 	}
 	
@@ -24,7 +24,7 @@ public class Client extends Account {
 		shipments.remove(location);
 	}
 	
-	public ResponceObject hasShipments() {
+	public ResponceObject hasShipments(){
 		ResponceObject responce = new ResponceObject("Has shipments");
 		if(shipments.isEmpty()) {
 			return responce = new ResponceObject("Has no shipments");
@@ -32,11 +32,13 @@ public class Client extends Account {
 		return responce;
 	}
 
-	public Order getShipment(int location) {
+	public Container getShipment(int location) {
 		return shipments.get(location);
 	}
 	
-	
+	public int getClientID() {
+		return clientID;
+	}
 	
 
 }

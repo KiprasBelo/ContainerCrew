@@ -39,3 +39,4 @@ Feature: Update account information
     And account has no valid shipments
     When access container info
     Then Displays message about no valid shipments
+    

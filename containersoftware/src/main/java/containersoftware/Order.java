@@ -8,7 +8,6 @@ public class Order {
 	private String cargo;
 	private int orderID;
 	static int IDcounter = 0;
-	Container assignedContainer;
 	
 	public Order() {
 		IDcounter++;
@@ -47,12 +46,8 @@ public class Order {
 		this.cargo = cargo;
 	}
 	
-	public void setContainer(Container contain) {
-		assignedContainer = contain;
-	}
-	
-	public Container getContainer() {
-		return assignedContainer;
+	public int getOrderID() {
+		return orderID;
 	}
 	
 }

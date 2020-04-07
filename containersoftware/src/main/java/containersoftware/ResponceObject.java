@@ -13,9 +13,5 @@ public class ResponceObject {
 		return errorMessage;
 	}
 
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
-	
 	
 }

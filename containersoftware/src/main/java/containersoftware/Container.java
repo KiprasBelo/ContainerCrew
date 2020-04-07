@@ -1,16 +1,21 @@
 package containersoftware;
 
+import java.util.ArrayList;
+
 public class Container {
 	
 	static int IDcounter = 0;
-	private int id = 0;
+	private int containerId = 0;
+	private int ownerID;
 	private double temperature;
 	private double humidity;
 	private double pressure;
+	private ArrayList<Order> history = new ArrayList<Order>();
 	
-	public Container() {
+	public Container(Order o) {
 		IDcounter++;
-		id = IDcounter;
+		containerId = IDcounter;
+		history.add(o);
 	}
 	
 	public double getTemperature() {
@@ -37,8 +42,20 @@ public class Container {
 		this.pressure = pressure;
 	}
 	
-	public int getID() {
-		return id;
+	public int getContainerID() {
+		return containerId;
+	}
+	
+	public void setOwnerID(int owner) {
+		ownerID = owner;
+	}
+	
+	public int getOwnerID() {
+		return ownerID;
+	}
+	
+	public Order getOrder(int location) {
+		return history.get(location);
 	}
 
 
