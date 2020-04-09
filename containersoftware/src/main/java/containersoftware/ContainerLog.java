@@ -11,5 +11,9 @@ public class ContainerLog {
 	public void addContainer(Container contain) {
 		containers.add(contain);
 	}
+	
+	public ArrayList<Container> getContainers() {
+		return containers;
+	}
 
 }

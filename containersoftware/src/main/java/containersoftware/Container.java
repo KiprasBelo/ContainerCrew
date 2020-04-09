@@ -11,10 +11,20 @@ public class Container {
 	private double humidity;
 	private double pressure;
 	private ArrayList<Order> history = new ArrayList<Order>();
+	private boolean inTransit = false;
+	
+	public Container() {
+		IDcounter++;
+		containerId = IDcounter;
+	}
 	
 	public Container(Order o) {
 		IDcounter++;
 		containerId = IDcounter;
+		history.add(o);
+	}
+	
+	public void addOrders(Order o) {
 		history.add(o);
 	}
 	
@@ -54,8 +64,20 @@ public class Container {
 		return ownerID;
 	}
 	
-	public Order getOrder(int location) {
-		return history.get(location);
+	public boolean getInTransit() {
+		return inTransit;
+	}
+	
+	public void setInTransit(boolean transit) {
+		inTransit = transit;
+	}
+	
+	public Order getOrder(int pos) {
+		return history.get(pos);
+	}
+	
+	public ArrayList<Order> getHistory() {
+		return history;
 	}
 
 

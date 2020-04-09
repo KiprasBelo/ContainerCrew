@@ -13,8 +13,11 @@ public class StepDefinitions {
 	Client client1;
 	ResponceObject responce;
 	Order o = new Order();
+	Order order;
 	ClientLog log = new ClientLog();
+	ContainerLog containLog = new ContainerLog();
 	ResponceObject responce2;
+	Container contains;
 	
 	@Given("a client with a valid account")
 	public void a_client_with_a_valid_account() {
@@ -78,7 +81,9 @@ public class StepDefinitions {
 	
 	@Given("account has valid shipments")
 	public void account_has_valid_shipments() {
-		client.addShipments(new Container(o));
+		Container c = new Container(o);
+		containLog.addContainer(c);
+		client.addShipments(containLog);
 		client.getShipment(0).getOrder(0).setCargo("Bananas");
 	}
 
@@ -145,5 +150,83 @@ public class StepDefinitions {
 		assertEquals(responce.getErrorMessage(), "Did not find client with name Johnson John");
 		assertEquals(responce2.getErrorMessage(), "Did not find client with email gmail@jjohnson.com");
 	}
+	
+	//Add containers to accounts
+	
+	@Given("A container in ContainerLog with inTransit staus (true|false)$")
+	public void a_container_in_ContainerLog_with_inTransit_staus_false(boolean transit) {
+		contains = new Container();
+		contains.setInTransit(transit);
+		containLog.addContainer(contains);
+	}
+
+	@Given("A destination of {string}")
+	public void a_destination_of(String string) {
+		o = new Order();
+		o.setEndLocation("New York");
+		contains.addOrders(o);
+	}
+
+	@When("I assign the container to the client")
+	public void i_assign_the_container_to_the_client() {
+		responce = client.addShipments(containLog);
+	}
+
+	@Then("Display message that the Container has been added")
+	public void display_message_that_the_Container_has_been_added() {
+		assertEquals(responce.getErrorMessage(), "Successfully added container");
+	}
+	
+	//No container available
+	
+	@Given("No containers in the containerLog")
+	public void no_containers_in_the_containerLog() {
+		containLog.getContainers().clear();
+	}
+
+	@Given("An order with a destination of {string}")
+	public void an_order_with_a_destination_of(String string) {
+		o = new Order();
+		o.setEndLocation("New York");
+	}
+	
+	@When("I try to assign the container to the client")
+	public void i_try_to_assign_the_container_to_the_client() {
+		responce = client.addShipments(containLog);
+	}
+
+	@Then("Display message that a container is not available")
+	public void display_message_that_a_container_is_not_available() {
+		assertEquals(responce.getErrorMessage(), "Could not find available container");
+	}
+	
+	//Access Container History
+	
+	@Given("A container in the containerLog")
+	public void a_container_in_the_containerLog() {
+		contains = new Container();
+		containLog.addContainer(contains);
+	}
+
+	@Given("at least one order behind current order in the container histroy")
+	public void at_least_one_order_in_the_container_histroy() {
+		o = new Order();
+		o.setCargo("Apples");
+		contains.addOrders(o);
+		order = new Order();
+		o.setCargo("Oranges");
+		contains.addOrders(order);
+	}
+
+	@When("I call the history for a container")
+	public void i_call_the_history_for_a_container() {
+		contains.getHistory();
+	}
+
+	@Then("Display order History")
+	public void display_order_History() {
+		assertEquals(contains.getHistory().get(0), contains.getOrder(0));
+	}
+
 
 }

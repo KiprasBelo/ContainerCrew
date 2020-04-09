@@ -16,8 +16,17 @@ public class Client extends Account {
 		clientID = IDcounter;
 	}
 	
-	public void addShipments(Container ship) {
-		shipments.add(ship);
+	public ResponceObject addShipments(ContainerLog log) {
+		ResponceObject responce;
+		
+		for(Container x : log.getContainers()) {
+			if(!x.getInTransit()) {
+				shipments.add(x);
+				x.setInTransit(false);
+				return responce = new ResponceObject("Successfully added container");
+			}
+		}
+		return responce = new ResponceObject("Could not find available container");
 	}
 	
 	public void removeShipments(int location) {
