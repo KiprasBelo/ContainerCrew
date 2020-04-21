@@ -66,6 +66,7 @@ public class ClientLogin extends JFrame {
 				try {
 					
 					ClientLog c = new ClientLog();
+					c.updateDatabase();
 					boolean found = false;
 					
 					for(Client x : c.getClients()) {

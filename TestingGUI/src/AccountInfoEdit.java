@@ -76,6 +76,8 @@ public class AccountInfoEdit extends JFrame {
 						client.getSelectedClient().setPhoneNumber(numberEdit.getText());
 					}
 					
+					client.updateClientDatabaseInfo(client.getSelectedClient());
+					
 					dispose();
 					AccountInfoDisplay display = new AccountInfoDisplay();
 					display.setVisible(true);

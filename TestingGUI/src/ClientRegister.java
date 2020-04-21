@@ -83,6 +83,7 @@ public class ClientRegister extends JFrame {
 						client.setName(nameField.getText());
 						client.setEmail(emailField.getText());
 						client.setPhoneNumber(numberField.getText());
+						log.addToDatabase(client);
 						
 						dispose();
 						ClientLogin login = new ClientLogin();

@@ -6,16 +6,21 @@ import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class FirstPage {
 
 	private JFrame frame;
+	ClientLog log = new ClientLog();
+	ContainerLog log2 = new ContainerLog();
+	
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -30,8 +35,11 @@ public class FirstPage {
 
 	/**
 	 * Create the application.
+	 * @throws IOException 
 	 */
-	public FirstPage() {
+	public FirstPage() throws IOException {
+		log.createDatabase();
+		log2.createDatabase();
 		initialize();
 	}
 

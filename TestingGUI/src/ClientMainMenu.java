@@ -40,16 +40,53 @@ public class ClientMainMenu extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Add Journey");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				AddJourney journey = new AddJourney();
+				journey.setVisible(true);
+			}
+		});
+		
+		
 		btnNewButton.setBounds(124, 67, 175, 47);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Track Jounies");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+				ContainerTracker contain = new ContainerTracker();
+				contain.setVisible(true);
+				
+				
+			}
+		});
+		
+		
 		btnNewButton_1.setBounds(124, 125, 175, 50);
 		contentPane.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Logout");
-		btnNewButton_2.setBounds(124, 186, 175, 47);
-		contentPane.add(btnNewButton_2);
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ClientLog log = new ClientLog();
+				log.getSelectedClient().setLoginStatus(false);
+				
+				dispose();
+				ClientLogin login = new ClientLogin();
+				login.setVisible(true);
+				
+			}
+			
+		});
+		
+		
+		
+		btnLogout.setBounds(124, 186, 175, 47);
+		contentPane.add(btnLogout);
 		
 		JButton btnNewButton_3 = new JButton("Account");
 		
