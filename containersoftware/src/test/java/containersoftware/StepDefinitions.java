@@ -2,6 +2,9 @@ package containersoftware;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,6 +21,34 @@ public class StepDefinitions {
 	ContainerLog containLog = new ContainerLog();
 	ResponceObject responce2;
 	Container contains;
+	String username;
+	String password;
+	ArrayList<Container> cont = new ArrayList<Container>();
+	
+	
+	//Register Client
+	
+	@Given("An entered username {string}")
+	public void an_entered_username(String string) {
+		username = string;
+	}
+
+	@Given("An entered password {string}")
+	public void an_entered_password(String string) {
+		password = string;
+	}
+
+	@When("Hit register button")
+	public void hit_register_button() {
+		responce = log.Register(username, password, password, null, null, null);
+	}
+
+	@Then("Display message about successful register")
+	public void display_message_about_successful_register() {
+		assertEquals(responce.getErrorMessage(), "Client Registered");
+	}
+	
+	//Login
 	
 	@Given("a client with a valid account")
 	public void a_client_with_a_valid_account() {
@@ -96,6 +127,43 @@ public class StepDefinitions {
 	public void displays_message_about_basic_container_logistic_information() {
 		assertEquals(responce.getErrorMessage(), "Has shipments");
 		assertEquals(client.getShipment(0).getOrder(0).getCargo(), "Bananas");
+	}
+	
+	//Access Containers as Client
+	
+	@Given("a valid client account")
+	public void a_valid_client_account() {
+		client.setType('C');
+	}
+	
+	@Given("a <list> of containers with matching client id {int}")
+	public void a_list_of_containers_with_matching_client_id(Integer int1) throws FileNotFoundException {
+		containLog.updateDatabase();
+		for(Container x: containLog.getContainers()) {
+			if(x.getOwnerID() == int1) {
+				client.addShipments(x);
+			}
+		}
+	}
+
+	@When("I search for a container using port of origin {string} and destinaltion {string}")
+	public void i_search_for_a_container_using_port_of_origin_and_destinaltion(String string, String string2) {
+		
+		boolean isfound = false;
+		
+		for(Container x : client.getShipments()) {
+			if(x.getCurrentOrder().getStartLocation().contentEquals(string) && x.getCurrentOrder().getEndLocation().contentEquals(string2)) {
+				isfound = true;
+			}
+		}
+		assertEquals(true, isfound);
+	}
+	
+
+	@Then("the containers matching the search will be displayed")
+	public void the_containers_matching_the_search_will_be_displayed() {
+		contains = client.getShipment(0);
+		assertEquals(contains.toString(), "0,6,New York,Bananas,Oslo");
 	}
 	
 	//No current shipments

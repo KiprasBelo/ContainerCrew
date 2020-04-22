@@ -1,5 +1,6 @@
 package containersoftware;
 
+
 public class LogisticCompanyAdmin extends Account{
 	
 	private String referencePerson;

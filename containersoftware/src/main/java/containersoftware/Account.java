@@ -1,6 +1,5 @@
 package containersoftware;
-//this is hopefully working
-//this tho?
+
 
 public class Account {
 	
@@ -9,8 +8,16 @@ public class Account {
 	private String name;
 	private String email;
 	private String address;
+	private String phoneNumber;
 	private char type;
 	private boolean loggedIn;
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 	
 	public String getUsername() {
 		return username;

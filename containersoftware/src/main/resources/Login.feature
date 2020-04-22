@@ -31,3 +31,9 @@ Feature: Login to account
     And login status is false
     When enter incorrect username and password
     Then Displays message about unsuccessful login
+
+    Scenario: Register Client
+    Given An entered username 'John123'
+    And An entered password 'pass'
+    When Hit register button
+    Then Display message about successful register
