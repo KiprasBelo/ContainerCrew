@@ -15,6 +15,7 @@ public class FirstPage {
 	private JFrame frame;
 	ClientLog log = new ClientLog();
 	ContainerLog log2 = new ContainerLog();
+	OrderLog log3 = new OrderLog();
 	
 
 	/**
@@ -41,6 +42,7 @@ public class FirstPage {
 	public FirstPage() throws IOException {
 		log.createDatabase();
 		log2.createDatabase();
+		log3.createDatabase();
 		initialize();
 	}
 

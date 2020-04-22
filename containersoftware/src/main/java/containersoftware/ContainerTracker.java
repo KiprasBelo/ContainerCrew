@@ -68,11 +68,13 @@ public class ContainerTracker extends JFrame {
 				
 				try {
 					log.updateDatabase();
+					log2.updateDatabase();
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}
 				
 				list.setModel(DLM);
+				DLM.removeAllElements();
 				
 				for(Container x : log.getContainers()) {
 					if(log2.getSelectedClient().getClientID() == x.getOwnerID()) {

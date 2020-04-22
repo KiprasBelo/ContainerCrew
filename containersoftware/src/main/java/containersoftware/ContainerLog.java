@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 public class ContainerLog {
 	
-	ArrayList<Container> containers = new ArrayList<Container>();
-	File file;
+	private static ArrayList<Container> containers = new ArrayList<Container>();
+	private File file;
 	
 	public ContainerLog() {}
 	
@@ -36,12 +36,6 @@ public class ContainerLog {
 		try {
 			BufferedWriter write = new BufferedWriter(new FileWriter("/Users/LTMC4/OneDrive/Desktop/ContainerDatabase.txt", true));
 			write.newLine();
-		
-			
-			
-			
-			
-			
 			write.write(c.toString());
 			write.close();
 			

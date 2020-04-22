@@ -1,5 +1,11 @@
 package containersoftware;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
 
@@ -8,11 +14,36 @@ public class Order {
 	private String currentLocation;
 	private String cargo;
 	private int orderID;
-	static int IDcounter = 0;
+	private int assignedContainerId;
+	private boolean currentOrder;
 	
 	public Order() {
-		IDcounter++;
-		orderID = IDcounter;
+		Path path = Paths.get("/Users/LTMC4/OneDrive/Desktop/OrderDatabase.txt");
+		int counter = 0;
+		
+		try {
+			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
+			
+			for(int i = 0; i < content.size(); i++) {
+				if(content.get(i).charAt(0) > counter){
+					counter++;
+				}
+			}
+		}catch(Exception e) {
+				e.printStackTrace();
+		}
+		orderID = counter;
+	}
+	
+	public Order(int owner, String start, String end, String cargo) {
+		assignedContainerId = owner;
+		startLocation = start;
+		endLocation = end;
+		this.cargo = cargo;
+	}
+	
+	public void setOrderID(int id) {
+		orderID = id;
 	}
 	
 	public String getStartLocation() {
@@ -49,6 +80,26 @@ public class Order {
 	
 	public int getOrderID() {
 		return orderID;
+	}
+
+	public int getAssignedContainerId() {
+		return assignedContainerId;
+	}
+
+	public void setAssignedContainerId(int assignedContainerId) {
+		this.assignedContainerId = assignedContainerId;
+	}
+
+	public boolean isCurrentOrder() {
+		return currentOrder;
+	}
+
+	public void setCurrentOrder(boolean currentOrder) {
+		this.currentOrder = currentOrder;
+	}
+	
+	public String toString() {
+		return this.getOrderID()+","+this.getAssignedContainerId()+","+this.getStartLocation()+","+this.getEndLocation()+","+this.getCargo();
 	}
 	
 }
