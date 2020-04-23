@@ -47,13 +47,12 @@ public class OrderLog {
 	public void updateDatabase() throws FileNotFoundException {
 		file = new File("/Users/LTMC4/OneDrive/Desktop/ContainerDatabase.txt");
 		Scanner scan = new Scanner(file);
-		orders.clear();
+		//clients.clear();
 		
 		while(scan.hasNextLine()) {
 			String temp = scan.nextLine();
 			String[] data = temp.split(",");
 			Order o = new Order(Integer.parseInt(data[1]), data[2], data[3], data[4]);
-			o.setCurrentOrder(Boolean.parseBoolean(data[5]));
 			o.setOrderID(Integer.parseInt(data[0]));
 			this.addOrders(o);
 		}

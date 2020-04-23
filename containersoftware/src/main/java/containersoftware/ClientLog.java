@@ -48,24 +48,18 @@ public class ClientLog {
 		file = new File("/Users/LTMC4/OneDrive/Desktop/ClientDatabase.txt");
 		Scanner scan = new Scanner(file);
 		//clients.clear();
-		String temp = scan.nextLine();
-		String[] data = temp.split(",");
 		
 		while(scan.hasNextLine()) {
+			String temp = scan.nextLine();
+			String[] data = temp.split(",");
+			Client c = new Client(data[1], data[2]);
+			this.addClients(c);
+			c.setClientID(Integer.parseInt(data[0]));
+			c.setName(data[3]);
+			c.setEmail(data[4]);
+			c.setPhoneNumber(data[5]);
+			c.setAddress(data[6]);
 			
-			for(Client x : clients) {
-				
-				if(!x.getUsername().contentEquals(data[1]) && !x.getPhoneNumber().contentEquals(data[2])) {
-				
-					Client c = new Client(data[1], data[2]);
-					this.addClients(c);
-					c.setClientID(Integer.parseInt(data[0]));
-					c.setName(data[3]);
-					c.setEmail(data[4]);
-					c.setPhoneNumber(data[5]);
-					c.setAddress(data[6]);
-				}
-			}
 		}
 		
 	}

@@ -13,7 +13,7 @@ public class Order {
 	private String endLocation;
 	private String currentLocation;
 	private String cargo;
-	private int orderID = 0;
+	private int orderID;
 	private int assignedContainerId;
 	private boolean currentOrder;
 	
@@ -25,7 +25,7 @@ public class Order {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			
 			for(int i = 0; i < content.size(); i++) {
-				if(content.get(i).charAt(0) >= counter){
+				if(content.get(i).charAt(0) > counter){
 					counter++;
 				}
 			}
@@ -40,22 +40,6 @@ public class Order {
 		startLocation = start;
 		endLocation = end;
 		this.cargo = cargo;
-		
-		Path path = Paths.get("/Users/LTMC4/OneDrive/Desktop/OrderDatabase.txt");
-		int counter = 0;
-		
-		try {
-			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
-			
-			for(int i = 0; i < content.size(); i++) {
-				if(content.get(i).charAt(0) >= counter){
-					counter++;
-				}
-			}
-		}catch(Exception e) {
-				e.printStackTrace();
-		}
-		orderID = counter;
 	}
 	
 	public void setOrderID(int id) {
@@ -115,7 +99,7 @@ public class Order {
 	}
 	
 	public String toString() {
-		return this.getOrderID()+","+this.getAssignedContainerId()+","+this.getStartLocation()+","+this.getEndLocation()+","+this.getCargo()+","+this.isCurrentOrder();
+		return this.getOrderID()+","+this.getAssignedContainerId()+","+this.getStartLocation()+","+this.getEndLocation()+","+this.getCargo();
 	}
 	
 }

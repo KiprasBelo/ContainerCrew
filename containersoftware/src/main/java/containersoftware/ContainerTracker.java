@@ -77,7 +77,7 @@ public class ContainerTracker extends JFrame {
 				DLM.removeAllElements();
 				
 				for(Container x : log.getContainers()) {
-					if(log2.getSelectedClient().getClientID() == x.getOwnerID() && x.getInTransit()) {
+					if(log2.getSelectedClient().getClientID() == x.getOwnerID()) {
 						DLM.addElement(x);
 					}
 				}
