@@ -72,6 +72,7 @@ public class FirstPage {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				
+				
 				try {
 					
 					frame.dispose();
