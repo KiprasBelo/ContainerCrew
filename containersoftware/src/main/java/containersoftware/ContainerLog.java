@@ -49,6 +49,7 @@ public class ContainerLog {
 		file = new File("/Users/LTMC4/OneDrive/Desktop/ContainerDatabase.txt");
 		Scanner scan = new Scanner(file);
 		//clients.clear();
+		containers.clear();
 		
 		while(scan.hasNextLine()) {
 			String temp = scan.nextLine();
@@ -73,6 +74,7 @@ public class ContainerLog {
 			c.getCurrentOrder().setStartLocation(data[2]);
 			c.getCurrentOrder().setCargo(data[3]);
 			c.getCurrentOrder().setEndLocation(data[4]);
+			c.setInTransit(Boolean.parseBoolean(data[5]));
 			
 		}
 		

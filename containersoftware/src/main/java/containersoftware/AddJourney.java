@@ -66,7 +66,7 @@ public class AddJourney extends JFrame {
 		
 		JButton btnRegister = new JButton("Add Journey");
 		btnRegister.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg) {
 				
 				Container c;
 				
@@ -84,7 +84,7 @@ public class AddJourney extends JFrame {
 					c.setOwnerID(log2.getSelectedClient().getClientID());
 					c.setTemperature(Integer.parseInt(tempField.getText()));
 					
-					o = new Order(c.getOwnerID(), originField.getText(), destinationField.getText(), cargoField.getText());
+					o = new Order(c.getContainerID(), originField.getText(), destinationField.getText(), cargoField.getText());
 					c.addOrders(o);
 					o.setCurrentOrder(true);
 					c.setCurrentOrder(o);
@@ -92,6 +92,7 @@ public class AddJourney extends JFrame {
 					c.getCurrentOrder().setStartLocation(originField.getText());
 					c.getCurrentOrder().setCargo(cargoField.getText());
 					c.getCurrentOrder().setEndLocation(destinationField.getText());
+					c.setInTransit(true);
 					log.addToDatabase(c);
 					log3.addToDatabase(c.getCurrentOrder());
 					log.addContainer(c);

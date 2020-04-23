@@ -127,7 +127,7 @@ public class Container {
 	
 	public String toString() {
 		return this.getContainerID()+","+this.getOwnerID()+","+this.getCurrentOrder().getStartLocation()+","+
-				this.getCurrentOrder().getCargo()+","+this.getCurrentOrder().getEndLocation();
+				this.getCurrentOrder().getCargo()+","+this.getCurrentOrder().getEndLocation()+","+this.getInTransit();
 	}
 
 
