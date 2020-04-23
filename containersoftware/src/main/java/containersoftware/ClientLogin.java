@@ -73,11 +73,12 @@ public class ClientLogin extends JFrame {
 					for(Client x : c.getClients()) {
 						if(x.getUsername().contentEquals(userField.getText())) {
 							if(x.getPassword().contentEquals(passwordField.getText())) {
+								found = true;
+								x.setLoginStatus(true);
+								
 								dispose();
 								ClientMainMenu menu = new ClientMainMenu();
 								menu.setVisible(true);
-								found = true;
-								x.setLoginStatus(true);
 							}
 						}
 					}
