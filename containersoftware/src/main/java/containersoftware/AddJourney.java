@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -66,7 +67,7 @@ public class AddJourney extends JFrame {
 		
 		JButton btnRegister = new JButton("Add Journey");
 		btnRegister.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg) {
 				
 				Container c;
 				
@@ -74,6 +75,14 @@ public class AddJourney extends JFrame {
 				ClientLog log2 = new ClientLog();
 				OrderLog log3 = new OrderLog();
 				Order o;
+				
+				//try {
+				//	log.updateDatabase();
+				//	//log2.updateDatabase();
+				//	log3.updateDatabase();
+				//} catch(Exception e) {
+				//	JOptionPane.showMessageDialog(null, e);
+				//}
 				
 				ResponceObject responce = log2.getSelectedClient().addShipments(log);
 				
@@ -84,7 +93,7 @@ public class AddJourney extends JFrame {
 					c.setOwnerID(log2.getSelectedClient().getClientID());
 					c.setTemperature(Integer.parseInt(tempField.getText()));
 					
-					o = new Order(c.getOwnerID(), originField.getText(), destinationField.getText(), cargoField.getText());
+					o = new Order(c.getContainerID(), originField.getText(), destinationField.getText(), cargoField.getText());
 					c.addOrders(o);
 					o.setCurrentOrder(true);
 					c.setCurrentOrder(o);
@@ -92,6 +101,7 @@ public class AddJourney extends JFrame {
 					c.getCurrentOrder().setStartLocation(originField.getText());
 					c.getCurrentOrder().setCargo(cargoField.getText());
 					c.getCurrentOrder().setEndLocation(destinationField.getText());
+					c.setInTransit(true);
 					log.addToDatabase(c);
 					log3.addToDatabase(c.getCurrentOrder());
 					log.addContainer(c);
@@ -107,7 +117,7 @@ public class AddJourney extends JFrame {
 					c.addOrders(o);
 					o.setCurrentOrder(true);
 					c.setCurrentOrder(o);
-				
+					System.out.println("Succesful");
 				}
 				
 				dispose();

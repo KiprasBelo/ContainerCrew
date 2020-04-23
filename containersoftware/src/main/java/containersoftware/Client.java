@@ -42,8 +42,8 @@ public class Client extends Account {
 		
 		for(Container x : log.getContainers()) {
 			if(!x.getInTransit()) {
-				shipments.add(x);
 				x.setInTransit(true);
+				shipments.add(x);
 				return responce = new ResponceObject("Successfully added container");
 			}
 		}
@@ -57,6 +57,7 @@ public class Client extends Account {
 	}
 	
 	public void removeShipments(int location) {
+		shipments.get(location).setInTransit(false);
 		shipments.remove(location);
 	}
 	
