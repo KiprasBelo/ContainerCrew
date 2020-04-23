@@ -9,6 +9,7 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class FirstPage {
 
