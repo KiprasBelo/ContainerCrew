@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -73,6 +74,11 @@ public class AdminLogin extends JFrame {
 				
 				if(userField.getText().contentEquals("Admin") && passwordField.getText().contentEquals("Password")) {
 					dispose();
+					AdminMainMenu menu = new AdminMainMenu();
+					menu.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
 				}
 				
 			}

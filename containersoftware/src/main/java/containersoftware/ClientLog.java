@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 public class ClientLog {
 
 	private static ArrayList<Client> clients = new ArrayList<Client>();
-	private Client selectedClient;
+	private static Client selectedClient;
 	private File file;
 	
 	public ClientLog() {}
@@ -47,11 +47,12 @@ public class ClientLog {
 	public void updateDatabase() throws FileNotFoundException {
 		file = new File("/Users/LTMC4/OneDrive/Desktop/ClientDatabase.txt");
 		Scanner scan = new Scanner(file);
-		//clients.clear();
+		clients.clear();
 		
 		while(scan.hasNextLine()) {
 			String temp = scan.nextLine();
 			String[] data = temp.split(",");
+			
 			Client c = new Client(data[1], data[2]);
 			this.addClients(c);
 			c.setClientID(Integer.parseInt(data[0]));
@@ -59,6 +60,11 @@ public class ClientLog {
 			c.setEmail(data[4]);
 			c.setPhoneNumber(data[5]);
 			c.setAddress(data[6]);
+			if(Boolean.parseBoolean(data[7])) {
+				selectedClient = c;
+				c.setLoginStatus(true);
+			}
+				
 			
 		}
 		

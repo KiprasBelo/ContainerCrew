@@ -56,9 +56,18 @@ public class FirstPage {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("Admin Login");
-		btnNewButton.setBounds(120, 167, 218, 56);
-		frame.getContentPane().add(btnNewButton);
+		JButton btnAdminLogin = new JButton("Admin Login");
+		btnAdminLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				frame.dispose();
+				AdminLogin admin = new AdminLogin();
+				admin.setVisible(true);
+				
+			}
+		});
+		btnAdminLogin.setBounds(120, 167, 218, 56);
+		frame.getContentPane().add(btnAdminLogin);
 		
 		JButton btnNewButton_1 = new JButton("Client Register");
 		

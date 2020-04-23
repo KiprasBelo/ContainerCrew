@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 
 public class ClientMainMenu extends JFrame {
@@ -74,7 +75,13 @@ public class ClientMainMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				ClientLog log = new ClientLog();
+				Client c = log.getSelectedClient();
 				log.getSelectedClient().setLoginStatus(false);
+				try {
+					log.updateClientDatabaseInfo(c);
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				}
 				
 				dispose();
 				ClientLogin login = new ClientLogin();

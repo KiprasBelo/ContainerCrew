@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdminMainMenu extends JFrame {
 
@@ -35,8 +38,29 @@ public class AdminMainMenu extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				AdminLogin admin = new AdminLogin();
+				admin.setVisible(true);
+			}
+		});
+		btnLogout.setBounds(128, 137, 156, 54);
+		contentPane.add(btnLogout);
+		
+		JButton btnFindClients = new JButton("Find Clients");
+		btnFindClients.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				ClientFinder find = new ClientFinder();
+				find.setVisible(true);
+			}
+		});
+		btnFindClients.setBounds(125, 60, 163, 49);
+		contentPane.add(btnFindClients);
 	}
-
 }

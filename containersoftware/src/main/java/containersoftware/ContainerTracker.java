@@ -14,10 +14,15 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractListModel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class ContainerTracker extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField originField;
+	private JTextField destinationField;
+	private JTextField cargoField;
 
 	/**
 	 * Launch the application.
@@ -59,7 +64,7 @@ public class ContainerTracker extends JFrame {
 		list.setBounds(202, 44, 171, 206);
 		contentPane.add(list);
 		
-		JButton btnNewButton = new JButton("Load Containers");
+		JButton btnNewButton = new JButton("Load All Containers");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultListModel DLM = new DefaultListModel();
@@ -86,7 +91,7 @@ public class ContainerTracker extends JFrame {
 		});
 		
 		
-		btnNewButton.setBounds(10, 103, 111, 23);
+		btnNewButton.setBounds(10, 11, 149, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnBack = new JButton("Back");
@@ -101,6 +106,67 @@ public class ContainerTracker extends JFrame {
 		});
 		btnBack.setBounds(10, 227, 89, 23);
 		contentPane.add(btnBack);
+		
+		JLabel lblFind = new JLabel("Find by:");
+		lblFind.setBounds(10, 45, 46, 14);
+		contentPane.add(lblFind);
+		
+		originField = new JTextField();
+		originField.setBounds(10, 70, 86, 20);
+		contentPane.add(originField);
+		originField.setColumns(10);
+		
+		destinationField = new JTextField();
+		destinationField.setBounds(10, 101, 86, 20);
+		contentPane.add(destinationField);
+		destinationField.setColumns(10);
+		
+		cargoField = new JTextField();
+		cargoField.setBounds(10, 132, 86, 20);
+		contentPane.add(cargoField);
+		cargoField.setColumns(10);
+		
+		JLabel lblOrigin = new JLabel("Origin");
+		lblOrigin.setBounds(106, 73, 46, 14);
+		contentPane.add(lblOrigin);
+		
+		JLabel lblDestination = new JLabel("Destination");
+		lblDestination.setBounds(106, 104, 69, 14);
+		contentPane.add(lblDestination);
+		
+		JLabel lblCargo = new JLabel("Cargo");
+		lblCargo.setBounds(106, 135, 46, 14);
+		contentPane.add(lblCargo);
+		
+		JButton btnFindbyLoad = new JButton("Load");
+		btnFindbyLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DefaultListModel DLM = new DefaultListModel();
+				ContainerLog log = new ContainerLog();
+				ClientLog log2 = new ClientLog();
+				
+				try {
+					log.updateDatabase();
+					log2.updateDatabase();
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				}
+				
+				list.setModel(DLM);
+				DLM.removeAllElements();
+				
+				for(Container x : log.getContainers()) {
+					if((log2.getSelectedClient().getClientID() == x.getOwnerID() && x.getInTransit()) && (x.getCurrentOrder().getStartLocation().contentEquals(originField.getText()) ||
+							x.getCurrentOrder().getEndLocation().contentEquals(destinationField.getText()) || x.getCurrentOrder().getCargo().contentEquals(cargoField.getText()))) {
+						DLM.addElement(x);
+					}
+				}
+				
+			}
+		});
+		btnFindbyLoad.setBounds(10, 163, 89, 23);
+		contentPane.add(btnFindbyLoad);
 		
 	}
 }
