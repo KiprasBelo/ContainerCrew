@@ -14,6 +14,8 @@ import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 public class ClientFinder extends JFrame {
 
@@ -60,7 +62,18 @@ public class ClientFinder extends JFrame {
 		btnBack.setBounds(10, 227, 86, 23);
 		contentPane.add(btnBack);
 		
+		
+		
+		
+		
 		JList list = new JList();
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				
+				
+				
+			}
+		});
 		list.setBounds(150, 11, 218, 239);
 		contentPane.add(list);
 		

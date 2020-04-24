@@ -13,7 +13,9 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -64,6 +66,7 @@ public class ClientLog {
 				selectedClient = c;
 				c.setLoginStatus(true);
 			}
+			c.setLastLoggedIn(data[8]);
 				
 			
 		}
@@ -89,8 +92,44 @@ public class ClientLog {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void checkDates() {
 		
 		
+		for(Container x : this.getSelectedClient().getShipments()) {
+		
+			this.selectedClient.compareDates(x.getStartDate());
+			
+			if(this.getSelectedClient().getTimeDifference() < 48) {
+				for(int k = 0; k < this.getSelectedClient().getTimeDifference(); k++) {
+					x.addData(this.getSelectedClient().getTimeDifference(), x.getTemperature());
+				}
+			}
+			else {
+			
+				this.selectedClient.compareDates(this.getSelectedClient().getLastLoggedIn());
+				
+				if(this.getSelectedClient().getTimeDifference() < 48) {
+					
+					for(int i = 48 - this.getSelectedClient().getTimeDifference(); i > 0; i--) {
+						
+						for(int j = 0; j < 48-1; j++) {
+							x.getDataPoints()[j] = x.getDataPoints()[j+1];
+						}
+						
+					}
+					
+					x.addData(48-this.getSelectedClient().getTimeDifference(), x.getTemperature());
+					
+				}
+				else {
+					
+					x.addData(0, x.getTemperature());
+					
+				}
+			}
+		}
 	}
 	
 	public void addToDatabase(Client c) {

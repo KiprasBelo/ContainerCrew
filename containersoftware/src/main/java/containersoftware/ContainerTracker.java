@@ -1,4 +1,5 @@
 package containersoftware;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -16,6 +17,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractListModel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ContainerTracker extends JFrame {
 
@@ -23,6 +29,8 @@ public class ContainerTracker extends JFrame {
 	private JTextField originField;
 	private JTextField destinationField;
 	private JTextField cargoField;
+	String row;
+	Container current;
 
 	/**
 	 * Launch the application.
@@ -45,13 +53,46 @@ public class ContainerTracker extends JFrame {
 	 */
 	public ContainerTracker() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 535, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JList list = new JList();
+		
+		
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount() == 2 && list.locationToIndex(arg0.getPoint()) == list.getSelectedIndex()) {
+					if(!list.isSelectionEmpty()) {
+						
+						ClientLog log = new ClientLog();
+						
+						log.checkDates();
+						
+						dispose();
+						LineChart chart = new LineChart("Container Temperature", "Container Temperature for the last 48 hours", current);
+						chart.pack();
+						chart.setVisible(true);
+					
+					}
+				}
+			}
+		});
+		
+		
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				
+				row = list.getSelectedValue().toString();
+				current = (Container) list.getSelectedValue();
+			}
+		});
+		
+		
+		
 		list.setModel(new AbstractListModel() {
 			String[] values = new String[] {};
 			public int getSize() {
@@ -61,7 +102,7 @@ public class ContainerTracker extends JFrame {
 				return values[index];
 			}
 		});
-		list.setBounds(202, 44, 171, 206);
+		list.setBounds(185, 44, 324, 206);
 		contentPane.add(list);
 		
 		JButton btnNewButton = new JButton("Load All Containers");

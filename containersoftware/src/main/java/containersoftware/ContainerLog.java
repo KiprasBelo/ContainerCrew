@@ -36,7 +36,7 @@ public class ContainerLog {
 		try {
 			BufferedWriter write = new BufferedWriter(new FileWriter("/Users/LTMC4/OneDrive/Desktop/ContainerDatabase.txt", true));
 			write.newLine();
-			write.write(c.toString());
+			write.write(c.toString(true));
 			write.close();
 			
 		} catch(Exception e) {
@@ -74,7 +74,15 @@ public class ContainerLog {
 			c.getCurrentOrder().setStartLocation(data[2]);
 			c.getCurrentOrder().setCargo(data[3]);
 			c.getCurrentOrder().setEndLocation(data[4]);
-			c.setInTransit(Boolean.parseBoolean(data[5]));
+			c.setTemperature(Double.parseDouble(data[5]));
+			c.setInTransit(Boolean.parseBoolean(data[6]));
+			c.setStartDate(data[7]);
+			
+			for(int i = 0; i < 48; i++) {
+				
+				c.getDataPoints()[i] = Double.parseDouble(data[i+8]);
+				
+			}
 			
 		}
 		

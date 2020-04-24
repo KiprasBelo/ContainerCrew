@@ -92,6 +92,7 @@ public class AddJourney extends JFrame {
 					c.getCurrentOrder().setStartLocation(originField.getText());
 					c.getCurrentOrder().setCargo(cargoField.getText());
 					c.getCurrentOrder().setEndLocation(destinationField.getText());
+					c.setStartDate();
 					c.setInTransit(true);
 					log.addToDatabase(c);
 					log3.addToDatabase(c.getCurrentOrder());
@@ -108,6 +109,7 @@ public class AddJourney extends JFrame {
 					c.addOrders(o);
 					o.setCurrentOrder(true);
 					c.setCurrentOrder(o);
+					c.setStartDate();
 				
 				}
 				
