@@ -77,10 +77,12 @@ public class Container {
 		double bottomThreshhold = temperature - 2;
 		double random;
 		
-		for(int i = location; i < dataPoints.length-1; i++) {
+		for(int i = location; i < 47; i++) {
 			
 			random = (Math.random() * 4) + bottomThreshhold;
 			dataPoints[i] = random;
+			System.out.println("added");
+			
 		}
 		
 	}

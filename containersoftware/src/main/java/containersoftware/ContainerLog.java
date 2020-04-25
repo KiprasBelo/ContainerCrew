@@ -5,7 +5,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ContainerLog {
@@ -84,6 +90,27 @@ public class ContainerLog {
 				
 			}
 			
+		}
+		
+	}
+	
+	public void updateContainerDatabaseInfo(Container c) throws FileNotFoundException {
+		Path path = Paths.get("/Users/LTMC4/OneDrive/Desktop/ContainerDatabase.txt");
+		try {
+			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
+			
+			for(int i = 0; i < content.size(); i++) {
+				if(content.get(i).charAt(0) == (c.toString(true).charAt(0))){
+					content.set(i, c.toString(true));
+					break;
+				}
+			}
+			
+			Files.write(path, content, StandardCharsets.UTF_8);
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
 	}

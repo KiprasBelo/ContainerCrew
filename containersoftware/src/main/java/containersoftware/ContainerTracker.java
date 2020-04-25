@@ -69,8 +69,15 @@ public class ContainerTracker extends JFrame {
 					if(!list.isSelectionEmpty()) {
 						
 						ClientLog log = new ClientLog();
+						ContainerLog log2 = new ContainerLog();
 						
 						log.checkDates();
+						try {
+							log2.updateContainerDatabaseInfo(current);
+						} catch (FileNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						
 						dispose();
 						LineChart chart = new LineChart("Container Temperature", "Container Temperature for the last 48 hours", current);

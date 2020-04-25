@@ -104,6 +104,7 @@ public class ClientLog {
 			if(this.getSelectedClient().getTimeDifference() < 48) {
 				for(int k = 0; k < this.getSelectedClient().getTimeDifference(); k++) {
 					x.addData(this.getSelectedClient().getTimeDifference(), x.getTemperature());
+					System.out.println("option1");
 				}
 			}
 			else {
@@ -116,6 +117,7 @@ public class ClientLog {
 						
 						for(int j = 0; j < 48-1; j++) {
 							x.getDataPoints()[j] = x.getDataPoints()[j+1];
+							System.out.println("option2");
 						}
 						
 					}
@@ -126,6 +128,7 @@ public class ClientLog {
 				else {
 					
 					x.addData(0, x.getTemperature());
+					System.out.println("option3");
 					
 				}
 			}

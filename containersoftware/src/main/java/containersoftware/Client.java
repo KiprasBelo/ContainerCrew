@@ -45,6 +45,8 @@ public class Client extends Account {
 	
 	public void compareDates(String last) {
 		
+		System.out.println("comparing");
+		
 		Date now = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("MM:dd:hh");
 		String current = format.format(now);
@@ -70,7 +72,7 @@ public class Client extends Account {
 		else {
 			timeDifference = hourDifference + (Integer.parseInt(curr[1]) * 24) + ((30 - Integer.parseInt(past[1])) * 24);
 		}
-		
+		System.out.println(timeDifference);
 		
 	}
 	
