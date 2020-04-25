@@ -72,7 +72,6 @@ public class Client extends Account {
 		else {
 			timeDifference = hourDifference + (Integer.parseInt(curr[1]) * 24) + ((30 - Integer.parseInt(past[1])) * 24);
 		}
-		System.out.println(timeDifference);
 		
 	}
 	

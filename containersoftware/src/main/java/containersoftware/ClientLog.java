@@ -94,16 +94,21 @@ public class ClientLog {
 		
 	}
 	
-	public void checkDates() {
+	public void checkDates(Container x) {
 		
+		this.getSelectedClient();
+		System.out.println("Does this run");
 		
-		for(Container x : this.getSelectedClient().getShipments()) {
+		//for(Container x : selectedClient.getShipments()) {
+			
+			System.out.println("Does this run2");
 		
 			this.selectedClient.compareDates(x.getStartDate());
+			System.out.println(selectedClient.getTimeDifference());
 			
-			if(this.getSelectedClient().getTimeDifference() < 48) {
-				for(int k = 0; k < this.getSelectedClient().getTimeDifference(); k++) {
-					x.addData(this.getSelectedClient().getTimeDifference(), x.getTemperature());
+			if(this.selectedClient.getTimeDifference() < 48) {
+				for(int k = 0; k < this.selectedClient.getTimeDifference(); k++) {
+					x.addData(this.selectedClient.getTimeDifference(), x.getTemperature());
 					System.out.println("option1");
 				}
 			}
@@ -111,9 +116,9 @@ public class ClientLog {
 			
 				this.selectedClient.compareDates(this.getSelectedClient().getLastLoggedIn());
 				
-				if(this.getSelectedClient().getTimeDifference() < 48) {
+				if(this.selectedClient.getTimeDifference() < 48) {
 					
-					for(int i = 48 - this.getSelectedClient().getTimeDifference(); i > 0; i--) {
+					for(int i = 48 - this.selectedClient.getTimeDifference(); i > 0; i--) {
 						
 						for(int j = 0; j < 48-1; j++) {
 							x.getDataPoints()[j] = x.getDataPoints()[j+1];
@@ -122,7 +127,7 @@ public class ClientLog {
 						
 					}
 					
-					x.addData(48-this.getSelectedClient().getTimeDifference(), x.getTemperature());
+					x.addData(48-this.selectedClient.getTimeDifference(), x.getTemperature());
 					
 				}
 				else {
@@ -132,7 +137,7 @@ public class ClientLog {
 					
 				}
 			}
-		}
+		//}
 	}
 	
 	public void addToDatabase(Client c) {

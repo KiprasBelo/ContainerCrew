@@ -71,7 +71,7 @@ public class ContainerTracker extends JFrame {
 						ClientLog log = new ClientLog();
 						ContainerLog log2 = new ContainerLog();
 						
-						log.checkDates();
+						log.checkDates(current);
 						try {
 							log2.updateContainerDatabaseInfo(current);
 						} catch (FileNotFoundException e) {
