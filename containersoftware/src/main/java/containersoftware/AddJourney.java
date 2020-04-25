@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -76,14 +75,6 @@ public class AddJourney extends JFrame {
 				OrderLog log3 = new OrderLog();
 				Order o;
 				
-				//try {
-				//	log.updateDatabase();
-				//	//log2.updateDatabase();
-				//	log3.updateDatabase();
-				//} catch(Exception e) {
-				//	JOptionPane.showMessageDialog(null, e);
-				//}
-				
 				ResponceObject responce = log2.getSelectedClient().addShipments(log);
 				
 				if(responce.getErrorMessage().contentEquals("Could not find available container")) {
@@ -101,6 +92,7 @@ public class AddJourney extends JFrame {
 					c.getCurrentOrder().setStartLocation(originField.getText());
 					c.getCurrentOrder().setCargo(cargoField.getText());
 					c.getCurrentOrder().setEndLocation(destinationField.getText());
+					c.setStartDate();
 					c.setInTransit(true);
 					log.addToDatabase(c);
 					log3.addToDatabase(c.getCurrentOrder());
@@ -117,7 +109,8 @@ public class AddJourney extends JFrame {
 					c.addOrders(o);
 					o.setCurrentOrder(true);
 					c.setCurrentOrder(o);
-					System.out.println("Succesful");
+					c.setStartDate();
+				
 				}
 				
 				dispose();

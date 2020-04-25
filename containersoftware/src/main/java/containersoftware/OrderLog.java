@@ -47,6 +47,7 @@ public class OrderLog {
 	public void updateDatabase() throws FileNotFoundException {
 		file = new File("/Users/LTMC4/OneDrive/Desktop/ContainerDatabase.txt");
 		Scanner scan = new Scanner(file);
+		//clients.clear();
 		orders.clear();
 		
 		while(scan.hasNextLine()) {

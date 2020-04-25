@@ -9,6 +9,7 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class FirstPage {
 
@@ -57,10 +58,12 @@ public class FirstPage {
 		
 		JButton btnAdminLogin = new JButton("Admin Login");
 		btnAdminLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
+				
 				frame.dispose();
-				AdminLogin adminLogin = new AdminLogin();
-				adminLogin.setVisible(true);
+				AdminLogin admin = new AdminLogin();
+				admin.setVisible(true);
+				
 			}
 		});
 		btnAdminLogin.setBounds(120, 167, 218, 56);

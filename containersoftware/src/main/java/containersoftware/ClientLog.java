@@ -13,7 +13,9 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,7 +24,7 @@ import javax.swing.JOptionPane;
 public class ClientLog {
 
 	private static ArrayList<Client> clients = new ArrayList<Client>();
-	private Client selectedClient;
+	private static Client selectedClient;
 	private File file;
 	
 	public ClientLog() {}
@@ -47,25 +49,26 @@ public class ClientLog {
 	public void updateDatabase() throws FileNotFoundException {
 		file = new File("/Users/LTMC4/OneDrive/Desktop/ClientDatabase.txt");
 		Scanner scan = new Scanner(file);
-		//clients.clear();
-		String temp = scan.nextLine();
-		String[] data = temp.split(",");
+		clients.clear();
 		
 		while(scan.hasNextLine()) {
+			String temp = scan.nextLine();
+			String[] data = temp.split(",");
 			
-			for(Client x : clients) {
-				
-				if(!x.getUsername().contentEquals(data[1]) && !x.getPhoneNumber().contentEquals(data[2])) {
-				
-					Client c = new Client(data[1], data[2]);
-					this.addClients(c);
-					c.setClientID(Integer.parseInt(data[0]));
-					c.setName(data[3]);
-					c.setEmail(data[4]);
-					c.setPhoneNumber(data[5]);
-					c.setAddress(data[6]);
-				}
+			Client c = new Client(data[1], data[2]);
+			this.addClients(c);
+			c.setClientID(Integer.parseInt(data[0]));
+			c.setName(data[3]);
+			c.setEmail(data[4]);
+			c.setPhoneNumber(data[5]);
+			c.setAddress(data[6]);
+			if(Boolean.parseBoolean(data[7])) {
+				selectedClient = c;
+				c.setLoginStatus(true);
 			}
+			c.setLastLoggedIn(data[8]);
+				
+			
 		}
 		
 	}
@@ -89,8 +92,52 @@ public class ClientLog {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void checkDates(Container x) {
 		
+		this.getSelectedClient();
+		System.out.println("Does this run");
 		
+		//for(Container x : selectedClient.getShipments()) {
+			
+			System.out.println("Does this run2");
+		
+			this.selectedClient.compareDates(x.getStartDate());
+			System.out.println(selectedClient.getTimeDifference());
+			
+			if(this.selectedClient.getTimeDifference() < 48) {
+				for(int k = 0; k < this.selectedClient.getTimeDifference(); k++) {
+					x.addData(this.selectedClient.getTimeDifference(), x.getTemperature());
+					System.out.println("option1");
+				}
+			}
+			else {
+			
+				this.selectedClient.compareDates(this.getSelectedClient().getLastLoggedIn());
+				
+				if(this.selectedClient.getTimeDifference() < 48) {
+					
+					for(int i = 48 - this.selectedClient.getTimeDifference(); i > 0; i--) {
+						
+						for(int j = 0; j < 48-1; j++) {
+							x.getDataPoints()[j] = x.getDataPoints()[j+1];
+							System.out.println("option2");
+						}
+						
+					}
+					
+					x.addData(48-this.selectedClient.getTimeDifference(), x.getTemperature());
+					
+				}
+				else {
+					
+					x.addData(0, x.getTemperature());
+					System.out.println("option3");
+					
+				}
+			}
+		//}
 	}
 	
 	public void addToDatabase(Client c) {

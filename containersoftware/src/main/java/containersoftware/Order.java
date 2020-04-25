@@ -25,7 +25,7 @@ public class Order {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			
 			for(int i = 0; i < content.size(); i++) {
-				if(content.get(i).charAt(0) >= counter){
+				if(content.get(i).charAt(0) > counter){
 					counter++;
 				}
 			}
@@ -40,7 +40,6 @@ public class Order {
 		startLocation = start;
 		endLocation = end;
 		this.cargo = cargo;
-		
 		Path path = Paths.get("/Users/LTMC4/OneDrive/Desktop/OrderDatabase.txt");
 		int counter = 0;
 		
@@ -48,7 +47,7 @@ public class Order {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			
 			for(int i = 0; i < content.size(); i++) {
-				if(content.get(i).charAt(0) >= counter){
+				if(content.get(i).charAt(0) > counter){
 					counter++;
 				}
 			}
