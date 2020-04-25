@@ -25,7 +25,7 @@ public class Container {
 	
 	
 	public Container() {
-		Path path = Paths.get("/Users/LTMC4/OneDrive/Desktop/ContainerDatabase.txt");
+		Path path = Paths.get("ContainerDatabase.txt");
 		int counter = 0;
 		
 		try {
@@ -43,7 +43,7 @@ public class Container {
 	}
 	
 	public Container(Order o) {
-		Path path = Paths.get("/Users/LTMC4/OneDrive/Desktop/ContainerDatabase.txt");
+		Path path = Paths.get("ContainerDatabase.txt");
 		int counter = 0;
 		
 		try {
