@@ -75,8 +75,10 @@ public class ClientLogin extends JFrame {
 							if(x.getPassword().contentEquals(passwordField.getText())) {
 								found = true;
 								x.setLoginStatus(true);
-								x.compareDates(x.getLastLoggedIn());
+								//x.compareDates(x.getLastLoggedIn());
+								c.setTempDate(x.getLastLoggedIn());
 								x.setLastDate();
+								System.out.println("Now it changed"+x.getLastLoggedIn()+c.getTempDate());
 								c.getSelectedClient();
 								c.updateClientDatabaseInfo(x);
 								

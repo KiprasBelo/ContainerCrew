@@ -20,6 +20,7 @@ public class Client extends Account {
 	//private Date lastLogin;
 	private String lastLoggedIn;
 	private int timeDifference;
+	private String lastLoggedInTemp;
 	
 	public Client(String username, String password) {
 		this.setUsername(username);
@@ -43,6 +44,14 @@ public class Client extends Account {
 		clientID = counter;
 	}
 	
+	public void setTemp(String temp) {
+		lastLoggedInTemp = temp;
+	}
+	
+	public String getTemp() {
+		return lastLoggedInTemp;
+	}
+	
 	public void compareDates(String last) {
 		
 		System.out.println("comparing");
@@ -56,6 +65,7 @@ public class Client extends Account {
 		int totalDifference;
 		
 		String[] curr = current.split(":");
+		System.out.println(lastLoggedIn);
 		String[] past = last.split(":");
 		
 		monthDifference = Math.abs(Integer.parseInt(curr[0])-Integer.parseInt(past[0]));
@@ -140,6 +150,9 @@ public class Client extends Account {
 	public void setLastDate() {
 		Date lastLogin = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("MM:dd:hh");
+		
+		//this.setTemp(lastLoggedIn);
+		
 		lastLoggedIn = format.format(lastLogin);
 	}
 	

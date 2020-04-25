@@ -26,6 +26,7 @@ public class ClientLog {
 	private static ArrayList<Client> clients = new ArrayList<Client>();
 	private static Client selectedClient;
 	private File file;
+	private static String tempDate;
 	
 	public ClientLog() {}
 	
@@ -66,8 +67,8 @@ public class ClientLog {
 				selectedClient = c;
 				c.setLoginStatus(true);
 			}
+			//this.setTempDate(data[8]);
 			c.setLastLoggedIn(data[8]);
-				
 			
 		}
 		
@@ -94,7 +95,23 @@ public class ClientLog {
 		
 	}
 	
+	public void setTempDate(String string) {
+		tempDate = string;
+	}
+	
+	public String getTempDate() {
+		return tempDate;
+	}
+	
 	public void checkDates(Container x) {
+		
+		//for(Client c : clients) {
+		//	
+		//	if(x.getOwnerID() == c.getClientID()) {
+		//		tempDate = c.getTemp();
+		//	}
+			
+		//}
 		
 		this.getSelectedClient();
 		System.out.println("Does this run");
@@ -113,8 +130,9 @@ public class ClientLog {
 				}
 			}
 			else {
-			
-				selectedClient.compareDates(selectedClient.getLastLoggedIn());
+				System.out.println(selectedClient.getLastLoggedIn()+", "+selectedClient.getTemp());
+				System.out.println(selectedClient.getLastLoggedIn()+", "+tempDate);
+				selectedClient.compareDates(tempDate);
 				
 				if(selectedClient.getTimeDifference() < 48) {
 					
