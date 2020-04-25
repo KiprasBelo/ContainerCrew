@@ -71,13 +71,13 @@ public class Container {
 		startDate = string;
 	}
 	
-	public void addData(int location, double temp) {
+	public void addData(int location, int end, double temp) {
 		
 		double topThreshhold = temperature + 2;
 		double bottomThreshhold = temperature - 2;
 		double random;
 		
-		for(int i = location; i < 47; i++) {
+		for(int i = location; i < end; i++) {
 			
 			random = (Math.random() * 4) + bottomThreshhold;
 			dataPoints[i] = random;

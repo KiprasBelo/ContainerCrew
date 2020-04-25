@@ -63,6 +63,10 @@ public class Client extends Account {
 		hourDifference = Integer.parseInt(curr[2])-Integer.parseInt(past[2]);
 		
 		//totalDifference = hourDifference+(dateDifference*24)+
+		System.out.println(monthDifference);
+		System.out.println(dateDifference);
+		System.out.println(hourDifference);
+		
 		if(monthDifference == 0) {
 			timeDifference = (dateDifference*24) + hourDifference;
 		}
@@ -72,6 +76,8 @@ public class Client extends Account {
 		else {
 			timeDifference = hourDifference + (Integer.parseInt(curr[1]) * 24) + ((30 - Integer.parseInt(past[1])) * 24);
 		}
+		System.out.println(timeDifference);
+		//timeDifference = 20;
 		
 	}
 	
