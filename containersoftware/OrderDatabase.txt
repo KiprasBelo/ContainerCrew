@@ -1,0 +1,7 @@
+0,6,New York,Oslo,Bananas,true
+1,1,Klaipeda,Oslo,Apples,true
+2,2,asdf,asdf,asdf,true
+3,3,asdf,asdf,asdf,true
+4,4,asdf,asdf,asdf,true
+5,5,Copenhagen,Oslo,Bananas,true
+6,6,Tokyo,Seol,apples,true

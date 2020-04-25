@@ -26,7 +26,7 @@ public class Client extends Account {
 		this.setUsername(username);
 		this.setPassword(password);
 		
-		Path path = Paths.get("/Users/LTMC4/OneDrive/Desktop/ClientDatabase.txt");
+		Path path = Paths.get("ClientDatabase.txt");
 		int counter = 0;
 		
 		try {

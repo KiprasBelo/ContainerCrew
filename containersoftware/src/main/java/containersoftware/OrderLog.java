@@ -24,7 +24,7 @@ public class OrderLog {
 	
 	public void createDatabase() {
 		try {
-			file = new File("/Users/LTMC4/OneDrive/Desktop/OrderDatabase.txt");
+			file = new File("OrderDatabase.txt");
 			file.createNewFile();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -33,7 +33,7 @@ public class OrderLog {
 	
 	public void addToDatabase(Order o) {
 		try {
-			BufferedWriter write = new BufferedWriter(new FileWriter("/Users/LTMC4/OneDrive/Desktop/OrderDatabase.txt", true));
+			BufferedWriter write = new BufferedWriter(new FileWriter("OrderDatabase.txt", true));
 			write.newLine();
 			write.write(o.toString());
 			write.close();
@@ -45,7 +45,7 @@ public class OrderLog {
 	}
 	
 	public void updateDatabase() throws FileNotFoundException {
-		file = new File("/Users/LTMC4/OneDrive/Desktop/ContainerDatabase.txt");
+		file = new File("ContainerDatabase.txt");
 		Scanner scan = new Scanner(file);
 		//clients.clear();
 		orders.clear();

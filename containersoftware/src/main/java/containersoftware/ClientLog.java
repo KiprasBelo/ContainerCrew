@@ -40,7 +40,7 @@ public class ClientLog {
 	
 	public void createDatabase() throws IOException {
 		try {
-			file = new File("/Users/LTMC4/OneDrive/Desktop/ClientDatabase.txt");
+			file = new File("ClientDatabase.txt");
 			file.createNewFile();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -48,7 +48,7 @@ public class ClientLog {
 	}
 	
 	public void updateDatabase() throws FileNotFoundException {
-		file = new File("/Users/LTMC4/OneDrive/Desktop/ClientDatabase.txt");
+		file = new File("ClientDatabase.txt");
 		Scanner scan = new Scanner(file);
 		clients.clear();
 		
@@ -75,7 +75,7 @@ public class ClientLog {
 	}
 	
 	public void updateClientDatabaseInfo(Client c) throws FileNotFoundException {
-		Path path = Paths.get("/Users/LTMC4/OneDrive/Desktop/ClientDatabase.txt");
+		Path path = Paths.get("ClientDatabase.txt");
 		try {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			
@@ -160,7 +160,7 @@ public class ClientLog {
 	
 	public void addToDatabase(Client c) {
 		try {
-			BufferedWriter write = new BufferedWriter(new FileWriter("/Users/LTMC4/OneDrive/Desktop/ClientDatabase.txt", true));
+			BufferedWriter write = new BufferedWriter(new FileWriter("ClientDatabase.txt", true));
 			write.write(c.toString());
 			write.close();
 			

@@ -18,7 +18,7 @@ public class Order {
 	private boolean currentOrder;
 	
 	public Order() {
-		Path path = Paths.get("/Users/LTMC4/OneDrive/Desktop/OrderDatabase.txt");
+		Path path = Paths.get("OrderDatabase.txt");
 		int counter = 0;
 		
 		try {
@@ -40,7 +40,7 @@ public class Order {
 		startLocation = start;
 		endLocation = end;
 		this.cargo = cargo;
-		Path path = Paths.get("/Users/LTMC4/OneDrive/Desktop/OrderDatabase.txt");
+		Path path = Paths.get("OrderDatabase.txt");
 		int counter = 0;
 		
 		try {

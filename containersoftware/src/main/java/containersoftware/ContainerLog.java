@@ -31,7 +31,7 @@ public class ContainerLog {
 	
 	public void createDatabase() {
 		try {
-			file = new File("/Users/LTMC4/OneDrive/Desktop/ContainerDatabase.txt");
+			file = new File("ContainerDatabase.txt");
 			file.createNewFile();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -40,7 +40,7 @@ public class ContainerLog {
 	
 	public void addToDatabase(Container c) {
 		try {
-			BufferedWriter write = new BufferedWriter(new FileWriter("/Users/LTMC4/OneDrive/Desktop/ContainerDatabase.txt", true));
+			BufferedWriter write = new BufferedWriter(new FileWriter("ContainerDatabase.txt", true));
 			write.newLine();
 			write.write(c.toString(true));
 			write.close();
@@ -52,7 +52,7 @@ public class ContainerLog {
 	}
 	
 	public void updateDatabase() throws FileNotFoundException {
-		file = new File("/Users/LTMC4/OneDrive/Desktop/ContainerDatabase.txt");
+		file = new File("ContainerDatabase.txt");
 		Scanner scan = new Scanner(file);
 		//clients.clear();
 		containers.clear();
@@ -95,7 +95,7 @@ public class ContainerLog {
 	}
 	
 	public void updateContainerDatabaseInfo(Container c) throws FileNotFoundException {
-		Path path = Paths.get("/Users/LTMC4/OneDrive/Desktop/ContainerDatabase.txt");
+		Path path = Paths.get("ContainerDatabase.txt");
 		try {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			
