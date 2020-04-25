@@ -103,22 +103,22 @@ public class ClientLog {
 			
 			System.out.println("Does this run2");
 		
-			this.selectedClient.compareDates(x.getStartDate());
+			selectedClient.compareDates(x.getStartDate());
 			System.out.println(selectedClient.getTimeDifference());
 			
-			if(this.selectedClient.getTimeDifference() < 48) {
-				for(int k = 0; k < this.selectedClient.getTimeDifference(); k++) {
-					x.addData(this.selectedClient.getTimeDifference(), x.getTemperature());
+			if(selectedClient.getTimeDifference() < 48) {
+				for(int k = 0; k < selectedClient.getTimeDifference(); k++) {
+					x.addData(0,selectedClient.getTimeDifference(),x.getTemperature());
 					System.out.println("option1");
 				}
 			}
 			else {
 			
-				this.selectedClient.compareDates(this.getSelectedClient().getLastLoggedIn());
+				selectedClient.compareDates(selectedClient.getLastLoggedIn());
 				
-				if(this.selectedClient.getTimeDifference() < 48) {
+				if(selectedClient.getTimeDifference() < 48) {
 					
-					for(int i = 48 - this.selectedClient.getTimeDifference(); i > 0; i--) {
+					for(int i = selectedClient.getTimeDifference(); i > 0; i--) {
 						
 						for(int j = 0; j < 48-1; j++) {
 							x.getDataPoints()[j] = x.getDataPoints()[j+1];
@@ -127,12 +127,12 @@ public class ClientLog {
 						
 					}
 					
-					x.addData(48-this.selectedClient.getTimeDifference(), x.getTemperature());
+					x.addData(48-selectedClient.getTimeDifference(),48, x.getTemperature());
 					
 				}
 				else {
 					
-					x.addData(0, x.getTemperature());
+					x.addData(0,48, x.getTemperature());
 					System.out.println("option3");
 					
 				}
