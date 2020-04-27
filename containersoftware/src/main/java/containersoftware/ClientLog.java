@@ -21,10 +21,13 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+//Database and database functionalities for Clients
+
 public class ClientLog {
 
 	private static ArrayList<Client> clients = new ArrayList<Client>();
 	private static Client selectedClient;
+	private Client foundClient;
 	private File file;
 	private static String tempDate;
 	
@@ -38,6 +41,8 @@ public class ClientLog {
 		return clients;
 	}
 	
+	
+	//Following 4 methods are for database manipulation
 	public void createDatabase() throws IOException {
 		try {
 			file = new File("ClientDatabase.txt");
@@ -47,6 +52,7 @@ public class ClientLog {
 		}
 	}
 	
+	//Updates the ArrayList to fit textfile
 	public void updateDatabase() throws FileNotFoundException {
 		file = new File("ClientDatabase.txt");
 		Scanner scan = new Scanner(file);
@@ -75,6 +81,7 @@ public class ClientLog {
 		
 	}
 	
+	//Updates textfile to fit ArrayList
 	public void updateClientDatabaseInfo(Client c) throws FileNotFoundException {
 		Path path = Paths.get("ClientDatabase.txt");
 		try {
@@ -96,29 +103,25 @@ public class ClientLog {
 		
 	}
 	
-	public void setTempDate(String string) {
-		tempDate = string;
-	}
-	
-	public String getTempDate() {
-		return tempDate;
-	}
-	
-	public void checkDates(Container x) {
-		
-		//for(Client c : clients) {
-		//	
-		//	if(x.getOwnerID() == c.getClientID()) {
-		//		tempDate = c.getTemp();
-		//	}
+	//Add new entries to database
+	public void addToDatabase(Client c) {
+		try {
+			BufferedWriter write = new BufferedWriter(new FileWriter("ClientDatabase.txt", true));
+			write.write(c.toString());
+			write.close();
 			
-		//}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//Creation of datapoints for temperature graph based on time since creation or last login
+	public void checkDates(Container x) {
 		
 		this.getSelectedClient();
 		System.out.println("Does this run");
 		
-		//for(Container x : selectedClient.getShipments()) {
-			
 			System.out.println("Does this run2");
 		
 			selectedClient.compareDates(x.getStartDate());
@@ -156,21 +159,10 @@ public class ClientLog {
 					
 				}
 			}
-		//}
-	}
-	
-	public void addToDatabase(Client c) {
-		try {
-			BufferedWriter write = new BufferedWriter(new FileWriter("ClientDatabase.txt", true));
-			write.write(c.toString());
-			write.close();
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
 		
 	}
 	
+	//Selects current client that is being used
 	public Client getSelectedClient() {
 		
 		Client c = null;
@@ -185,6 +177,7 @@ public class ClientLog {
 		return c;
 	}
 	
+	//Registers a new client object and adds to database
 	public ResponceObject Register(String user, String pass, String checkPass, String name, String email, String number, String address, String reference) {
 		
 		ResponceObject responce;
@@ -208,28 +201,66 @@ public class ClientLog {
 		
 	}
 	
-	public ResponceObject findClientViaName(String name) {
-		ResponceObject responce = new ResponceObject("Found client with name "+name);
+	//Finds clients based on criteria
+	public boolean findClients(String email, String name) {
+		
+		boolean found = false;
 		
 		for(Client x : clients) {
-			if(x.getName().contentEquals(name)) {
-				selectedClient = x;
-				return responce;
+			if(x.getEmail().contentEquals(email) || x.getName().contentEquals(name)) {
+				foundClient = x;
+				found = true;
+				return found;
 			}
 		}
-		return responce = new ResponceObject("Did not find client with name "+name);
+		return found;
 	}
 	
-	public ResponceObject findClientViaEmail(String email) {
-		ResponceObject responce = new ResponceObject("Found client with email "+email);
+	//Checks database for valid login
+	public boolean Login(String user, String password) throws FileNotFoundException {
+		
+		this.updateDatabase();
+		boolean found = false;
 		
 		for(Client x : clients) {
-			if(x.getEmail().contentEquals(email)) {
-				selectedClient = x;
-				return responce;
+			
+			if(x.getUsername().contentEquals(user) && x.getPassword().contentEquals(password)) {
+				found = true;
+				x.setLoginStatus(true);
+				x.setLastDate();
+				this.getSelectedClient();
+				this.updateClientDatabaseInfo(x);
+				break;
 			}
+			
 		}
-		return responce = new ResponceObject("Did not find client with email "+email);
+		
+		return found;
+	}
+	
+	//Logs account out
+	public void Logout() throws FileNotFoundException {
+		Client c = this.getSelectedClient();
+		c.setLoginStatus(false);
+		this.updateClientDatabaseInfo(c);
+		
+	}
+	
+	//Getters and Setters
+	public Client getFoundClient() {
+		return foundClient;
+	}
+
+	public void setFoundClient(Client foundClient) {
+		this.foundClient = foundClient;
+	}
+	
+	public void setTempDate(String string) {
+		tempDate = string;
+	}
+	
+	public String getTempDate() {
+		return tempDate;
 	}
 	
 	

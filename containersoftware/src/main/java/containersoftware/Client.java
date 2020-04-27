@@ -11,6 +11,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+//Creation of individual Client objects
+
 public class Client extends Account {
 	
 	private ArrayList<Container> shipments = new ArrayList<Container>();
@@ -19,7 +21,8 @@ public class Client extends Account {
 	private String lastLoggedIn;
 	private int timeDifference;
 	private String lastLoggedInTemp;
-	
+
+	//Non-Default Constructor
 	public Client(String username, String password) {
 		this.setUsername(username);
 		this.setPassword(password);
@@ -42,14 +45,7 @@ public class Client extends Account {
 		clientID = counter;
 	}
 	
-	public void setTemp(String temp) {
-		lastLoggedInTemp = temp;
-	}
-	
-	public String getTemp() {
-		return lastLoggedInTemp;
-	}
-	
+	//Compares a given date with todays date and returns the time in hours
 	public void compareDates(String last) {
 		
 		System.out.println("comparing");
@@ -69,7 +65,6 @@ public class Client extends Account {
 		dateDifference = Math.abs(Integer.parseInt(curr[1])-Integer.parseInt(past[1]));
 		hourDifference = Integer.parseInt(curr[2])-Integer.parseInt(past[2]);
 		
-		//totalDifference = hourDifference+(dateDifference*24)+
 		System.out.println(monthDifference);
 		System.out.println(dateDifference);
 		System.out.println(hourDifference);
@@ -83,11 +78,10 @@ public class Client extends Account {
 		else {
 			timeDifference = hourDifference + (Integer.parseInt(curr[1]) * 24) + ((30 - Integer.parseInt(past[1])) * 24);
 		}
-		System.out.println(timeDifference);
-		//timeDifference = 20;
 		
 	}
 	
+	//Mostly setters and getters after this
 	public ResponceObject addShipments(ContainerLog log) {
 		ResponceObject responce;
 		
@@ -152,6 +146,7 @@ public class Client extends Account {
 		return referencePerson;
 	}
 	
+	//Sets last login for client
 	public void setLastDate() {
 		Date lastLogin = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("MM:dd:hh");
@@ -161,6 +156,14 @@ public class Client extends Account {
 	
 	public void setLastLoggedIn(String date) {
 		lastLoggedIn = date;
+	}
+	
+	public void setTemp(String temp) {
+		lastLoggedInTemp = temp;
+	}
+	
+	public String getTemp() {
+		return lastLoggedInTemp;
 	}
 	
 	public String toString() {

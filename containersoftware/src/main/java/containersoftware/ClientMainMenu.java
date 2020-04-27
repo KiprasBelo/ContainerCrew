@@ -10,9 +10,12 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 
+//Screen with Client functionality options
+
 public class ClientMainMenu extends JFrame {
 
 	private JPanel contentPane;
+	ClientLog log = new ClientLog();
 
 	/**
 	 * Launch the application.
@@ -74,12 +77,10 @@ public class ClientMainMenu extends JFrame {
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ClientLog log = new ClientLog();
-				Client c = log.getSelectedClient();
-				log.getSelectedClient().setLoginStatus(false);
 				try {
-					log.updateClientDatabaseInfo(c);
+					log.Logout();
 				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				

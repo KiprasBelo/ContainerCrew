@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 
+//Screen that lists Clients as an admin
+
 public class ClientFinder extends JFrame {
 
 	private JPanel contentPane;
@@ -92,6 +94,7 @@ public class ClientFinder extends JFrame {
 		list.setBounds(150, 11, 218, 239);
 		contentPane.add(list);
 		
+		//Button to load all clients
 		JButton btnLoad = new JButton("Load All Clients");
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -134,6 +137,7 @@ public class ClientFinder extends JFrame {
 		contentPane.add(emailField);
 		emailField.setColumns(10);
 		
+		//Button to find clients by criteria
 		JButton btnLoadEmail = new JButton("Load");
 		btnLoadEmail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -150,10 +154,10 @@ public class ClientFinder extends JFrame {
 				list.setModel(model);
 				model.removeAllElements();
 				
-				for(Client x : log.getClients()) {
-					if(x.getEmail().contentEquals(emailField.getText()) || x.getName().contentEquals(nameField.getText()))
-						model.addElement(x);
-				}
+				
+				if(log.findClients(emailField.getText(), nameField.getText()))
+					model.addElement(log.getFoundClient());
+				
 			}
 				
 		});

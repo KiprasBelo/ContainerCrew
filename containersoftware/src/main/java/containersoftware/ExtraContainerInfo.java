@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//Displayed along side temp graph to provide all needed container info
+
 public class ExtraContainerInfo extends JFrame {
 
 	private JPanel contentPane;
@@ -71,6 +73,7 @@ public class ExtraContainerInfo extends JFrame {
 		btnBack.setBounds(207, 65, 89, 23);
 		contentPane.add(btnBack);
 		
+		//Button to load additional info
 		JButton btnLoad = new JButton("Load");
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

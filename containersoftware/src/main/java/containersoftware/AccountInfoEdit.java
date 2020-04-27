@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//Screen to edit Client account info
+
 public class AccountInfoEdit extends JFrame {
 
 	private JPanel contentPane;
@@ -20,6 +22,7 @@ public class AccountInfoEdit extends JFrame {
 	private JTextField numberEdit;
 	private JTextField referenceEdit;
 	private JTextField addressEdit;
+	ClientLog client = new ClientLog();
 
 	/**
 	 * Launch the application.
@@ -74,8 +77,6 @@ public class AccountInfoEdit extends JFrame {
 			public void actionPerformed(ActionEvent arg) {
 				
 				try {
-					
-					ClientLog client = new ClientLog();
 					
 					if(nameEdit.getText().length() > 0) {
 						client.getSelectedClient().setName(nameEdit.getText());

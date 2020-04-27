@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//Container object to be assigned to client and store an order(Journey)
+
 public class Container {
 	
 	private int containerId = 0;
@@ -24,7 +26,7 @@ public class Container {
 	private String startDate;
 	private boolean selectedContainer = false;
 	
-	
+	//default and nondefault constructors
 	public Container() {
 		Path path = Paths.get("ContainerDatabase.txt");
 		int counter = 0;
@@ -62,6 +64,7 @@ public class Container {
 		history.add(o);
 	}
 	
+	//sets start date for a Journey (two methods with override)
 	public void setStartDate() {
 		Date created = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("MM:dd:hh");
@@ -72,6 +75,7 @@ public class Container {
 		startDate = string;
 	}
 	
+	//Adds random temperature data based on a threshold
 	public void addData(int location, int end, double temp) {
 		
 		double bottomThreshhold = temperature - 2;
@@ -87,6 +91,14 @@ public class Container {
 		
 	}
 	
+	//ends current Journey
+		public void endJourney() {
+			this.setInTransit(false);
+			this.getCurrentOrder().setCurrentOrder(false);
+			this.setSelectedContainer(false);
+		}
+	
+	//Mainly getters and Setters from here
 	public double[] getDataPoints() {
 		return dataPoints;
 	}

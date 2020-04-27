@@ -11,7 +11,10 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
+
+//Screen where a client can login
 
 public class ClientLogin extends JFrame {
 
@@ -19,6 +22,7 @@ public class ClientLogin extends JFrame {
 	private JTextField userField;
 	private JPasswordField passwordField;
 	private JButton btnClientLoginBack;
+	ClientLog c = new ClientLog();
 
 	/**
 	 * Launch the application.
@@ -64,37 +68,21 @@ public class ClientLogin extends JFrame {
 		
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				boolean found = false;
 				try {
-					
-					ClientLog c = new ClientLog();
-					c.updateDatabase();
-					boolean found = false;
-					
-					for(Client x : c.getClients()) {
-						if(x.getUsername().contentEquals(userField.getText())) {
-							if(x.getPassword().contentEquals(passwordField.getText())) {
-								found = true;
-								x.setLoginStatus(true);
-								//x.compareDates(x.getLastLoggedIn());
-								c.setTempDate(x.getLastLoggedIn());
-								x.setLastDate();
-								System.out.println("Now it changed"+x.getLastLoggedIn()+c.getTempDate());
-								c.getSelectedClient();
-								c.updateClientDatabaseInfo(x);
-								
-								dispose();
-								ClientMainMenu menu = new ClientMainMenu();
-								menu.setVisible(true);
-							}
-						}
-					}
-					
-					if(!found)
-						JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
-					
-				} catch(Exception e) {
-					JOptionPane.showMessageDialog(null, e);
+					found = c.Login(userField.getText(), passwordField.getText());
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
 				}
+						
+				if(!found)
+					JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
+				else {
+					dispose();
+					ClientMainMenu menu = new ClientMainMenu();
+					menu.setVisible(true);
+				}
+				
 			}
 		});
 		
@@ -112,7 +100,7 @@ public class ClientLogin extends JFrame {
 				try {
 					
 					dispose();
-					FirstPage page = new FirstPage();
+					//FirstPage page = new FirstPage();
 					
 					
 				} catch(Exception e) {

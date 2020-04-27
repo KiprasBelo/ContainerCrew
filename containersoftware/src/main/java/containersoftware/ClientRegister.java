@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//Screen allowing the creation of new Clients
+
 public class ClientRegister extends JFrame {
 
 	private JPanel contentPane;

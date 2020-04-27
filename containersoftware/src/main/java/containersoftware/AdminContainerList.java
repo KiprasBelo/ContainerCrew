@@ -18,6 +18,8 @@ import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 
+//Screen When Admin is presented with Containers belonging to a selected Client
+
 public class AdminContainerList extends JFrame {
 
 	private JPanel contentPane;
@@ -59,6 +61,8 @@ public class AdminContainerList extends JFrame {
 		lblContainer.setBounds(10, 12, 119, 14);
 		contentPane.add(lblContainer);
 		
+		
+		//Button to Load all containers
 		JButton btnLoad = new JButton("Load Containers");
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -107,11 +111,7 @@ public class AdminContainerList extends JFrame {
 						dispose();
 						ContainerEditor edit = new ContainerEditor();
 						
-						for(Container x : log.getContainers()) {
-							if(current.getContainerID() == x.getContainerID()) {
-								x.setSelectedContainer(true);
-							}
-						}
+						log.setSelectedContainer(current);
 						
 						edit.setVisible(true);
 					}

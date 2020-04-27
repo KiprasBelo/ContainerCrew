@@ -11,14 +11,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
+
+//Screen allowing Admin to edit some aspects of a Container
 
 public class ContainerEditor extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField humidityField;
 	private JTextField pressureField;
-	private Container container;
+	ContainerLog log = new ContainerLog();
 
 	/**
 	 * Launch the application.
@@ -62,32 +65,28 @@ public class ContainerEditor extends JFrame {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				
+				
+				
+				if(humidityField.getText().length() > 0) {
+					log.getSelectedContainer().setHumidity(Integer.parseInt(humidityField.getText()));
+				}
+				if(pressureField.getText().length() > 0) {
+					log.getSelectedContainer().setPressure(Integer.parseInt(pressureField.getText()));
+				}
+				log.getSelectedContainer().setSelectedContainer(false);
 				try {
-					
-					ContainerLog log = new ContainerLog();
-					
-					for(Container x : log.getContainers()) {
+					log.updateContainerDatabaseInfo(log.getSelectedContainer());
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 						
-						if(x.getSelectedContainer()) {
-							
-							if(humidityField.getText().length() > 0) {
-								x.setHumidity(Integer.parseInt(humidityField.getText()));
-							}
-							if(pressureField.getText().length() > 0) {
-								x.setPressure(Integer.parseInt(pressureField.getText()));
-							}
-							x.setSelectedContainer(false);
-							log.updateContainerDatabaseInfo(x);
-						}
 						
-					}
+					
 					dispose();
 					ClientFinder display = new ClientFinder();
 					display.setVisible(true);
 					
-				} catch(Exception e) {
-					JOptionPane.showMessageDialog(null, e);
-				}
 				
 			}
 		});
@@ -115,28 +114,18 @@ public class ContainerEditor extends JFrame {
 		JButton btnEnd = new JButton("End Journey");
 		btnEnd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
+					
 				try {
-					
-					ContainerLog log = new ContainerLog();
-					
-					for(Container x : log.getContainers()) {
-						
-						if(x.getSelectedContainer()) {
-							
-							x.setInTransit(false);
-							x.getCurrentOrder().setCurrentOrder(false);
-							x.setSelectedContainer(false);
-							log.updateContainerDatabaseInfo(x);
-						}
-						
-					}
-					dispose();
-					ClientFinder display = new ClientFinder();
-					display.setVisible(true);
-					
-				} catch(Exception e) {
-					JOptionPane.showMessageDialog(null, e);
+					log.end();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+					
+				dispose();
+				ClientFinder display = new ClientFinder();
+				display.setVisible(true);
+				
 			}
 		});
 		btnEnd.setBounds(152, 193, 116, 23);

@@ -11,9 +11,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//Displays Client Account Info
+
 public class AccountInfoDisplay extends JFrame {
 
 	private JPanel contentPane;
+	ClientLog log = new ClientLog();
 
 	/**
 	 * Launch the application.
@@ -61,8 +64,6 @@ public class AccountInfoDisplay extends JFrame {
 		JLabel lblReferencePerson = new JLabel("Reference Person");
 		lblReferencePerson.setBounds(50, 111, 91, 14);
 		contentPane.add(lblReferencePerson);
-		
-		ClientLog log = new ClientLog();
 		
 		JLabel nameLbl = new JLabel(log.getSelectedClient().getName());
 		nameLbl.setBounds(191, 11, 139, 14);
