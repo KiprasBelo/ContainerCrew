@@ -18,6 +18,8 @@ public class AccountInfoEdit extends JFrame {
 	private JTextField nameEdit;
 	private JTextField emailEdit;
 	private JTextField numberEdit;
+	private JTextField referenceEdit;
+	private JTextField addressEdit;
 
 	/**
 	 * Launch the application.
@@ -46,17 +48,25 @@ public class AccountInfoEdit extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Name");
-		lblNewLabel.setBounds(50, 37, 106, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblName = new JLabel("Name");
+		lblName.setBounds(50, 37, 106, 14);
+		contentPane.add(lblName);
 		
-		JLabel lblNewLabel_1 = new JLabel("Email");
-		lblNewLabel_1.setBounds(50, 62, 46, 14);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setBounds(50, 62, 46, 14);
+		contentPane.add(lblEmail);
 		
-		JLabel lblNewLabel_2 = new JLabel("Phone Number");
-		lblNewLabel_2.setBounds(50, 97, 91, 14);
-		contentPane.add(lblNewLabel_2);
+		JLabel lblNumber = new JLabel("Phone Number");
+		lblNumber.setBounds(50, 87, 91, 14);
+		contentPane.add(lblNumber);
+		
+		JLabel lblAddress = new JLabel("Address");
+		lblAddress.setBounds(50, 112, 46, 14);
+		contentPane.add(lblAddress);
+		
+		JLabel lblReference = new JLabel("Reference Person");
+		lblReference.setBounds(50, 137, 91, 14);
+		contentPane.add(lblReference);
 		
 		JButton saveButton = new JButton("Save");
 		
@@ -75,6 +85,12 @@ public class AccountInfoEdit extends JFrame {
 					}
 					if(numberEdit.getText().length() > 0) {
 						client.getSelectedClient().setPhoneNumber(numberEdit.getText());
+					}
+					if(addressEdit.getText().length() > 0) {
+						client.getSelectedClient().setPhoneNumber(addressEdit.getText());
+					}
+					if(referenceEdit.getText().length() > 0) {
+						client.getSelectedClient().setReferencePerson(referenceEdit.getText());
 					}
 					
 					client.updateClientDatabaseInfo(client.getSelectedClient());
@@ -110,19 +126,28 @@ public class AccountInfoEdit extends JFrame {
 		contentPane.add(editback);
 		
 		nameEdit = new JTextField();
-		nameEdit.setBounds(166, 34, 86, 20);
+		nameEdit.setBounds(166, 34, 106, 20);
 		contentPane.add(nameEdit);
 		nameEdit.setColumns(10);
 		
 		emailEdit = new JTextField();
-		emailEdit.setBounds(166, 59, 86, 20);
+		emailEdit.setBounds(166, 59, 106, 20);
 		contentPane.add(emailEdit);
 		emailEdit.setColumns(10);
 		
 		numberEdit = new JTextField();
-		numberEdit.setBounds(166, 94, 86, 20);
+		numberEdit.setBounds(166, 84, 106, 20);
 		contentPane.add(numberEdit);
 		numberEdit.setColumns(10);
+		
+		referenceEdit = new JTextField();
+		referenceEdit.setBounds(166, 134, 106, 20);
+		contentPane.add(referenceEdit);
+		referenceEdit.setColumns(10);
+		
+		addressEdit = new JTextField();
+		addressEdit.setBounds(166, 109, 106, 20);
+		contentPane.add(addressEdit);
+		addressEdit.setColumns(10);
 	}
-
 }

@@ -83,10 +83,12 @@ public class ContainerLog {
 			c.setTemperature(Double.parseDouble(data[5]));
 			c.setInTransit(Boolean.parseBoolean(data[6]));
 			c.setStartDate(data[7]);
+			c.setHumidity(Integer.parseInt(data[8]));
+			c.setPressure(Integer.parseInt(data[9]));
 			
 			for(int i = 0; i < 48; i++) {
 				
-				c.getDataPoints()[i] = Double.parseDouble(data[i+8]);
+				c.getDataPoints()[i] = Double.parseDouble(data[i+10]);
 				
 			}
 			

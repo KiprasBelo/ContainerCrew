@@ -15,9 +15,7 @@ public class Client extends Account {
 	
 	private ArrayList<Container> shipments = new ArrayList<Container>();
 	private String referencePerson;
-	//static int IDcounter = 0;
 	private int clientID;
-	//private Date lastLogin;
 	private String lastLoggedIn;
 	private int timeDifference;
 	private String lastLoggedInTemp;
@@ -62,7 +60,6 @@ public class Client extends Account {
 		int monthDifference;
 		int dateDifference;
 		int hourDifference;
-		int totalDifference;
 		
 		String[] curr = current.split(":");
 		System.out.println(lastLoggedIn);
@@ -147,12 +144,18 @@ public class Client extends Account {
 		return timeDifference;
 	}
 	
+	public void setReferencePerson(String person) {
+		referencePerson = person;
+	}
+	
+	public String getReferencePerson() {
+		return referencePerson;
+	}
+	
 	public void setLastDate() {
 		Date lastLogin = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("MM:dd:hh");
-		
-		//this.setTemp(lastLoggedIn);
-		
+				
 		lastLoggedIn = format.format(lastLogin);
 	}
 	
@@ -161,11 +164,11 @@ public class Client extends Account {
 	}
 	
 	public String toString() {
-		return this.getClientID()+","+this.getUsername()+","+this.getPassword()+","+this.getName()+","+this.getEmail()+","+this.getPhoneNumber()+","+this.getAddress()+","+this.getLoginStatus()+","+this.getLastLoggedIn()+"\n";
+		return this.getClientID()+","+this.getUsername()+","+this.getPassword()+","+this.getName()+","+this.getEmail()+","+this.getPhoneNumber()+","+this.getAddress()+","+this.getReferencePerson()+","+this.getLoginStatus()+","+this.getLastLoggedIn()+"\n";
 	}
 	
 	public String toString(boolean x) {
-		return this.getClientID()+","+this.getUsername()+","+this.getPassword()+","+this.getName()+","+this.getEmail()+","+this.getPhoneNumber()+","+this.getAddress()+","+this.getLoginStatus()+","+this.getLastLoggedIn();
+		return this.getClientID()+","+this.getUsername()+","+this.getPassword()+","+this.getName()+","+this.getEmail()+","+this.getPhoneNumber()+","+this.getAddress()+","+this.getReferencePerson()+","+this.getLoginStatus()+","+this.getLastLoggedIn();
 	}
 
 }

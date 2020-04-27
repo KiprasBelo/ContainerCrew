@@ -81,9 +81,11 @@ public class ContainerTracker extends JFrame {
 						
 						dispose();
 						LineChart chart = new LineChart("Container Temperature", "Container Temperature for the last 48 hours", current);
+						ExtraContainerInfo info = new ExtraContainerInfo();
+						info.setContainer(current);
 						chart.pack();
 						chart.setVisible(true);
-					
+						info.setVisible(true);
 					}
 				}
 			}

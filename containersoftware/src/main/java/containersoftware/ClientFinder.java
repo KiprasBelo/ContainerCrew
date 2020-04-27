@@ -10,6 +10,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -22,6 +24,7 @@ public class ClientFinder extends JFrame {
 	private JPanel contentPane;
 	private JTextField nameField;
 	private JTextField emailField;
+	private Client current;
 
 	/**
 	 * Launch the application.
@@ -62,15 +65,27 @@ public class ClientFinder extends JFrame {
 		btnBack.setBounds(10, 227, 86, 23);
 		contentPane.add(btnBack);
 		
-		
-		
-		
-		
 		JList list = new JList();
+		
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount() == 2 && list.locationToIndex(arg0.getPoint()) == list.getSelectedIndex()) {
+					if(!list.isSelectionEmpty()) {
+						
+						dispose();
+						AdminContainerList containers = new AdminContainerList();
+						containers.setClient(current);
+						containers.setVisible(true);
+					}
+				}
+			}
+		});
+		
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				
-				
+				current = (Client)list.getSelectedValue();
 				
 			}
 		});

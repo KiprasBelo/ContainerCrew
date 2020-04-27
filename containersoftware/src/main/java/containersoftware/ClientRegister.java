@@ -21,6 +21,8 @@ public class ClientRegister extends JFrame {
 	private JTextField numberField;
 	private JTextField passwordField;
 	private JTextField confirmPassword;
+	private JTextField addressField;
+	private JTextField referenceField;
 
 	/**
 	 * Launch the application.
@@ -66,10 +68,17 @@ public class ClientRegister extends JFrame {
 					else if(numberField.getText().length() == 0) {
 						JOptionPane.showMessageDialog(null, "No Phone Number entered");
 					}
+					else if(addressField.getText().length() == 0) {
+						JOptionPane.showMessageDialog(null, "No Address entered");
+					}
+					else if(referenceField.getText().length() == 0) {
+						JOptionPane.showMessageDialog(null, "No Reference Person entered");
+					}
 					else {
 						
 						ClientLog log = new ClientLog();
-						log.Register(usernameField.getText(), passwordField.getText(), confirmPassword.getText(), nameField.getText(), emailField.getText(), numberField.getText());
+						log.Register(usernameField.getText(), passwordField.getText(), confirmPassword.getText(), nameField.getText(), emailField.getText(), numberField.getText(),
+								addressField.getText(),referenceField.getText());
 						
 						dispose();
 						ClientLogin login = new ClientLogin();
@@ -85,66 +94,84 @@ public class ClientRegister extends JFrame {
 		
 		
 		
-		Register.setBounds(176, 208, 89, 23);
+		Register.setBounds(166, 227, 89, 23);
 		contentPane.add(Register);
 		
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.setBounds(0, 238, 89, 23);
 		contentPane.add(btnNewButton);
 		
-		JLabel lblNewLabel = new JLabel("Name");
-		lblNewLabel.setBounds(46, 11, 46, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblName = new JLabel("Name");
+		lblName.setBounds(46, 11, 46, 14);
+		contentPane.add(lblName);
 		
-		JLabel lblNewLabel_1 = new JLabel("Username");
-		lblNewLabel_1.setBounds(46, 46, 58, 14);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setBounds(46, 36, 58, 14);
+		contentPane.add(lblUsername);
 		
-		JLabel lblNewLabel_2 = new JLabel("Password");
-		lblNewLabel_2.setBounds(46, 147, 58, 14);
-		contentPane.add(lblNewLabel_2);
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(46, 161, 58, 14);
+		contentPane.add(lblPassword);
 		
 		nameField = new JTextField();
 		nameField.setBounds(166, 8, 193, 20);
 		contentPane.add(nameField);
 		nameField.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("Email");
-		lblNewLabel_3.setBounds(46, 78, 46, 14);
-		contentPane.add(lblNewLabel_3);
+		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setBounds(46, 61, 46, 14);
+		contentPane.add(lblEmail);
 		
-		JLabel lblNewLabel_4 = new JLabel("Phone Number");
-		lblNewLabel_4.setBounds(46, 122, 89, 14);
-		contentPane.add(lblNewLabel_4);
+		JLabel lblNumber = new JLabel("Phone Number");
+		lblNumber.setBounds(46, 86, 89, 14);
+		contentPane.add(lblNumber);
 		
 		usernameField = new JTextField();
-		usernameField.setBounds(166, 43, 193, 20);
+		usernameField.setBounds(166, 33, 193, 20);
 		contentPane.add(usernameField);
 		usernameField.setColumns(10);
 		
 		emailField = new JTextField();
-		emailField.setBounds(166, 75, 193, 20);
+		emailField.setBounds(166, 58, 193, 20);
 		contentPane.add(emailField);
 		emailField.setColumns(10);
 		
 		numberField = new JTextField();
-		numberField.setBounds(166, 119, 193, 20);
+		numberField.setBounds(166, 83, 193, 20);
 		contentPane.add(numberField);
 		numberField.setColumns(10);
 		
 		passwordField = new JTextField();
-		passwordField.setBounds(166, 144, 193, 20);
+		passwordField.setBounds(166, 158, 193, 20);
 		contentPane.add(passwordField);
 		passwordField.setColumns(10);
 		
 		confirmPassword = new JTextField();
-		confirmPassword.setBounds(166, 175, 193, 20);
+		confirmPassword.setBounds(166, 183, 193, 20);
 		contentPane.add(confirmPassword);
 		confirmPassword.setColumns(10);
 		
-		JLabel lblNewLabel_5 = new JLabel("Confirm Password");
-		lblNewLabel_5.setBounds(46, 178, 89, 14);
-		contentPane.add(lblNewLabel_5);
+		JLabel lblConfirmPassword = new JLabel("Confirm Password");
+		lblConfirmPassword.setBounds(46, 186, 89, 14);
+		contentPane.add(lblConfirmPassword);
+		
+		JLabel lblAddress = new JLabel("Address");
+		lblAddress.setBounds(46, 111, 46, 14);
+		contentPane.add(lblAddress);
+		
+		JLabel lblReference = new JLabel("Reference Person");
+		lblReference.setBounds(47, 136, 109, 14);
+		contentPane.add(lblReference);
+		
+		addressField = new JTextField();
+		addressField.setBounds(166, 108, 193, 20);
+		contentPane.add(addressField);
+		addressField.setColumns(10);
+		
+		referenceField = new JTextField();
+		referenceField.setBounds(166, 133, 193, 20);
+		contentPane.add(referenceField);
+		referenceField.setColumns(10);
 	}
 
 }

@@ -63,12 +63,13 @@ public class ClientLog {
 			c.setEmail(data[4]);
 			c.setPhoneNumber(data[5]);
 			c.setAddress(data[6]);
-			if(Boolean.parseBoolean(data[7])) {
+			c.setReferencePerson(data[7]);
+			if(Boolean.parseBoolean(data[8])) {
 				selectedClient = c;
 				c.setLoginStatus(true);
 			}
 			//this.setTempDate(data[8]);
-			c.setLastLoggedIn(data[8]);
+			c.setLastLoggedIn(data[9]);
 			
 		}
 		
@@ -184,7 +185,7 @@ public class ClientLog {
 		return c;
 	}
 	
-	public ResponceObject Register(String user, String pass, String checkPass, String name, String email, String number) {
+	public ResponceObject Register(String user, String pass, String checkPass, String name, String email, String number, String address, String reference) {
 		
 		ResponceObject responce;
 		
@@ -194,6 +195,8 @@ public class ClientLog {
 			c.setName(name);
 			c.setEmail(email);
 			c.setPhoneNumber(number);
+			c.setAddress(address);
+			c.setReferencePerson(reference);
 			this.addToDatabase(c);
 			
 			return responce = new ResponceObject("Client Registered");

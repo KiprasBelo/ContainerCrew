@@ -40,7 +40,7 @@ public class StepDefinitions {
 
 	@When("Hit register button")
 	public void hit_register_button() {
-		responce = log.Register(username, password, password, null, null, null);
+		responce = log.Register(username, password, password, null, null, null, null, null);
 	}
 
 	@Then("Display message about successful register")
