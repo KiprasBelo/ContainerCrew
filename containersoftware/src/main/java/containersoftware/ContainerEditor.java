@@ -22,6 +22,7 @@ public class ContainerEditor extends JFrame {
 	private JTextField humidityField;
 	private JTextField pressureField;
 	ContainerLog log = new ContainerLog();
+	ClientLog log2 = new ClientLog();
 
 	/**
 	 * Launch the application.
@@ -118,7 +119,6 @@ public class ContainerEditor extends JFrame {
 				try {
 					log.end();
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 					

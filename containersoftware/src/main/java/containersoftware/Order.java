@@ -39,7 +39,7 @@ public class Order {
 	}
 	
 	public Order(int owner, String start, String end, String cargo) {
-		assignedContainerId = owner;
+		this.setAssignedContainerId(owner);
 		startLocation = start;
 		endLocation = end;
 		this.cargo = cargo;

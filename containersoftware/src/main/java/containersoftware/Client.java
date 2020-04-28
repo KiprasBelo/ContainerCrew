@@ -20,7 +20,7 @@ public class Client extends Account {
 	private int clientID;
 	private String lastLoggedIn;
 	private int timeDifference;
-	private String lastLoggedInTemp;
+	//private String lastLoggedInTemp;
 
 	//Non-Default Constructor
 	public Client(String username, String password) {
@@ -101,9 +101,18 @@ public class Client extends Account {
 		
 	}
 	
-	public void removeShipments(int location) {
-		shipments.get(location).setInTransit(false);
-		shipments.remove(location);
+	public void removeShipments(int containerID) {
+		int count = 0;
+		
+		for(Container x : shipments) {
+			
+			if(x.getContainerID() == containerID) {
+				x.setInTransit(false);
+				shipments.remove(count);
+			}
+			count++;
+			
+		}
 	}
 	
 	public ResponceObject hasShipments(){
@@ -158,13 +167,13 @@ public class Client extends Account {
 		lastLoggedIn = date;
 	}
 	
-	public void setTemp(String temp) {
-		lastLoggedInTemp = temp;
-	}
-	
-	public String getTemp() {
-		return lastLoggedInTemp;
-	}
+	//public void setTemp(String temp) {
+	//	lastLoggedInTemp = temp;
+	//}
+	//
+	//public String getTemp() {
+	//	return lastLoggedInTemp;
+	//}
 	
 	public String toString() {
 		return this.getClientID()+","+this.getUsername()+","+this.getPassword()+","+this.getName()+","+this.getEmail()+","+this.getPhoneNumber()+","+this.getAddress()+","+this.getReferencePerson()+","+this.getLoginStatus()+","+this.getLastLoggedIn()+"\n";

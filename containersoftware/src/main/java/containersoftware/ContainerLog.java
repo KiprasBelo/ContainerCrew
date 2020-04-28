@@ -46,7 +46,9 @@ public class ContainerLog {
 	public void addToDatabase(Container c) {
 		try {
 			BufferedWriter write = new BufferedWriter(new FileWriter("ContainerDatabase.txt", true));
+			
 			write.newLine();
+			
 			write.write(c.toString(true));
 			write.close();
 			
@@ -115,7 +117,7 @@ public class ContainerLog {
 	}
 	
 	//Assigns an unassigned or creates a new container for a client
-	public void addContainerToClient(String origin, String destination, String cargo, int temp) {
+	public boolean addContainerToClient(String origin, String destination, String cargo, int temp) {
 		
 		Container c;
 		ClientLog log2 = new ClientLog();
@@ -145,7 +147,7 @@ public class ContainerLog {
 			log3.addToDatabase(c.getCurrentOrder());
 			this.addContainer(c);
 			log2.getSelectedClient().addShipments(c);
-			
+			return true;
 		}
 		else {
 			if(log2.getSelectedClient().getShipments().size() > 0)
@@ -156,10 +158,21 @@ public class ContainerLog {
 			c.addOrders(o);
 			o.setCurrentOrder(true);
 			c.setCurrentOrder(o);
+			log3.addToDatabase(c.getCurrentOrder());
+			try {
+				log3.updateDatabase();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			c.setInTransit(true);
 			c.setStartDate();
-		
+			try {
+				this.updateContainerDatabaseInfo(c);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			return true;
 		}
-		
 	}
 	
 	//sets currently selected containers to work on
@@ -178,11 +191,24 @@ public class ContainerLog {
 	
 	//ends journey for a container
 	public void end() throws FileNotFoundException {
+		ClientLog log = new ClientLog();
+		
+		for(Client c : log.getClients()) {
+			
+			if(c.getClientID() == this.getSelectedContainer().getOwnerID()) {
+				
+				c.removeShipments(this.getSelectedContainer().getContainerID());
+				
+			}
+			
+		}
+		
 		for(Container x : this.getContainers()) {
 			
 			if(x.getSelectedContainer()) {
 				
 				x.endJourney();
+				x.setOwnerID(-1);
 				this.updateContainerDatabaseInfo(x);
 			}
 			

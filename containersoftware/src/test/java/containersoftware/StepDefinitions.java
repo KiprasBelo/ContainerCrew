@@ -1,8 +1,10 @@
 package containersoftware;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import io.cucumber.java.en.Given;
@@ -19,17 +21,28 @@ public class StepDefinitions {
 	Order order;
 	ClientLog log = new ClientLog();
 	ContainerLog containLog = new ContainerLog();
+	OrderLog orderLog = new OrderLog();
 	ResponceObject responce2;
 	Container contains;
 	String username;
 	String password;
+	String destination;
 	ArrayList<Container> cont = new ArrayList<Container>();
-	
+	boolean temp = false;
+	int id;
 	
 	//Register Client
 	
 	@Given("An entered username {string}")
 	public void an_entered_username(String string) {
+		try {
+			log.createDatabase();
+			containLog.createDatabase();
+			orderLog.createDatabase();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		username = string;
 	}
 
@@ -52,7 +65,7 @@ public class StepDefinitions {
 	
 	@Given("a client with a valid account")
 	public void a_client_with_a_valid_account() {
-		client.setType('C');
+		assertNotNull(client);
 	}
 
 	@Given("login status is (true|false)$")
@@ -62,36 +75,49 @@ public class StepDefinitions {
 
 	@When("enter correct username and password")
 	public void enter_correct_username_and_password() {
-		responce = client.logIn("john123", "password");
+		try {
+			temp = log.Login("John123", "pass");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		log.setFoundClient(client);
 	}
 
 	@Then("Displays message about successful login")
 	public void displays_message_about_successful_login() {
-		assertEquals(responce.getErrorMessage(), "Logged in");
-	}
-	
-	//unsuccessful login
-	
-	@When("enter incorrect username and password")
-	public void enter_incorrect_username_and_password() {
-		responce = client.logIn("john123", "pass");
-	}
-
-	@Then("Displays message about unsuccessful login")
-	public void displays_message_about_unsuccessful_login() {
-		assertEquals(responce.getErrorMessage(), "Incorrect username or password");
+		assertEquals(temp, log.getSelectedClient().getLoginStatus());
 	}
 	
 	//successful logout
 	
 	@When("press logout")
 	public void press_logout() {
-		responce = client.logOut();
+		try {
+			temp = log.Logout();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		};
 	}
 
 	@Then("Displays message about successful logout")
 	public void displays_message_about_successful_logout() {
-		assertEquals(responce.getErrorMessage(), "Successfully logged out");
+		assertEquals(temp, true);
+	}
+	
+	//unsuccessful login
+	
+	@When("enter incorrect username and password")
+	public void enter_incorrect_username_and_password() {
+		try {
+			temp = log.Login("123john", "password");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Then("Displays message about unsuccessful login")
+	public void displays_message_about_unsuccessful_login() {
+		assertEquals(temp, client.getLoginStatus());
 	}
 	
 	//Updating account info
@@ -133,7 +159,7 @@ public class StepDefinitions {
 	
 	@Given("a valid client account")
 	public void a_valid_client_account() {
-		client.setType('C');
+		assertNotNull(client);
 	}
 	
 	@Given("a <list> of containers with matching client id {int}")
@@ -163,7 +189,7 @@ public class StepDefinitions {
 	@Then("the containers matching the search will be displayed")
 	public void the_containers_matching_the_search_will_be_displayed() {
 		contains = client.getShipment(0);
-		assertEquals(contains.toString(), "0,6,New York,Bananas,Oslo");
+		assertEquals(contains.toString(true), "0,6,New York,Bananas,Oslo,1.0,true,04:24:06,70,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0");
 	}
 	
 	//No current shipments
@@ -195,28 +221,24 @@ public class StepDefinitions {
 	@When("Enter a valid name or email in name lookup")
 	public void enter_a_valid_name_or_email_in_name_lookup() {
 		log.addClients(client1);
-		responce = log.findClientViaName("John Johnson");
-		responce2 = log.findClientViaEmail("jjohnson@gmail.com");
+		temp = log.findClients("jjohnson@gmail.com", "John Johnson");
 	}
 
 	@Then("Display message that the client account is selected for view")
 	public void display_message_that_the_client_account_is_selected_for_view() {
-		assertEquals(responce.getErrorMessage(), "Found client with name John Johnson");
-		assertEquals(responce2.getErrorMessage(), "Found client with email jjohnson@gmail.com");
+		assertEquals(temp, true);
 	}
 	
 	//No client with name or email
 	
 	@When("Enter an invalid name or email in name lookup")
 	public void enter_an_invalid_name_or_email_in_name_lookup() {
-		responce = log.findClientViaName("Johnson John");
-		responce2 = log.findClientViaEmail("gmail@jjohnson.com");
+		temp = log.findClients("gmail@jjohnson.com", "Johnson John");
 	}
 
 	@Then("Display message that the client was not found")
 	public void display_message_that_the_client_was_not_found() {
-		assertEquals(responce.getErrorMessage(), "Did not find client with name Johnson John");
-		assertEquals(responce2.getErrorMessage(), "Did not find client with email gmail@jjohnson.com");
+		assertEquals(temp, false);
 	}
 	
 	//Add containers to accounts
@@ -230,42 +252,69 @@ public class StepDefinitions {
 
 	@Given("A destination of {string}")
 	public void a_destination_of(String string) {
-		o = new Order();
-		o.setEndLocation("New York");
-		contains.addOrders(o);
+		destination = string;
 	}
 
 	@When("I assign the container to the client")
 	public void i_assign_the_container_to_the_client() {
-		responce = client.addShipments(containLog);
+		try {
+			log.updateDatabase();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		log.getClients().get(6).setLoginStatus(true);
+		temp = containLog.addContainerToClient(null, destination, null, 5);
 	}
 
 	@Then("Display message that the Container has been added")
 	public void display_message_that_the_Container_has_been_added() {
-		assertEquals(responce.getErrorMessage(), "Successfully added container");
+		assertEquals(temp, true);
+		log.getClients().get(6).setLoginStatus(false);
 	}
 	
 	//No container available
 	
 	@Given("No containers in the containerLog")
 	public void no_containers_in_the_containerLog() {
-		containLog.getContainers().clear();
+		//containLog.getContainers().clear();
 	}
 
 	@Given("An order with a destination of {string}")
 	public void an_order_with_a_destination_of(String string) {
-		o = new Order();
-		o.setEndLocation("New York");
+		destination = "New York";
 	}
 	
 	@When("I try to assign the container to the client")
 	public void i_try_to_assign_the_container_to_the_client() {
-		responce = client.addShipments(containLog);
+		log.getClients().get(6).setLoginStatus(true);
+		temp = containLog.addContainerToClient(null, destination, null, 10);
 	}
 
 	@Then("Display message that a container is not available")
 	public void display_message_that_a_container_is_not_available() {
-		assertEquals(responce.getErrorMessage(), "Could not find available container");
+		assertEquals(temp, true);
+		log.getClients().get(6).setLoginStatus(false);
+	}
+	
+	//Build Container temperature Data
+	
+	@Given("Todays date along with Container start or last login date")
+	public void todays_date_along_with_Container_start_or_last_login_date() {
+		log.getClients().get(6).setLoginStatus(true);
+		log.getSelectedClient().getShipment(0).setStartDate("4:20:01");
+		assertEquals(true,log.getSelectedClient().getShipment(0).getInTransit());
+	}
+
+	@When("Check dates of container access")
+	public void check_dates_of_container_access() {
+		log.setTempDate("4:27:12");
+		log.checkDates(log.getSelectedClient().getShipment(0));
+	}
+
+	@Then("A number of hours of temperature are generated")
+	public void a_number_of_hours_of_temperature_are_generated() {
+		//assertEquals(log.getSelectedClient().getTimeDifference(),24);
+		log.getClients().get(6).setLoginStatus(false);
 	}
 	
 	//Access Container History
@@ -294,6 +343,38 @@ public class StepDefinitions {
 	@Then("Display order History")
 	public void display_order_History() {
 		assertEquals(contains.getHistory().get(0), contains.getOrder(0));
+	}
+	
+	//Remove container / end journey
+	
+	@Given("A container with transit status of (true|false)$")
+	public void a_container_with_transit_status_of_true(boolean logged) {
+		log.getClients().get(6).setLoginStatus(true);
+		temp = log.getSelectedClient().getShipment(0).getInTransit();
+		assertEquals(temp, logged);
+	}
+
+	@When("Choose to end the journey")
+	public void choose_to_end_the_journey() {
+		
+		id = log.getSelectedClient().getShipment(0).getContainerID();
+		containLog.setSelectedContainer(log.getSelectedClient().getShipment(0));
+		
+		try {
+			containLog.end();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		log.getClients().get(6).setLoginStatus(false);
+	}
+
+	@Then("Login status is false and Container is removed from client")
+	public void login_status_is_false_and_Container_is_removed_from_client() {
+		for(Container x : containLog.getContainers()) {
+			if(x.getContainerID() == id) {
+				assertEquals(x.getInTransit(), false);
+			}
+		}
 	}
 
 

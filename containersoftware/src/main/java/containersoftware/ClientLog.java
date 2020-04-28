@@ -48,7 +48,7 @@ public class ClientLog {
 			file = new File("ClientDatabase.txt");
 			file.createNewFile();
 		} catch(Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	
@@ -74,7 +74,6 @@ public class ClientLog {
 				selectedClient = c;
 				c.setLoginStatus(true);
 			}
-			//this.setTempDate(data[8]);
 			c.setLastLoggedIn(data[9]);
 			
 		}
@@ -98,7 +97,7 @@ public class ClientLog {
 			
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 	}
@@ -111,7 +110,7 @@ public class ClientLog {
 			write.close();
 			
 		} catch(Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 	}
@@ -120,45 +119,36 @@ public class ClientLog {
 	public void checkDates(Container x) {
 		
 		this.getSelectedClient();
-		System.out.println("Does this run");
-		
-			System.out.println("Does this run2");
-		
-			selectedClient.compareDates(x.getStartDate());
-			System.out.println(selectedClient.getTimeDifference());
+		selectedClient.compareDates(x.getStartDate());
 			
+		if(selectedClient.getTimeDifference() < 48) {
+			for(int k = 0; k < selectedClient.getTimeDifference(); k++) {
+				x.addData(0,selectedClient.getTimeDifference(),x.getTemperature());
+			}
+		}
+		else {
+			selectedClient.compareDates(this.getTempDate());
+				
 			if(selectedClient.getTimeDifference() < 48) {
-				for(int k = 0; k < selectedClient.getTimeDifference(); k++) {
-					x.addData(0,selectedClient.getTimeDifference(),x.getTemperature());
-					System.out.println("option1");
+					
+				for(int i = selectedClient.getTimeDifference(); i > 0; i--) {
+						
+					for(int j = 0; j < 48-1; j++) {
+						x.getDataPoints()[j] = x.getDataPoints()[j+1];
+					}
+						
 				}
+					
+				x.addData(48-selectedClient.getTimeDifference(),48, x.getTemperature());
+					
 			}
 			else {
-				System.out.println(selectedClient.getLastLoggedIn()+", "+selectedClient.getTemp());
-				System.out.println(selectedClient.getLastLoggedIn()+", "+tempDate);
-				selectedClient.compareDates(tempDate);
-				
-				if(selectedClient.getTimeDifference() < 48) {
 					
-					for(int i = selectedClient.getTimeDifference(); i > 0; i--) {
-						
-						for(int j = 0; j < 48-1; j++) {
-							x.getDataPoints()[j] = x.getDataPoints()[j+1];
-							System.out.println("option2");
-						}
-						
-					}
+				x.addData(0,48, x.getTemperature());
+				System.out.println("option3");
 					
-					x.addData(48-selectedClient.getTimeDifference(),48, x.getTemperature());
-					
-				}
-				else {
-					
-					x.addData(0,48, x.getTemperature());
-					System.out.println("option3");
-					
-				}
 			}
+		}
 		
 	}
 	
@@ -227,6 +217,7 @@ public class ClientLog {
 			if(x.getUsername().contentEquals(user) && x.getPassword().contentEquals(password)) {
 				found = true;
 				x.setLoginStatus(true);
+				this.setTempDate(x.getLastLoggedIn());
 				x.setLastDate();
 				this.getSelectedClient();
 				this.updateClientDatabaseInfo(x);
@@ -239,11 +230,14 @@ public class ClientLog {
 	}
 	
 	//Logs account out
-	public void Logout() throws FileNotFoundException {
+	public boolean Logout() throws FileNotFoundException {
 		Client c = this.getSelectedClient();
-		c.setLoginStatus(false);
-		this.updateClientDatabaseInfo(c);
-		
+		if(c != null) {
+			c.setLoginStatus(false);
+			this.updateClientDatabaseInfo(c);
+			return true;
+		}
+		return false;
 	}
 	
 	//Getters and Setters

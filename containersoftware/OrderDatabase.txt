@@ -6,3 +6,6 @@
 5,5,Copenhagen,Oslo,Bananas,true
 6,6,Tokyo,Seol,apples,true
 7,7,Chicago,Dover,Cars,true
+8,8,null,New York,null,true
+9,8,null,New York,null,true
+10,8,Why,You,Break,true
