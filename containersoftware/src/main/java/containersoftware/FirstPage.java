@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import java.awt.Font;
 
 //Current main and the first menu to display
 
@@ -58,60 +59,26 @@ public class FirstPage {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnAdminLogin = new JButton("Admin Login");
-		btnAdminLogin.addActionListener(new ActionListener() {
+		JButton btnProceed = new JButton("Proceed");
+		btnProceed.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				frame.dispose();
-				AdminLogin admin = new AdminLogin();
-				admin.setVisible(true);
+				MainMenu menu = new MainMenu();
+				menu.setVisible(true);
 				
 			}
 		});
-		btnAdminLogin.setBounds(120, 167, 218, 56);
-		frame.getContentPane().add(btnAdminLogin);
+		btnProceed.setBounds(114, 168, 218, 56);
+		frame.getContentPane().add(btnProceed);
 		
-		JButton btnNewButton_1 = new JButton("Client Register");
+		JLabel lblAgile = new JLabel("Agile Object Oriented Software Development 02160");
+		lblAgile.setBounds(79, 11, 283, 14);
+		frame.getContentPane().add(lblAgile);
 		
-		
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg) {
-				
-				
-				try {
-					
-					frame.dispose();
-					ClientRegister register = new ClientRegister();
-					register.setVisible(true);
-					
-				} catch(Exception e) {
-					JOptionPane.showMessageDialog(null, e);
-				}
-				
-			}
-		});
-		
-		
-		btnNewButton_1.setBounds(120, 82, 218, 56);
-		frame.getContentPane().add(btnNewButton_1);
-		
-		JButton goToClientLogin = new JButton("Client Login");
-		
-		goToClientLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg) {
-				try {
-					
-					frame.dispose();
-					ClientLogin login = new ClientLogin();
-					login.setVisible(true);
-					
-				} catch(Exception e) {
-					JOptionPane.showMessageDialog(null, e);
-				}
-			}
-		});
-		
-		goToClientLogin.setBounds(120, 30, 218, 47);
-		frame.getContentPane().add(goToClientLogin);
+		JLabel lblGroup = new JLabel("Group K");
+		lblGroup.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblGroup.setBounds(186, 36, 69, 25);
+		frame.getContentPane().add(lblGroup);
 	}
 }

@@ -100,7 +100,8 @@ public class ClientLogin extends JFrame {
 				try {
 					
 					dispose();
-					//FirstPage page = new FirstPage();
+					MainMenu menu = new MainMenu();
+					menu.setVisible(true);
 					
 					
 				} catch(Exception e) {

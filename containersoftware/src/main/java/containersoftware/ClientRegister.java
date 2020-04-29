@@ -100,7 +100,16 @@ public class ClientRegister extends JFrame {
 		contentPane.add(Register);
 		
 		JButton btnNewButton = new JButton("Back");
-		btnNewButton.setBounds(0, 238, 89, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+				MainMenu menu = new MainMenu();
+				menu.setVisible(true);
+				
+			}
+		});
+		btnNewButton.setBounds(10, 227, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblName = new JLabel("Name");
