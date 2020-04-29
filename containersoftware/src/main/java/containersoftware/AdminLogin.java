@@ -88,5 +88,16 @@ public class AdminLogin extends JFrame {
 		});
 		btnLogin.setBounds(174, 199, 89, 23);
 		contentPane.add(btnLogin);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				MainMenu menu = new MainMenu();
+				menu.setVisible(true);
+			}
+		});
+		btnBack.setBounds(10, 227, 89, 23);
+		contentPane.add(btnBack);
 	}
 }
