@@ -10,20 +10,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//Container object to be assigned to client and store an order(Journey)
+
 public class Container {
 	
 	private int containerId = 0;
 	private int ownerID;
 	private double temperature;
-	private double humidity;
-	private double pressure;
+	private int humidity;
+	private int pressure;
 	private ArrayList<Order> history = new ArrayList<Order>();
 	private boolean inTransit = false;
 	private Order currentOrder;
 	private double[] dataPoints = new double[48];
 	private String startDate;
+	private boolean selectedContainer = false;
 	
-	
+	//default and nondefault constructors
 	public Container() {
 		Path path = Paths.get("ContainerDatabase.txt");
 		int counter = 0;
@@ -61,6 +64,7 @@ public class Container {
 		history.add(o);
 	}
 	
+	//sets start date for a Journey (two methods with override)
 	public void setStartDate() {
 		Date created = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("MM:dd:hh");
@@ -71,9 +75,9 @@ public class Container {
 		startDate = string;
 	}
 	
+	//Adds random temperature data based on a threshold
 	public void addData(int location, int end, double temp) {
 		
-		double topThreshhold = temperature + 2;
 		double bottomThreshhold = temperature - 2;
 		double random;
 		
@@ -87,6 +91,14 @@ public class Container {
 		
 	}
 	
+	//ends current Journey
+		public void endJourney() {
+			this.setInTransit(false);
+			this.getCurrentOrder().setCurrentOrder(false);
+			this.setSelectedContainer(false);
+		}
+	
+	//Mainly getters and Setters from here
 	public double[] getDataPoints() {
 		return dataPoints;
 	}
@@ -107,19 +119,19 @@ public class Container {
 		this.temperature = temperature;
 	}
 
-	public double getHumidity() {
+	public int getHumidity() {
 		return humidity;
 	}
 
-	public void setHumidity(double humidity) {
+	public void setHumidity(int humidity) {
 		this.humidity = humidity;
 	}
 
-	public double getPressure() {
+	public int getPressure() {
 		return pressure;
 	}
 
-	public void setPressure(double pressure) {
+	public void setPressure(int pressure) {
 		this.pressure = pressure;
 	}
 	
@@ -163,10 +175,22 @@ public class Container {
 		containerId = id;
 	}
 	
+	public boolean isSelectedContainer() {
+		return selectedContainer;
+	}
+
+	public void setSelectedContainer(boolean selectedContainer) {
+		this.selectedContainer = selectedContainer;
+	}
+	
+	public boolean getSelectedContainer() {
+		return selectedContainer;
+	}
+	
 	public String toString(boolean bool) {
 		return this.getContainerID()+","+this.getOwnerID()+","+this.getCurrentOrder().getStartLocation()+","+
-				this.getCurrentOrder().getCargo()+","+this.getCurrentOrder().getEndLocation()+","+this.getTemperature()+","+this.getInTransit()+","+this.getStartDate()+","+dataPoints[0]+","+dataPoints[1]
-						+","+dataPoints[2]+","+dataPoints[3]+","+dataPoints[4]+","+dataPoints[5]+","+dataPoints[6]+","+dataPoints[7]+","+dataPoints[8]+","+dataPoints[9]+","+dataPoints[10]
+				this.getCurrentOrder().getCargo()+","+this.getCurrentOrder().getEndLocation()+","+this.getTemperature()+","+this.getInTransit()+","+this.getStartDate()+","+this.getHumidity()+","+this.getPressure()
+				+","+dataPoints[0]+","+dataPoints[1]+","+dataPoints[2]+","+dataPoints[3]+","+dataPoints[4]+","+dataPoints[5]+","+dataPoints[6]+","+dataPoints[7]+","+dataPoints[8]+","+dataPoints[9]+","+dataPoints[10]
 								+","+dataPoints[11]+","+dataPoints[12]+","+dataPoints[13]+","+dataPoints[14]+","+dataPoints[15]+","+dataPoints[16]+","+dataPoints[17]+","+dataPoints[18]
 										+","+dataPoints[19]+","+dataPoints[20]+","+dataPoints[21]+","+dataPoints[22]+","+dataPoints[23]+","+dataPoints[24]+","+dataPoints[25]+","+dataPoints[26]
 												+","+dataPoints[27]+","+dataPoints[28]+","+dataPoints[29]+","+dataPoints[30]+","+dataPoints[31]+","+dataPoints[32]+","+dataPoints[33]+","+dataPoints[34]

@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
+//Current main and the first menu to display
+
 public class FirstPage {
 
 	private JFrame frame;

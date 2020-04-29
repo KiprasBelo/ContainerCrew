@@ -10,6 +10,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -17,11 +19,14 @@ import javax.swing.JLabel;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 
+//Screen that lists Clients as an admin
+
 public class ClientFinder extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField nameField;
 	private JTextField emailField;
+	private Client current;
 
 	/**
 	 * Launch the application.
@@ -62,21 +67,34 @@ public class ClientFinder extends JFrame {
 		btnBack.setBounds(10, 227, 86, 23);
 		contentPane.add(btnBack);
 		
-		
-		
-		
-		
 		JList list = new JList();
+		
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount() == 2 && list.locationToIndex(arg0.getPoint()) == list.getSelectedIndex()) {
+					if(!list.isSelectionEmpty()) {
+						
+						dispose();
+						AdminContainerList containers = new AdminContainerList();
+						containers.setClient(current);
+						containers.setVisible(true);
+					}
+				}
+			}
+		});
+		
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				
-				
+				current = (Client)list.getSelectedValue();
 				
 			}
 		});
 		list.setBounds(150, 11, 218, 239);
 		contentPane.add(list);
 		
+		//Button to load all clients
 		JButton btnLoad = new JButton("Load All Clients");
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -119,6 +137,7 @@ public class ClientFinder extends JFrame {
 		contentPane.add(emailField);
 		emailField.setColumns(10);
 		
+		//Button to find clients by criteria
 		JButton btnLoadEmail = new JButton("Load");
 		btnLoadEmail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -135,10 +154,10 @@ public class ClientFinder extends JFrame {
 				list.setModel(model);
 				model.removeAllElements();
 				
-				for(Client x : log.getClients()) {
-					if(x.getEmail().contentEquals(emailField.getText()) || x.getName().contentEquals(nameField.getText()))
-						model.addElement(x);
-				}
+				
+				if(log.findClients(emailField.getText(), nameField.getText()))
+					model.addElement(log.getFoundClient());
+				
 			}
 				
 		});

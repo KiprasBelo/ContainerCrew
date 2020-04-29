@@ -11,17 +11,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+//Creation of individual Client objects
+
 public class Client extends Account {
 	
 	private ArrayList<Container> shipments = new ArrayList<Container>();
 	private String referencePerson;
-	//static int IDcounter = 0;
 	private int clientID;
-	//private Date lastLogin;
 	private String lastLoggedIn;
 	private int timeDifference;
-	private String lastLoggedInTemp;
-	
+	//private String lastLoggedInTemp;
+
+	//Non-Default Constructor
 	public Client(String username, String password) {
 		this.setUsername(username);
 		this.setPassword(password);
@@ -44,14 +45,7 @@ public class Client extends Account {
 		clientID = counter;
 	}
 	
-	public void setTemp(String temp) {
-		lastLoggedInTemp = temp;
-	}
-	
-	public String getTemp() {
-		return lastLoggedInTemp;
-	}
-	
+	//Compares a given date with todays date and returns the time in hours
 	public void compareDates(String last) {
 		
 		System.out.println("comparing");
@@ -62,7 +56,6 @@ public class Client extends Account {
 		int monthDifference;
 		int dateDifference;
 		int hourDifference;
-		int totalDifference;
 		
 		String[] curr = current.split(":");
 		System.out.println(lastLoggedIn);
@@ -72,7 +65,6 @@ public class Client extends Account {
 		dateDifference = Math.abs(Integer.parseInt(curr[1])-Integer.parseInt(past[1]));
 		hourDifference = Integer.parseInt(curr[2])-Integer.parseInt(past[2]);
 		
-		//totalDifference = hourDifference+(dateDifference*24)+
 		System.out.println(monthDifference);
 		System.out.println(dateDifference);
 		System.out.println(hourDifference);
@@ -86,11 +78,10 @@ public class Client extends Account {
 		else {
 			timeDifference = hourDifference + (Integer.parseInt(curr[1]) * 24) + ((30 - Integer.parseInt(past[1])) * 24);
 		}
-		System.out.println(timeDifference);
-		//timeDifference = 20;
 		
 	}
 	
+	//Mostly setters and getters after this
 	public ResponceObject addShipments(ContainerLog log) {
 		ResponceObject responce;
 		
@@ -110,9 +101,18 @@ public class Client extends Account {
 		
 	}
 	
-	public void removeShipments(int location) {
-		shipments.get(location).setInTransit(false);
-		shipments.remove(location);
+	public void removeShipments(int containerID) {
+		int count = 0;
+		
+		for(Container x : shipments) {
+			
+			if(x.getContainerID() == containerID) {
+				x.setInTransit(false);
+				shipments.remove(count);
+			}
+			count++;
+			
+		}
 	}
 	
 	public ResponceObject hasShipments(){
@@ -147,12 +147,19 @@ public class Client extends Account {
 		return timeDifference;
 	}
 	
+	public void setReferencePerson(String person) {
+		referencePerson = person;
+	}
+	
+	public String getReferencePerson() {
+		return referencePerson;
+	}
+	
+	//Sets last login for client
 	public void setLastDate() {
 		Date lastLogin = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("MM:dd:hh");
-		
-		//this.setTemp(lastLoggedIn);
-		
+				
 		lastLoggedIn = format.format(lastLogin);
 	}
 	
@@ -160,12 +167,20 @@ public class Client extends Account {
 		lastLoggedIn = date;
 	}
 	
+	//public void setTemp(String temp) {
+	//	lastLoggedInTemp = temp;
+	//}
+	//
+	//public String getTemp() {
+	//	return lastLoggedInTemp;
+	//}
+	
 	public String toString() {
-		return this.getClientID()+","+this.getUsername()+","+this.getPassword()+","+this.getName()+","+this.getEmail()+","+this.getPhoneNumber()+","+this.getAddress()+","+this.getLoginStatus()+","+this.getLastLoggedIn()+"\n";
+		return this.getClientID()+","+this.getUsername()+","+this.getPassword()+","+this.getName()+","+this.getEmail()+","+this.getPhoneNumber()+","+this.getAddress()+","+this.getReferencePerson()+","+this.getLoginStatus()+","+this.getLastLoggedIn()+"\n";
 	}
 	
 	public String toString(boolean x) {
-		return this.getClientID()+","+this.getUsername()+","+this.getPassword()+","+this.getName()+","+this.getEmail()+","+this.getPhoneNumber()+","+this.getAddress()+","+this.getLoginStatus()+","+this.getLastLoggedIn();
+		return this.getClientID()+","+this.getUsername()+","+this.getPassword()+","+this.getName()+","+this.getEmail()+","+this.getPhoneNumber()+","+this.getAddress()+","+this.getReferencePerson()+","+this.getLoginStatus()+","+this.getLastLoggedIn();
 	}
 
 }

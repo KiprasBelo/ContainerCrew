@@ -14,10 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//Database for storing and manipulating containers
+
 public class ContainerLog {
 	
 	private static ArrayList<Container> containers = new ArrayList<Container>();
 	private File file;
+	private static Container selectedContainer;
 	
 	public ContainerLog() {}
 	
@@ -29,6 +32,7 @@ public class ContainerLog {
 		return containers;
 	}
 	
+	//creation of database
 	public void createDatabase() {
 		try {
 			file = new File("ContainerDatabase.txt");
@@ -38,10 +42,13 @@ public class ContainerLog {
 		}
 	}
 	
+	//Adds new entries to Textfile database
 	public void addToDatabase(Container c) {
 		try {
 			BufferedWriter write = new BufferedWriter(new FileWriter("ContainerDatabase.txt", true));
+			
 			write.newLine();
+			
 			write.write(c.toString(true));
 			write.close();
 			
@@ -51,10 +58,10 @@ public class ContainerLog {
 		
 	}
 	
+	//Updates ArrayList based on Textfile
 	public void updateDatabase() throws FileNotFoundException {
 		file = new File("ContainerDatabase.txt");
 		Scanner scan = new Scanner(file);
-		//clients.clear();
 		containers.clear();
 		
 		while(scan.hasNextLine()) {
@@ -63,17 +70,8 @@ public class ContainerLog {
 			Container c = new Container();
 			this.addContainer(c);
 			
-			
-			
-			
-			
 			Order o = new Order();
 			c.setCurrentOrder(o);
-			
-			
-			
-			
-			
 			
 			c.setContainerID(Integer.parseInt(data[0]));
 			c.setOwnerID(Integer.parseInt(data[1]));
@@ -83,10 +81,12 @@ public class ContainerLog {
 			c.setTemperature(Double.parseDouble(data[5]));
 			c.setInTransit(Boolean.parseBoolean(data[6]));
 			c.setStartDate(data[7]);
+			c.setHumidity(Integer.parseInt(data[8]));
+			c.setPressure(Integer.parseInt(data[9]));
 			
 			for(int i = 0; i < 48; i++) {
 				
-				c.getDataPoints()[i] = Double.parseDouble(data[i+8]);
+				c.getDataPoints()[i] = Double.parseDouble(data[i+10]);
 				
 			}
 			
@@ -94,6 +94,7 @@ public class ContainerLog {
 		
 	}
 	
+	//updates Textfile based on ArrayList
 	public void updateContainerDatabaseInfo(Container c) throws FileNotFoundException {
 		Path path = Paths.get("ContainerDatabase.txt");
 		try {
@@ -113,6 +114,105 @@ public class ContainerLog {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	//Assigns an unassigned or creates a new container for a client
+	public boolean addContainerToClient(String origin, String destination, String cargo, int temp) {
+		
+		Container c;
+		ClientLog log2 = new ClientLog();
+		OrderLog log3 = new OrderLog();
+		Order o;
+		
+		ResponceObject responce = log2.getSelectedClient().addShipments(this);
+		
+		if(responce.getErrorMessage().contentEquals("Could not find available container")) {
+			
+			c = new Container();
+			
+			c.setOwnerID(log2.getSelectedClient().getClientID());
+			c.setTemperature(temp);
+			
+			o = new Order(c.getContainerID(), origin, destination, cargo);
+			c.addOrders(o);
+			o.setCurrentOrder(true);
+			c.setCurrentOrder(o);
+			
+			c.getCurrentOrder().setStartLocation(origin);
+			c.getCurrentOrder().setCargo(cargo);
+			c.getCurrentOrder().setEndLocation(destination);
+			c.setStartDate();
+			c.setInTransit(true);
+			this.addToDatabase(c);
+			log3.addToDatabase(c.getCurrentOrder());
+			this.addContainer(c);
+			log2.getSelectedClient().addShipments(c);
+			return true;
+		}
+		else {
+			if(log2.getSelectedClient().getShipments().size() > 0)
+				c = log2.getSelectedClient().getShipment(log2.getSelectedClient().getShipments().size()-1);
+			else c = log2.getSelectedClient().getShipment(0);
+			
+			o = new Order(c.getContainerID(), origin, destination, cargo);
+			c.addOrders(o);
+			o.setCurrentOrder(true);
+			c.setCurrentOrder(o);
+			log3.addToDatabase(c.getCurrentOrder());
+			try {
+				log3.updateDatabase();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			c.setInTransit(true);
+			c.setStartDate();
+			try {
+				this.updateContainerDatabaseInfo(c);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			return true;
+		}
+	}
+	
+	//sets currently selected containers to work on
+	public void setSelectedContainer(Container c) {
+		for(Container x : containers) {
+			if(x.getContainerID() == c.getContainerID()) {
+				selectedContainer = x;
+				x.setSelectedContainer(true);
+			}
+		}
+	}
+	
+	public Container getSelectedContainer() {
+		return selectedContainer;
+	}
+	
+	//ends journey for a container
+	public void end() throws FileNotFoundException {
+		ClientLog log = new ClientLog();
+		
+		for(Client c : log.getClients()) {
+			
+			if(c.getClientID() == this.getSelectedContainer().getOwnerID()) {
+				
+				c.removeShipments(this.getSelectedContainer().getContainerID());
+				
+			}
+			
+		}
+		
+		for(Container x : this.getContainers()) {
+			
+			if(x.getSelectedContainer()) {
+				
+				x.endJourney();
+				x.setOwnerID(-1);
+				this.updateContainerDatabaseInfo(x);
+			}
+			
+		}
 	}
 
 }

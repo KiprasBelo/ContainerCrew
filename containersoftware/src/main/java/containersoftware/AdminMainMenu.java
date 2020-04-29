@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//All menu options for the admin
+
 public class AdminMainMenu extends JFrame {
 
 	private JPanel contentPane;

@@ -23,14 +23,17 @@ import javax.swing.event.ListSelectionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+//Screen with a list of all containers for a certain client
+
 public class ContainerTracker extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField originField;
 	private JTextField destinationField;
 	private JTextField cargoField;
-	String row;
-	Container current;
+	private Container current;
+	private ContainerLog log = new ContainerLog();
+	private ClientLog log2 = new ClientLog();
 
 	/**
 	 * Launch the application.
@@ -61,19 +64,16 @@ public class ContainerTracker extends JFrame {
 		
 		JList list = new JList();
 		
-		
+		//Selects Container via mouseclick and displays container info
 		list.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(arg0.getClickCount() == 2 && list.locationToIndex(arg0.getPoint()) == list.getSelectedIndex()) {
 					if(!list.isSelectionEmpty()) {
 						
-						ClientLog log = new ClientLog();
-						ContainerLog log2 = new ContainerLog();
-						
-						log.checkDates(current);
+						log2.checkDates(current);
 						try {
-							log2.updateContainerDatabaseInfo(current);
+							log.updateContainerDatabaseInfo(current);
 						} catch (FileNotFoundException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -81,9 +81,11 @@ public class ContainerTracker extends JFrame {
 						
 						dispose();
 						LineChart chart = new LineChart("Container Temperature", "Container Temperature for the last 48 hours", current);
+						ExtraContainerInfo info = new ExtraContainerInfo();
+						info.setContainer(current);
 						chart.pack();
 						chart.setVisible(true);
-					
+						info.setVisible(true);
 					}
 				}
 			}
@@ -93,7 +95,6 @@ public class ContainerTracker extends JFrame {
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				
-				row = list.getSelectedValue().toString();
 				current = (Container) list.getSelectedValue();
 			}
 		});
@@ -112,12 +113,11 @@ public class ContainerTracker extends JFrame {
 		list.setBounds(185, 44, 324, 206);
 		contentPane.add(list);
 		
+		//Loads all containers for a client
 		JButton btnNewButton = new JButton("Load All Containers");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultListModel DLM = new DefaultListModel();
-				ContainerLog log = new ContainerLog();
-				ClientLog log2 = new ClientLog();
 				
 				try {
 					log.updateDatabase();
@@ -186,13 +186,12 @@ public class ContainerTracker extends JFrame {
 		lblCargo.setBounds(106, 135, 46, 14);
 		contentPane.add(lblCargo);
 		
+		//loads containers via certain criteria
 		JButton btnFindbyLoad = new JButton("Load");
 		btnFindbyLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				DefaultListModel DLM = new DefaultListModel();
-				ContainerLog log = new ContainerLog();
-				ClientLog log2 = new ClientLog();
 				
 				try {
 					log.updateDatabase();

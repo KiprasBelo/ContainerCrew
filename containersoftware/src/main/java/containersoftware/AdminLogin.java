@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//Uses a hard coded admin login to access admin features
+
 public class AdminLogin extends JFrame {
 
 	private JPanel contentPane;
@@ -68,6 +70,7 @@ public class AdminLogin extends JFrame {
 		passwordField.setBounds(192, 115, 118, 20);
 		contentPane.add(passwordField);
 		
+		//Button for admin Login
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

@@ -37,4 +37,10 @@ Feature: Access and edit features of containers
     And at least one order behind current order in the container histroy
     When I call the history for a container
     Then Display order History
+    
+    Scenario: Get container temperature data
+    Given A container in the containerLog
+    And Todays date along with Container start or last login date
+    When Check dates of container access
+    Then A number of hours of temperature are generated
 

@@ -11,6 +11,8 @@ import org.jfree.ui.RefineryUtilities;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+//Screen that displays temperature graph data
+
 public class LineChart extends ApplicationFrame {
 	
 	ClientLog log = new ClientLog();

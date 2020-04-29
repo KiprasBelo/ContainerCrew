@@ -3,14 +3,17 @@ package containersoftware;
 
 public class Account {
 	
+	//Instance Variables
+	
 	private String username;
 	private String password;
 	private String name;
 	private String email;
 	private String address;
 	private String phoneNumber;
-	private char type;
 	private boolean loggedIn;
+	
+	//Getters and Setters
 	
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -47,13 +50,6 @@ public class Account {
 		this.email = email;
 	}
 	
-	public void setType(char t) {
-		type = t;
-	}
-	public char getType() {
-		return type;
-	}
-	
 	public String getAddress() {
 		return address;
 	}
@@ -68,27 +64,4 @@ public class Account {
 		return loggedIn;
 	}
 	
-	public ResponceObject logIn(String user, String pass) {
-		
-		ResponceObject responce = new ResponceObject("Logged in");
-		
-		if(user.contentEquals(username)) {
-			if(pass.contentEquals(password)) {
-				setLoginStatus(true);
-			}
-			else {
-				responce = new ResponceObject("Incorrect username or password");
-			}
-		}
-		else {
-			responce = new ResponceObject("Incorrect username or password");
-		}
-		return responce;
-	}
-	
-	public ResponceObject logOut() {
-		return new ResponceObject("Successfully logged out");
-	}
-	
-
 }

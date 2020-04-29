@@ -32,3 +32,7 @@ Feature: Manage Client aspects as Logistic company admin
     When Enter an invalid name or email in name lookup
     Then Display message that the client was not found
 
+		Scenario: End Container Journey
+    Given A container with transit status of true
+    When Choose to end the journey
+    Then Login status is false and Container is removed from client

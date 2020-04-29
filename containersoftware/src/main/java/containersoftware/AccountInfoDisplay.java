@@ -11,9 +11,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//Displays Client Account Info
+
 public class AccountInfoDisplay extends JFrame {
 
 	private JPanel contentPane;
+	ClientLog log = new ClientLog();
 
 	/**
 	 * Launch the application.
@@ -42,31 +45,45 @@ public class AccountInfoDisplay extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Name");
-		lblNewLabel.setBounds(50, 37, 106, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblName = new JLabel("Name");
+		lblName.setBounds(50, 11, 106, 14);
+		contentPane.add(lblName);
 		
-		JLabel lblNewLabel_1 = new JLabel("Email");
-		lblNewLabel_1.setBounds(50, 62, 46, 14);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setBounds(50, 36, 46, 14);
+		contentPane.add(lblEmail);
 		
-		JLabel lblNewLabel_2 = new JLabel("Phone Number");
-		lblNewLabel_2.setBounds(50, 97, 91, 14);
-		contentPane.add(lblNewLabel_2);
+		JLabel lblNumber = new JLabel("Phone Number");
+		lblNumber.setBounds(50, 61, 91, 14);
+		contentPane.add(lblNumber);
 		
-		ClientLog log = new ClientLog();
+		JLabel lblAddress = new JLabel("Address");
+		lblAddress.setBounds(50, 86, 46, 14);
+		contentPane.add(lblAddress);
+		
+		JLabel lblReferencePerson = new JLabel("Reference Person");
+		lblReferencePerson.setBounds(50, 111, 91, 14);
+		contentPane.add(lblReferencePerson);
 		
 		JLabel nameLbl = new JLabel(log.getSelectedClient().getName());
-		nameLbl.setBounds(191, 37, 139, 14);
+		nameLbl.setBounds(191, 11, 139, 14);
 		contentPane.add(nameLbl);
 		
 		JLabel emailLbl = new JLabel(log.getSelectedClient().getEmail());
-		emailLbl.setBounds(191, 62, 139, 14);
+		emailLbl.setBounds(191, 36, 139, 14);
 		contentPane.add(emailLbl);
 		
 		JLabel numberLbl = new JLabel(log.getSelectedClient().getPhoneNumber());
-		numberLbl.setBounds(191, 97, 139, 14);
+		numberLbl.setBounds(191, 61, 139, 14);
 		contentPane.add(numberLbl);
+		
+		JLabel addressLbl = new JLabel(log.getSelectedClient().getAddress());
+		addressLbl.setBounds(191, 86, 139, 14);
+		contentPane.add(addressLbl);
+		
+		JLabel referencePersonLbl = new JLabel(log.getSelectedClient().getReferencePerson());
+		referencePersonLbl.setBounds(191, 111, 139, 14);
+		contentPane.add(referencePersonLbl);
 		
 		JButton accountinfoback = new JButton("Back");
 		accountinfoback.addActionListener(new ActionListener() {
@@ -108,6 +125,6 @@ public class AccountInfoDisplay extends JFrame {
 		
 		editinfobutton.setBounds(10, 195, 89, 23);
 		contentPane.add(editinfobutton);
+		
 	}
-
 }

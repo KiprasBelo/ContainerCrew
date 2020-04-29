@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 
+//Screen to add a new Journey for a Client
+
 public class AddJourney extends JFrame {
 
 	private JPanel contentPane;
@@ -63,55 +65,13 @@ public class AddJourney extends JFrame {
 		lblNewLabel_2.setBounds(63, 107, 46, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		
+		//Button to Register Journey
 		JButton btnRegister = new JButton("Add Journey");
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				
-				Container c;
-				
 				ContainerLog log = new ContainerLog();
-				ClientLog log2 = new ClientLog();
-				OrderLog log3 = new OrderLog();
-				Order o;
-				
-				ResponceObject responce = log2.getSelectedClient().addShipments(log);
-				
-				if(responce.getErrorMessage().contentEquals("Could not find available container")) {
-					
-					c = new Container();
-					
-					c.setOwnerID(log2.getSelectedClient().getClientID());
-					c.setTemperature(Integer.parseInt(tempField.getText()));
-					
-					o = new Order(c.getContainerID(), originField.getText(), destinationField.getText(), cargoField.getText());
-					c.addOrders(o);
-					o.setCurrentOrder(true);
-					c.setCurrentOrder(o);
-					
-					c.getCurrentOrder().setStartLocation(originField.getText());
-					c.getCurrentOrder().setCargo(cargoField.getText());
-					c.getCurrentOrder().setEndLocation(destinationField.getText());
-					c.setStartDate();
-					c.setInTransit(true);
-					log.addToDatabase(c);
-					log3.addToDatabase(c.getCurrentOrder());
-					log.addContainer(c);
-					log2.getSelectedClient().addShipments(c);
-					
-				}
-				else {
-					if(log2.getSelectedClient().getShipments().size() > 0)
-						c = log2.getSelectedClient().getShipment(log2.getSelectedClient().getShipments().size()-1);
-					else c = log2.getSelectedClient().getShipment(0);
-					
-					o = new Order(c.getContainerID(), originField.getText(), destinationField.getText(), cargoField.getText());
-					c.addOrders(o);
-					o.setCurrentOrder(true);
-					c.setCurrentOrder(o);
-					c.setStartDate();
-				
-				}
+				log.addContainerToClient(originField.getText(), destinationField.getText(), cargoField.getText(), Integer.parseInt(tempField.getText()));
 				
 				dispose();
 				ClientMainMenu menu = new ClientMainMenu();

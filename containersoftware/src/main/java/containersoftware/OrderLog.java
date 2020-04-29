@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//Database that stores all orders ever created and manipulates orders
+
 public class OrderLog {
 	
 	private static ArrayList<Order> orders = new ArrayList<Order>();
@@ -22,6 +24,7 @@ public class OrderLog {
 		return orders;
 	}
 	
+	//Creates Database
 	public void createDatabase() {
 		try {
 			file = new File("OrderDatabase.txt");
@@ -31,6 +34,7 @@ public class OrderLog {
 		}
 	}
 	
+	//Adds new entries to database
 	public void addToDatabase(Order o) {
 		try {
 			BufferedWriter write = new BufferedWriter(new FileWriter("OrderDatabase.txt", true));
@@ -44,6 +48,7 @@ public class OrderLog {
 		
 	}
 	
+	//Updates ArrayList based on Textfile
 	public void updateDatabase() throws FileNotFoundException {
 		file = new File("ContainerDatabase.txt");
 		Scanner scan = new Scanner(file);

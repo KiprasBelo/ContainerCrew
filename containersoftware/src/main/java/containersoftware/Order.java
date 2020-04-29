@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+//Creation of order(Journey) object to be assigned to containers for transit
+
 public class Order {
 
 	private String startLocation;
@@ -17,6 +19,7 @@ public class Order {
 	private int assignedContainerId;
 	private boolean currentOrder;
 	
+	//Default and nondefualt constructors
 	public Order() {
 		Path path = Paths.get("OrderDatabase.txt");
 		int counter = 0;
@@ -36,7 +39,7 @@ public class Order {
 	}
 	
 	public Order(int owner, String start, String end, String cargo) {
-		assignedContainerId = owner;
+		this.setAssignedContainerId(owner);
 		startLocation = start;
 		endLocation = end;
 		this.cargo = cargo;
@@ -57,6 +60,7 @@ public class Order {
 		orderID = counter;
 	}
 	
+	//Getters and Setters
 	public void setOrderID(int id) {
 		orderID = id;
 	}
