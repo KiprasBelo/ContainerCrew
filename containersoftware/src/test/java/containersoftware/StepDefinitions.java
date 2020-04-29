@@ -317,6 +317,20 @@ public class StepDefinitions {
 		log.getClients().get(6).setLoginStatus(false);
 	}
 	
+	//Edit container Info as Admin
+	
+	@When("Edit humidity and atmospheric pressure")
+	public void edit_humidity_and_atmospheric_pressure() {
+		log.getClients().get(6).getShipment(0).setHumidity(80);
+		log.getClients().get(6).getShipment(0).setPressure(2);
+	}
+
+	@Then("The values are changed in the database")
+	public void the_values_are_changed_in_the_database() {
+		assertEquals(log.getClients().get(6).getShipment(0).getHumidity(), 80);
+		assertEquals(log.getClients().get(6).getShipment(0).getPressure(), 2);
+	}
+	
 	//Access Container History
 	
 	@Given("A container in the containerLog")

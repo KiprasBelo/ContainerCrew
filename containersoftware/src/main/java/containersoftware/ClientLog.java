@@ -106,7 +106,7 @@ public class ClientLog {
 	public void addToDatabase(Client c) {
 		try {
 			BufferedWriter write = new BufferedWriter(new FileWriter("ClientDatabase.txt", true));
-			write.write(c.toString());
+			write.write(c.toString(1));
 			write.close();
 			
 		} catch(Exception e) {
@@ -145,7 +145,6 @@ public class ClientLog {
 			else {
 					
 				x.addData(0,48, x.getTemperature());
-				System.out.println("option3");
 					
 			}
 		}

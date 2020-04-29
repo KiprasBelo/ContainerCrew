@@ -48,7 +48,6 @@ public class Client extends Account {
 	//Compares a given date with todays date and returns the time in hours
 	public void compareDates(String last) {
 		
-		System.out.println("comparing");
 		
 		Date now = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("MM:dd:hh");
@@ -58,16 +57,11 @@ public class Client extends Account {
 		int hourDifference;
 		
 		String[] curr = current.split(":");
-		System.out.println(lastLoggedIn);
 		String[] past = last.split(":");
 		
 		monthDifference = Math.abs(Integer.parseInt(curr[0])-Integer.parseInt(past[0]));
 		dateDifference = Math.abs(Integer.parseInt(curr[1])-Integer.parseInt(past[1]));
 		hourDifference = Integer.parseInt(curr[2])-Integer.parseInt(past[2]);
-		
-		System.out.println(monthDifference);
-		System.out.println(dateDifference);
-		System.out.println(hourDifference);
 		
 		if(monthDifference == 0) {
 			timeDifference = (dateDifference*24) + hourDifference;
@@ -167,15 +161,11 @@ public class Client extends Account {
 		lastLoggedIn = date;
 	}
 	
-	//public void setTemp(String temp) {
-	//	lastLoggedInTemp = temp;
-	//}
-	//
-	//public String getTemp() {
-	//	return lastLoggedInTemp;
-	//}
-	
 	public String toString() {
+		return this.getName()+" Email: "+this.getEmail()+" Living at: "+this.getAddress();
+	}
+	
+	public String toString(int x) {
 		return this.getClientID()+","+this.getUsername()+","+this.getPassword()+","+this.getName()+","+this.getEmail()+","+this.getPhoneNumber()+","+this.getAddress()+","+this.getReferencePerson()+","+this.getLoginStatus()+","+this.getLastLoggedIn()+"\n";
 	}
 	
