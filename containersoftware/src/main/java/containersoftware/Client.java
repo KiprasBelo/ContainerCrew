@@ -1,6 +1,7 @@
 package containersoftware;
 
 
+import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -76,9 +77,9 @@ public class Client extends Account {
 	}
 	
 	//Mostly setters and getters after this
-	public ResponceObject addShipments(ContainerLog log) {
+	public ResponceObject addShipments(ContainerLog log) throws FileNotFoundException {
 		ResponceObject responce;
-		
+		//log.updateDatabase();
 		for(Container x : log.getContainers()) {
 			if(!x.getInTransit()) {
 				x.setInTransit(true);

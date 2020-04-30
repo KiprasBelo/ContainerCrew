@@ -47,7 +47,7 @@ public class ContainerLog {
 		try {
 			BufferedWriter write = new BufferedWriter(new FileWriter("ContainerDatabase.txt", true));
 			
-			//write.newLine();
+			write.newLine();
 			
 			write.write(c.toString(true));
 			write.close();
@@ -71,6 +71,7 @@ public class ContainerLog {
 			this.addContainer(c);
 			
 			Order o = new Order();
+			c.addOrders(o);
 			c.setCurrentOrder(o);
 			
 			c.setContainerID(Integer.parseInt(data[0]));
@@ -117,7 +118,7 @@ public class ContainerLog {
 	}
 	
 	//Assigns an unassigned or creates a new container for a client
-	public boolean addContainerToClient(String origin, String destination, String cargo, int temp) {
+	public boolean addContainerToClient(String origin, String destination, String cargo, int temp) throws FileNotFoundException {
 		
 		Container c;
 		ClientLog log2 = new ClientLog();
@@ -156,8 +157,12 @@ public class ContainerLog {
 			
 			o = new Order(c.getContainerID(), origin, destination, cargo);
 			c.addOrders(o);
+			c.setOwnerID(log2.getSelectedClient().getClientID());
 			o.setCurrentOrder(true);
 			c.setCurrentOrder(o);
+			c.getCurrentOrder().setStartLocation(origin);
+			c.getCurrentOrder().setCargo(cargo);
+			c.getCurrentOrder().setEndLocation(destination);
 			log3.addToDatabase(c.getCurrentOrder());
 			try {
 				log3.updateDatabase();

@@ -137,7 +137,7 @@ public class StepDefinitions {
 	//Accessing container info
 	
 	@Given("account has valid shipments")
-	public void account_has_valid_shipments() {
+	public void account_has_valid_shipments() throws FileNotFoundException {
 		Container c = new Container(o);
 		containLog.addContainer(c);
 		client.addShipments(containLog);
@@ -245,9 +245,10 @@ public class StepDefinitions {
 	
 	@Given("A container in ContainerLog with inTransit staus (true|false)$")
 	public void a_container_in_ContainerLog_with_inTransit_staus_false(boolean transit) {
-		contains = new Container();
-		contains.setInTransit(transit);
-		containLog.addContainer(contains);
+		//contains = new Container();
+		//contains.setInTransit(transit);
+		//containLog.addContainer(contains);
+		//containLog.addToDatabase(contains);
 	}
 
 	@Given("A destination of {string}")
@@ -263,7 +264,11 @@ public class StepDefinitions {
 			e.printStackTrace();
 		}
 		log.getClients().get(6).setLoginStatus(true);
-		temp = containLog.addContainerToClient(null, destination, null, 5);
+		try {
+			temp = containLog.addContainerToClient(null, destination, null, 5);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Then("Display message that the Container has been added")
@@ -287,7 +292,11 @@ public class StepDefinitions {
 	@When("I try to assign the container to the client")
 	public void i_try_to_assign_the_container_to_the_client() {
 		log.getClients().get(6).setLoginStatus(true);
-		temp = containLog.addContainerToClient(null, destination, null, 10);
+		try {
+			temp = containLog.addContainerToClient(null, destination, null, 10);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Then("Display message that a container is not available")
