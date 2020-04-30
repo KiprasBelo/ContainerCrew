@@ -6,14 +6,3 @@
 5,5,Copenhagen,Oslo,Bananas,true
 6,6,Tokyo,Seol,apples,true
 7,7,Chicago,Dover,Cars,true
-<<<<<<< HEAD
-8,8,null,New York,null,true
-9,8,null,New York,null,true
-10,8,Why,You,Break,true
-11,9,Trondheim,Copenhagen,Salmon,true
-=======
-8,9,null,New York,null,true
-9,9,null,New York,null,true
-10,10,null,New York,null,true
-11,10,null,New York,null,true
->>>>>>> branch 'master' of https://github.com/KiprasBelo/ContainerCrew.git
