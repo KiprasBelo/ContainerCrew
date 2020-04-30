@@ -1,7 +1,9 @@
 package containersoftware;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,6 +37,7 @@ public class MainMenu extends JFrame {
 	 * Create the frame.
 	 */
 	public MainMenu() {
+		
 		//frame = new JFrame();
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

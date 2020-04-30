@@ -3,14 +3,19 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 //Current main and the first menu to display
 
@@ -20,6 +25,8 @@ public class FirstPage {
 	ClientLog log = new ClientLog();
 	ContainerLog log2 = new ContainerLog();
 	OrderLog log3 = new OrderLog();
+	public int screenHeight;
+	public int screenWidth;
 	
 
 	/**
@@ -54,8 +61,13 @@ public class FirstPage {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		//Finding screen size to center JFrame
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		screenHeight = screenSize.height;
+		screenWidth = screenSize.width;
+		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(screenWidth/2 - 450/2, screenHeight/2 - 300/2, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -69,16 +81,22 @@ public class FirstPage {
 				
 			}
 		});
-		btnProceed.setBounds(114, 168, 218, 56);
+		btnProceed.setBounds(125, 180, 200, 50);
 		frame.getContentPane().add(btnProceed);
 		
 		JLabel lblAgile = new JLabel("Agile Object Oriented Software Development 02160");
-		lblAgile.setBounds(79, 11, 283, 14);
+		lblAgile.setBounds(63, 24, 324, 14);
 		frame.getContentPane().add(lblAgile);
 		
-		JLabel lblGroup = new JLabel("Group K");
+		JLabel lblGroup = new JLabel("By group K");
 		lblGroup.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblGroup.setBounds(186, 36, 69, 25);
+		lblGroup.setBounds(366, 247, 78, 25);
 		frame.getContentPane().add(lblGroup);
+		
+		JLabel lblForImage = new JLabel("");
+		Image img = new ImageIcon(this.getClass().getResource("/containerTrackerNew.png")).getImage();
+		lblForImage.setIcon(new ImageIcon(img));
+		lblForImage.setBounds(26, 50, 398, 110);
+		frame.getContentPane().add(lblForImage);
 	}
 }
