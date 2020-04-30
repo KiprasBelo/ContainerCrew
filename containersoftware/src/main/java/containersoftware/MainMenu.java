@@ -56,7 +56,7 @@ public class MainMenu extends JFrame {
 		JButton btnClientRegister = new JButton("Client Register");
 		
 		
-		btnClientRegister.addActionListener(new ActionListener() {
+		btnClientRegister.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg) {
 				
 				
