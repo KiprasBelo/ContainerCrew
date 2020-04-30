@@ -116,7 +116,7 @@ public class ContainerEditor extends JFrame {
 		btnEnd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 					
-				try {
+				try{
 					log.end();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
