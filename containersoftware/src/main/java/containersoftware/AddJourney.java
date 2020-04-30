@@ -75,7 +75,13 @@ public class AddJourney extends JFrame {
 			public void actionPerformed(ActionEvent arg) {
 				
 				ContainerLog log = new ContainerLog();
-				log.addContainerToClient(originField.getText(), destinationField.getText(), cargoField.getText(), Integer.parseInt(tempField.getText()));
+				try {
+					log.addContainerToClient(originField.getText(), destinationField.getText(), cargoField.getText(), Integer.parseInt(tempField.getText()));
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
 				
 				dispose();
 				ClientMainMenu menu = new ClientMainMenu();

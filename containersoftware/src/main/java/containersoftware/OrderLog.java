@@ -50,7 +50,7 @@ public class OrderLog {
 	
 	//Updates ArrayList based on Textfile
 	public void updateDatabase() throws FileNotFoundException {
-		file = new File("ContainerDatabase.txt");
+		file = new File("OrderDatabase.txt");
 		Scanner scan = new Scanner(file);
 		//clients.clear();
 		orders.clear();
