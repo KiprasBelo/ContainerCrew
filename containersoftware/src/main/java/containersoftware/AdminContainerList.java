@@ -100,6 +100,17 @@ public class AdminContainerList extends JFrame {
 		list.setBounds(139, 11, 262, 239);
 		contentPane.add(list);
 		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				ClientFinder find = new ClientFinder();
+				find.setVisible(true);
+			}
+		});
+		btnBack.setBounds(10, 227, 89, 23);
+		contentPane.add(btnBack);
+		
 		list.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

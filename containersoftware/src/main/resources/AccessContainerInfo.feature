@@ -43,4 +43,9 @@ Feature: Access and edit features of containers
     And Todays date along with Container start or last login date
     When Check dates of container access
     Then A number of hours of temperature are generated
+    
+    Scenario: Edit Container data as Admin
+    Given A container in the containerLog
+    When Edit humidity and atmospheric pressure
+    Then The values are changed in the database
 

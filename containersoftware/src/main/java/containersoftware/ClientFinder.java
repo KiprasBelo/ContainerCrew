@@ -91,7 +91,7 @@ public class ClientFinder extends JFrame {
 				
 			}
 		});
-		list.setBounds(150, 11, 218, 239);
+		list.setBounds(150, 11, 274, 239);
 		contentPane.add(list);
 		
 		//Button to load all clients

@@ -85,18 +85,17 @@ public class Container {
 			
 			random = (Math.random() * 4) + bottomThreshhold;
 			dataPoints[i] = random;
-			System.out.println("added");
 			
 		}
 		
 	}
 	
 	//ends current Journey
-		public void endJourney() {
-			this.setInTransit(false);
-			this.getCurrentOrder().setCurrentOrder(false);
-			this.setSelectedContainer(false);
-		}
+	public void endJourney() {
+		this.setInTransit(false);
+		this.getCurrentOrder().setCurrentOrder(false);
+		this.setSelectedContainer(false);
+	}
 	
 	//Mainly getters and Setters from here
 	public double[] getDataPoints() {
