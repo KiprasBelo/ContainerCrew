@@ -114,8 +114,8 @@ public class ContainerTracker extends JFrame {
 		contentPane.add(list);
 		
 		//Loads all containers for a client
-		JButton btnNewButton = new JButton("Load All Containers");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnLoadAll = new JButton("Load All Containers");
+		btnLoadAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultListModel DLM = new DefaultListModel();
 				
@@ -139,8 +139,8 @@ public class ContainerTracker extends JFrame {
 		});
 		
 		
-		btnNewButton.setBounds(10, 11, 149, 23);
-		contentPane.add(btnNewButton);
+		btnLoadAll.setBounds(10, 11, 149, 23);
+		contentPane.add(btnLoadAll);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {

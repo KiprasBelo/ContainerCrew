@@ -53,10 +53,10 @@ public class MainMenu extends JFrame {
 		btnAdminLogin.setBounds(120, 167, 218, 56);
 		getContentPane().add(btnAdminLogin);
 		
-		JButton btnNewButton_1 = new JButton("Client Register");
+		JButton btnClientRegister = new JButton("Client Register");
 		
 		
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnClientRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				
 				
@@ -74,8 +74,8 @@ public class MainMenu extends JFrame {
 		});
 		
 		
-		btnNewButton_1.setBounds(120, 82, 218, 56);
-		getContentPane().add(btnNewButton_1);
+		btnClientRegister.setBounds(120, 82, 218, 56);
+		getContentPane().add(btnClientRegister);
 		
 		JButton goToClientLogin = new JButton("Client Login");
 		

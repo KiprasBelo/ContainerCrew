@@ -44,8 +44,8 @@ public class ClientMainMenu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Add Journey");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnAddJourney = new JButton("Add Journey");
+		btnAddJourney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				AddJourney journey = new AddJourney();
@@ -54,11 +54,11 @@ public class ClientMainMenu extends JFrame {
 		});
 		
 		
-		btnNewButton.setBounds(124, 67, 175, 47);
-		contentPane.add(btnNewButton);
+		btnAddJourney.setBounds(124, 67, 175, 47);
+		contentPane.add(btnAddJourney);
 		
-		JButton btnNewButton_1 = new JButton("Track Jounies");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnTrackJourney = new JButton("Track Jounies");
+		btnTrackJourney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				dispose();
@@ -70,8 +70,8 @@ public class ClientMainMenu extends JFrame {
 		});
 		
 		
-		btnNewButton_1.setBounds(124, 125, 175, 50);
-		contentPane.add(btnNewButton_1);
+		btnTrackJourney.setBounds(124, 125, 175, 50);
+		contentPane.add(btnTrackJourney);
 		
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.addActionListener(new ActionListener() {
@@ -97,10 +97,10 @@ public class ClientMainMenu extends JFrame {
 		btnLogout.setBounds(124, 186, 175, 47);
 		contentPane.add(btnLogout);
 		
-		JButton btnNewButton_3 = new JButton("Account");
+		JButton btnAccount = new JButton("Account");
 		
 		
-		btnNewButton_3.addActionListener(new ActionListener() {
+		btnAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				dispose();
@@ -111,7 +111,7 @@ public class ClientMainMenu extends JFrame {
 		});
 		
 		
-		btnNewButton_3.setBounds(124, 11, 175, 45);
-		contentPane.add(btnNewButton_3);
+		btnAccount.setBounds(124, 11, 175, 45);
+		contentPane.add(btnAccount);
 	}
 }

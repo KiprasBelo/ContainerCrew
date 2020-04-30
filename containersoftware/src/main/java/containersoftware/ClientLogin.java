@@ -51,13 +51,13 @@ public class ClientLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Username");
-		lblNewLabel.setBounds(145, 80, 65, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setBounds(145, 80, 65, 14);
+		contentPane.add(lblUsername);
 		
-		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(145, 121, 65, 14);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(145, 121, 65, 14);
+		contentPane.add(lblPassword);
 		
 		userField = new JTextField();
 		userField.setBounds(237, 77, 109, 20);

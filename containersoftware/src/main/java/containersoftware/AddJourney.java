@@ -53,17 +53,21 @@ public class AddJourney extends JFrame {
 		btnBack.setBounds(0, 227, 89, 23);
 		contentPane.add(btnBack);
 		
-		JLabel lblNewLabel = new JLabel("Port of Origin");
-		lblNewLabel.setBounds(63, 33, 103, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblOrigin = new JLabel("Port of Origin");
+		lblOrigin.setBounds(63, 33, 103, 14);
+		contentPane.add(lblOrigin);
 		
-		JLabel lblNewLabel_1 = new JLabel("Destination");
-		lblNewLabel_1.setBounds(63, 71, 103, 14);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblDestination = new JLabel("Destination");
+		lblDestination.setBounds(63, 71, 103, 14);
+		contentPane.add(lblDestination);
 		
-		JLabel lblNewLabel_2 = new JLabel("Cargo");
-		lblNewLabel_2.setBounds(63, 107, 46, 14);
-		contentPane.add(lblNewLabel_2);
+		JLabel lblCargo = new JLabel("Cargo");
+		lblCargo.setBounds(63, 107, 46, 14);
+		contentPane.add(lblCargo);
+		
+		JLabel lblTemp = new JLabel("Prefered Temp Celcius");
+		lblTemp.setBounds(63, 132, 118, 14);
+		contentPane.add(lblTemp);
 		
 		//Button to Register Journey
 		JButton btnRegister = new JButton("Add Journey");
@@ -98,10 +102,6 @@ public class AddJourney extends JFrame {
 		originField.setBounds(214, 30, 151, 20);
 		contentPane.add(originField);
 		originField.setColumns(10);
-		
-		JLabel lblNewLabel_3 = new JLabel("Prefered Temp Celcius");
-		lblNewLabel_3.setBounds(63, 132, 118, 14);
-		contentPane.add(lblNewLabel_3);
 		
 		tempField = new JTextField();
 		tempField.setBounds(214, 129, 151, 20);
