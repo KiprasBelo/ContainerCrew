@@ -16,26 +16,30 @@ import javax.swing.border.EmptyBorder;
 public class MainMenu extends JFrame {
 
 	private JPanel contentPane;
-
+	JButton btnAdminLogin;
+	JButton goToClientLogin;
+	JButton btnClientRegister;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainMenu frame = new MainMenu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				MainMenu frame = new MainMenu();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
 	 */
+	
+	
 	public MainMenu() {
 		
 		//frame = new JFrame();
@@ -43,7 +47,7 @@ public class MainMenu extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		JButton btnAdminLogin = new JButton("Admin Login");
+		btnAdminLogin = new JButton("Admin Login");
 		btnAdminLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -56,7 +60,7 @@ public class MainMenu extends JFrame {
 		btnAdminLogin.setBounds(120, 167, 218, 56);
 		getContentPane().add(btnAdminLogin);
 		
-		JButton btnClientRegister = new JButton("Client Register");
+		btnClientRegister = new JButton("Client Register");
 		
 		
 		btnClientRegister.addActionListener(new ActionListener(){
@@ -80,7 +84,7 @@ public class MainMenu extends JFrame {
 		btnClientRegister.setBounds(120, 82, 218, 56);
 		getContentPane().add(btnClientRegister);
 		
-		JButton goToClientLogin = new JButton("Client Login");
+		goToClientLogin = new JButton("Client Login");
 		
 		goToClientLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
@@ -98,6 +102,20 @@ public class MainMenu extends JFrame {
 		
 		goToClientLogin.setBounds(120, 30, 218, 47);
 		getContentPane().add(goToClientLogin);
+		goToClientLogin.setName("ClientLogin");
+		
+	}
+	
+	public JButton getClientLoginButton() {
+		return goToClientLogin;
+	}
+	
+	public JButton getAdminLoginButton() {
+		return btnAdminLogin;
+	}
+	
+	public JButton getClientRegisterButton() {
+		return btnClientRegister;
 	}
 
 }

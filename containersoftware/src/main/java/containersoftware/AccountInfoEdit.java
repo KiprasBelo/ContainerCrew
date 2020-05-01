@@ -22,23 +22,25 @@ public class AccountInfoEdit extends JFrame {
 	private JTextField numberEdit;
 	private JTextField referenceEdit;
 	private JTextField addressEdit;
-	ClientLog client = new ClientLog();
+	private JButton saveButton;
+	private JButton editback;
+	private ClientLog client = new ClientLog();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AccountInfoEdit frame = new AccountInfoEdit();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				AccountInfoEdit frame = new AccountInfoEdit();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
@@ -71,7 +73,7 @@ public class AccountInfoEdit extends JFrame {
 		lblReference.setBounds(50, 137, 91, 14);
 		contentPane.add(lblReference);
 		
-		JButton saveButton = new JButton("Save");
+		saveButton = new JButton("Save");
 		
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
@@ -111,7 +113,7 @@ public class AccountInfoEdit extends JFrame {
 		saveButton.setBounds(7, 196, 89, 23);
 		contentPane.add(saveButton);
 		
-		JButton editback = new JButton("Back");
+		editback = new JButton("Back");
 		editback.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -151,4 +153,33 @@ public class AccountInfoEdit extends JFrame {
 		contentPane.add(addressEdit);
 		addressEdit.setColumns(10);
 	}
+	
+	public JButton getBackButton() {
+		return editback;
+	}
+	
+	public JButton getSaveButton() {
+		return saveButton;
+	}
+	
+	public JTextField getNameField() {
+		return nameEdit;
+	}
+	
+	public JTextField getNumberField() {
+		return numberEdit;
+	}
+	
+	public JTextField getEmailField() {
+		return emailEdit;
+	}
+	
+	public JTextField getAddressField() {
+		return addressEdit;
+	}
+	
+	public JTextField getReferenceField() {
+		return referenceEdit;
+	}
+	
 }

@@ -21,24 +21,26 @@ public class ContainerEditor extends JFrame {
 	private JPanel contentPane;
 	private JTextField humidityField;
 	private JTextField pressureField;
-	ContainerLog log = new ContainerLog();
-	ClientLog log2 = new ClientLog();
+	private ContainerLog log = new ContainerLog();
+	private JButton btnBack;
+	private JButton btnSave;
+	private JButton btnEnd;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ContainerEditor frame = new ContainerEditor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				ContainerEditor frame = new ContainerEditor();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
@@ -51,7 +53,7 @@ public class ContainerEditor extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnBack = new JButton("Back");
+		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -62,7 +64,7 @@ public class ContainerEditor extends JFrame {
 		btnBack.setBounds(10, 227, 89, 23);
 		contentPane.add(btnBack);
 		
-		JButton btnSave = new JButton("Save");
+		btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				
@@ -112,7 +114,7 @@ public class ContainerEditor extends JFrame {
 		contentPane.add(pressureField);
 		pressureField.setColumns(10);
 		
-		JButton btnEnd = new JButton("End Journey");
+		btnEnd = new JButton("End Journey");
 		btnEnd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 					
@@ -130,6 +132,26 @@ public class ContainerEditor extends JFrame {
 		});
 		btnEnd.setBounds(152, 193, 116, 23);
 		contentPane.add(btnEnd);
+	}
+	
+	public JButton getBackButton() {
+		return btnBack;
+	}
+	
+	public JButton getSaveButton() {
+		return btnSave;
+	}
+	
+	public JButton getEndButton() {
+		return btnEnd;
+	}
+	
+	public JTextField getHumidityField() {
+		return humidityField;
+	}
+	
+	public JTextField getPressureField() {
+		return pressureField;
 	}
 
 }

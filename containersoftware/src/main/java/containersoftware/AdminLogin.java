@@ -21,22 +21,23 @@ public class AdminLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField userField;
 	private JPasswordField passwordField;
-
+	private JButton btnLogin;
+	private JButton btnBack;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdminLogin frame = new AdminLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				AdminLogin frame = new AdminLogin();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
@@ -71,7 +72,7 @@ public class AdminLogin extends JFrame {
 		contentPane.add(passwordField);
 		
 		//Button for admin Login
-		JButton btnLogin = new JButton("Login");
+		btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -89,7 +90,7 @@ public class AdminLogin extends JFrame {
 		btnLogin.setBounds(174, 199, 89, 23);
 		contentPane.add(btnLogin);
 		
-		JButton btnBack = new JButton("Back");
+		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -99,5 +100,21 @@ public class AdminLogin extends JFrame {
 		});
 		btnBack.setBounds(10, 227, 89, 23);
 		contentPane.add(btnBack);
+	}
+	
+	public JButton getLoginButton() {
+		return btnLogin;
+	}
+	
+	public JButton getBackButton() {
+		return btnBack;
+	}
+	
+	public JTextField getUserField() {
+		return userField;
+	}
+	
+	public JPasswordField getPasswordField() {
+		return passwordField;
 	}
 }

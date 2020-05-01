@@ -34,22 +34,25 @@ public class ContainerTracker extends JFrame {
 	private Container current;
 	private ContainerLog log = new ContainerLog();
 	private ClientLog log2 = new ClientLog();
+	private JButton btnLoadAll;
+	private JButton btnBack;
+	private JButton btnFindbyLoad;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ContainerTracker frame = new ContainerTracker();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				ContainerTracker frame = new ContainerTracker();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
@@ -114,7 +117,7 @@ public class ContainerTracker extends JFrame {
 		contentPane.add(list);
 		
 		//Loads all containers for a client
-		JButton btnLoadAll = new JButton("Load All Containers");
+		btnLoadAll = new JButton("Load All Containers");
 		btnLoadAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultListModel DLM = new DefaultListModel();
@@ -142,7 +145,7 @@ public class ContainerTracker extends JFrame {
 		btnLoadAll.setBounds(10, 11, 149, 23);
 		contentPane.add(btnLoadAll);
 		
-		JButton btnBack = new JButton("Back");
+		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -187,7 +190,7 @@ public class ContainerTracker extends JFrame {
 		contentPane.add(lblCargo);
 		
 		//loads containers via certain criteria
-		JButton btnFindbyLoad = new JButton("Load");
+		btnFindbyLoad = new JButton("Load");
 		btnFindbyLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -215,5 +218,29 @@ public class ContainerTracker extends JFrame {
 		btnFindbyLoad.setBounds(10, 163, 89, 23);
 		contentPane.add(btnFindbyLoad);
 		
+	}
+	
+	public JButton getBackButton() {
+		return btnBack;
+	}
+	
+	public JButton getLoadAllButton() {
+		return btnLoadAll;
+	}
+	
+	public JButton getFindByCriteriaButton() {
+		return btnFindbyLoad;
+	}
+	
+	public JTextField getOriginField() {
+		return originField;
+	}
+	
+	public JTextField getDestinationField() {
+		return destinationField;
+	}
+	
+	public JTextField getCargoField() {
+		return cargoField;
 	}
 }

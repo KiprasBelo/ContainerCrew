@@ -15,23 +15,27 @@ import java.awt.event.ActionEvent;
 public class ClientMainMenu extends JFrame {
 
 	private JPanel contentPane;
-	ClientLog log = new ClientLog();
+	private ClientLog log = new ClientLog();
+	private JButton btnAddJourney;
+	private JButton btnTrackJourney;
+	private JButton btnLogout;
+	private JButton btnAccount;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ClientMainMenu frame = new ClientMainMenu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				ClientMainMenu frame = new ClientMainMenu();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
@@ -44,7 +48,7 @@ public class ClientMainMenu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnAddJourney = new JButton("Add Journey");
+		btnAddJourney = new JButton("Add Journey");
 		btnAddJourney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -57,7 +61,7 @@ public class ClientMainMenu extends JFrame {
 		btnAddJourney.setBounds(124, 67, 175, 47);
 		contentPane.add(btnAddJourney);
 		
-		JButton btnTrackJourney = new JButton("Track Jounies");
+		btnTrackJourney = new JButton("Track Jounies");
 		btnTrackJourney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -73,7 +77,7 @@ public class ClientMainMenu extends JFrame {
 		btnTrackJourney.setBounds(124, 125, 175, 50);
 		contentPane.add(btnTrackJourney);
 		
-		JButton btnLogout = new JButton("Logout");
+		btnLogout = new JButton("Logout");
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -97,7 +101,7 @@ public class ClientMainMenu extends JFrame {
 		btnLogout.setBounds(124, 186, 175, 47);
 		contentPane.add(btnLogout);
 		
-		JButton btnAccount = new JButton("Account");
+		btnAccount = new JButton("Account");
 		
 		
 		btnAccount.addActionListener(new ActionListener() {
@@ -113,5 +117,21 @@ public class ClientMainMenu extends JFrame {
 		
 		btnAccount.setBounds(124, 11, 175, 45);
 		contentPane.add(btnAccount);
+	}
+	
+	public JButton getLogoutButton() {
+		return btnLogout;
+	}
+	
+	public JButton getAccountButton() {
+		return btnAccount;
+	}
+	
+	public JButton getAddJourneyButton() {
+		return btnAddJourney;
+	}
+	
+	public JButton getTrackJourneyButton() {
+		return btnTrackJourney;
 	}
 }

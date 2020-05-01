@@ -22,23 +22,24 @@ public class ClientLogin extends JFrame {
 	private JTextField userField;
 	private JPasswordField passwordField;
 	private JButton btnClientLoginBack;
+	private JButton btnLogin;
 	ClientLog c = new ClientLog();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ClientLogin frame = new ClientLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				ClientLogin frame = new ClientLogin();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
@@ -64,7 +65,7 @@ public class ClientLogin extends JFrame {
 		contentPane.add(userField);
 		userField.setColumns(10);
 		
-		JButton btnLogin = new JButton("Login");
+		btnLogin = new JButton("Login");
 		
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -112,5 +113,21 @@ public class ClientLogin extends JFrame {
 		
 		btnClientLoginBack.setBounds(10, 227, 89, 23);
 		contentPane.add(btnClientLoginBack);
+	}
+	
+	public JButton getLoginButton() {
+		return btnLogin;
+	}
+	
+	public JButton getBackButton() {
+		return btnClientLoginBack;
+	}
+	
+	public JTextField getUserField() {
+		return userField;
+	}
+	
+	public JPasswordField getPasswordField() {
+		return passwordField;
 	}
 }
