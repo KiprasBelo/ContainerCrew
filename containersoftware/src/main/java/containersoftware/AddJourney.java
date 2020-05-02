@@ -21,22 +21,24 @@ public class AddJourney extends JFrame {
 	private JTextField destinationField;
 	private JTextField originField;
 	private JTextField tempField;
+	private JButton btnRegister;
+	private JButton btnBack;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddJourney frame = new AddJourney();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				AddJourney frame = new AddJourney();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
@@ -49,7 +51,7 @@ public class AddJourney extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnBack = new JButton("Back");
+		btnBack = new JButton("Back");
 		btnBack.setBounds(0, 227, 89, 23);
 		contentPane.add(btnBack);
 		
@@ -70,7 +72,7 @@ public class AddJourney extends JFrame {
 		contentPane.add(lblTemp);
 		
 		//Button to Register Journey
-		JButton btnRegister = new JButton("Add Journey");
+		btnRegister = new JButton("Add Journey");
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				
@@ -114,4 +116,30 @@ public class AddJourney extends JFrame {
 		contentPane.add(tempField);
 		tempField.setColumns(10);
 	}
+	
+	public JButton getBackButton() {
+		return btnBack;
+	}
+	
+	public JButton getRegisterButton() {
+		return btnRegister;
+	}
+	
+	public JTextField getOriginField() {
+		return originField;
+	}
+	
+	public JTextField getDestinationField() {
+		return destinationField;
+	}
+	
+	public JTextField getCargoField() {
+		return cargoField;
+	}
+	
+	public JTextField getTempField() {
+		return tempField;
+	}
+	
+	
 }

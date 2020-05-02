@@ -18,22 +18,25 @@ public class ExtraContainerInfo extends JFrame {
 
 	private JPanel contentPane;
 	private Container c;
-
+	private JButton btnBack;
+	private JButton btnLoad;
+	private JLabel humidityLbl;
+	private JLabel pressureLbl;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ExtraContainerInfo frame = new ExtraContainerInfo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				ExtraContainerInfo frame = new ExtraContainerInfo();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
@@ -54,15 +57,15 @@ public class ExtraContainerInfo extends JFrame {
 		lblPressure.setBounds(86, 36, 130, 14);
 		contentPane.add(lblPressure);
 		
-		JLabel humidityLbl = new JLabel(""+0);
+		humidityLbl = new JLabel(""+0);
 		humidityLbl.setBounds(239, 11, 114, 14);
 		contentPane.add(humidityLbl);
 		
-		JLabel pressureLbl = new JLabel(""+0);
+		pressureLbl = new JLabel(""+0);
 		pressureLbl.setBounds(239, 36, 114, 14);
 		contentPane.add(pressureLbl);
 		
-		JButton btnBack = new JButton("Back");
+		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -74,7 +77,7 @@ public class ExtraContainerInfo extends JFrame {
 		contentPane.add(btnBack);
 		
 		//Button to load additional info
-		JButton btnLoad = new JButton("Load");
+		btnLoad = new JButton("Load");
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -89,6 +92,22 @@ public class ExtraContainerInfo extends JFrame {
 	
 	public void setContainer(Container c) {
 		this.c = c;
+	}
+	
+	public JButton getBackButton() {
+		return btnBack;
+	}
+	
+	public JButton getLoadButton() {
+		return btnLoad;
+	}
+	
+	public JLabel getHunidityLbl() {
+		return humidityLbl;
+	}
+	
+	public JLabel getPressureLbl() {
+		return pressureLbl;
 	}
 
 }

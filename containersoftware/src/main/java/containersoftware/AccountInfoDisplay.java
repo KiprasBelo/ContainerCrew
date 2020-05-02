@@ -16,23 +16,25 @@ import java.awt.event.ActionEvent;
 public class AccountInfoDisplay extends JFrame {
 
 	private JPanel contentPane;
-	ClientLog log = new ClientLog();
+	private JButton accountinfoback;
+	private JButton editinfobutton;
+	private ClientLog log = new ClientLog();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AccountInfoDisplay frame = new AccountInfoDisplay();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				AccountInfoDisplay frame = new AccountInfoDisplay();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
@@ -85,7 +87,7 @@ public class AccountInfoDisplay extends JFrame {
 		referencePersonLbl.setBounds(191, 111, 139, 14);
 		contentPane.add(referencePersonLbl);
 		
-		JButton accountinfoback = new JButton("Back");
+		accountinfoback = new JButton("Back");
 		accountinfoback.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				
@@ -105,7 +107,7 @@ public class AccountInfoDisplay extends JFrame {
 		contentPane.add(accountinfoback);
 		
 		
-		JButton editinfobutton = new JButton("Edit");
+		editinfobutton = new JButton("Edit");
 		editinfobutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				
@@ -126,5 +128,13 @@ public class AccountInfoDisplay extends JFrame {
 		editinfobutton.setBounds(10, 195, 89, 23);
 		contentPane.add(editinfobutton);
 		
+	}
+	
+	public JButton getBackButton() {
+		return accountinfoback;
+	}
+	
+	public JButton getEditButton() {
+		return editinfobutton;
 	}
 }

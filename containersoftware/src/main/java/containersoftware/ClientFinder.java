@@ -27,22 +27,26 @@ public class ClientFinder extends JFrame {
 	private JTextField nameField;
 	private JTextField emailField;
 	private Client current;
+	private JButton btnLoad;
+	private JButton btnLoadEmail;
+	private JButton btnBack;
+	private JList list;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ClientFinder frame = new ClientFinder();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				ClientFinder frame = new ClientFinder();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
@@ -56,7 +60,7 @@ public class ClientFinder extends JFrame {
 		contentPane.setLayout(null);
 		
 		
-		JButton btnBack = new JButton("Back");
+		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -67,7 +71,7 @@ public class ClientFinder extends JFrame {
 		btnBack.setBounds(10, 227, 86, 23);
 		contentPane.add(btnBack);
 		
-		JList list = new JList();
+		list = new JList();
 		
 		list.addMouseListener(new MouseAdapter() {
 			@Override
@@ -95,7 +99,7 @@ public class ClientFinder extends JFrame {
 		contentPane.add(list);
 		
 		//Button to load all clients
-		JButton btnLoad = new JButton("Load All Clients");
+		btnLoad = new JButton("Load All Clients");
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -138,7 +142,7 @@ public class ClientFinder extends JFrame {
 		emailField.setColumns(10);
 		
 		//Button to find clients by criteria
-		JButton btnLoadEmail = new JButton("Load");
+		btnLoadEmail = new JButton("Load");
 		btnLoadEmail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -163,5 +167,29 @@ public class ClientFinder extends JFrame {
 		});
 		btnLoadEmail.setBounds(7, 157, 89, 23);
 		contentPane.add(btnLoadEmail);
+	}
+	
+	public JButton getBackButton() {
+		return btnBack;
+	}
+	
+	public JButton getLoadAllButton() {
+		return btnLoad;
+	}
+
+	public JButton getLoadByCriteriaButton() {
+		return btnLoadEmail;
+	}
+	
+	public JTextField getNameField() {
+		return nameField;
+	}
+	
+	public JTextField getEamilField() {
+		return emailField;
+	}
+	
+	public JList getList() {
+		return list;
 	}
 }

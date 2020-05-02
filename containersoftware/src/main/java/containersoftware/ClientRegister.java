@@ -25,6 +25,8 @@ public class ClientRegister extends JFrame {
 	private JTextField confirmPassword;
 	private JTextField addressField;
 	private JTextField referenceField;
+	private JButton btnBack;
+	private JButton Register;
 
 	/**
 	 * Launch the application.
@@ -53,7 +55,7 @@ public class ClientRegister extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton Register = new JButton("Register");
+		Register = new JButton("Register");
 		Register.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				
@@ -99,8 +101,8 @@ public class ClientRegister extends JFrame {
 		Register.setBounds(166, 227, 89, 23);
 		contentPane.add(Register);
 		
-		JButton btnNewButton = new JButton("Back");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				dispose();
@@ -109,8 +111,8 @@ public class ClientRegister extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(10, 227, 89, 23);
-		contentPane.add(btnNewButton);
+		btnBack.setBounds(10, 227, 89, 23);
+		contentPane.add(btnBack);
 		
 		JLabel lblName = new JLabel("Name");
 		lblName.setBounds(46, 11, 46, 14);
@@ -183,6 +185,46 @@ public class ClientRegister extends JFrame {
 		referenceField.setBounds(166, 133, 193, 20);
 		contentPane.add(referenceField);
 		referenceField.setColumns(10);
+	}
+	
+	public JButton getBackButton() {
+		return btnBack;
+	}
+	
+	public JButton getRegisterButton() {
+		return Register;
+	}
+	
+	public JTextField getNameField() {
+		return nameField;
+	}
+	
+	public JTextField getUserNameField() {
+		return usernameField;
+	}
+	
+	public JTextField getEmailField() {
+		return emailField;
+	}
+	
+	public JTextField getNumberField() {
+		return numberField;
+	}
+	
+	public JTextField getAddressField() {
+		return addressField;
+	}
+	
+	public JTextField getReferenceField() {
+		return referenceField;
+	}
+	
+	public JTextField getPasswordField() {
+		return passwordField;
+	}
+	
+	public JTextField getConfirmPasswordField() {
+		return confirmPassword;
 	}
 
 }

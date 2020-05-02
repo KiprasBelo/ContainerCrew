@@ -15,22 +15,24 @@ import java.awt.event.ActionEvent;
 public class AdminMainMenu extends JFrame {
 
 	private JPanel contentPane;
+	private JButton btnLogout;
+	private JButton btnFindClients;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdminMainMenu frame = new AdminMainMenu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				AdminMainMenu frame = new AdminMainMenu();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//					e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
@@ -43,7 +45,7 @@ public class AdminMainMenu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnLogout = new JButton("Logout");
+		btnLogout = new JButton("Logout");
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -54,7 +56,7 @@ public class AdminMainMenu extends JFrame {
 		btnLogout.setBounds(128, 137, 156, 54);
 		contentPane.add(btnLogout);
 		
-		JButton btnFindClients = new JButton("Find Clients");
+		btnFindClients = new JButton("Find Clients");
 		btnFindClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -64,5 +66,13 @@ public class AdminMainMenu extends JFrame {
 		});
 		btnFindClients.setBounds(125, 60, 163, 49);
 		contentPane.add(btnFindClients);
+	}
+	
+	public JButton getLogoutButton() {
+		return btnLogout;
+	}
+	
+	public JButton getFindClientsButton() {
+		return btnFindClients;
 	}
 }

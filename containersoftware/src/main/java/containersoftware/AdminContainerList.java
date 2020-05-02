@@ -25,22 +25,24 @@ public class AdminContainerList extends JFrame {
 	private JPanel contentPane;
 	private Client c;
 	private Container current;
+	private JButton btnLoad;
+	private JButton btnBack;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdminContainerList frame = new AdminContainerList();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+	//		public void run() {
+	//			try {
+	//				AdminContainerList frame = new AdminContainerList();
+	//				frame.setVisible(true);
+	//			} catch (Exception e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//	});
+	//}
 
 	/**
 	 * Create the frame.
@@ -63,7 +65,7 @@ public class AdminContainerList extends JFrame {
 		
 		
 		//Button to Load all containers
-		JButton btnLoad = new JButton("Load Containers");
+		btnLoad = new JButton("Load Containers");
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DefaultListModel DLM = new DefaultListModel();
@@ -100,7 +102,7 @@ public class AdminContainerList extends JFrame {
 		list.setBounds(139, 11, 262, 239);
 		contentPane.add(list);
 		
-		JButton btnBack = new JButton("Back");
+		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -133,5 +135,13 @@ public class AdminContainerList extends JFrame {
 	
 	public void setClient(Client client) {
 		c = client;
+	}
+	
+	public JButton getBackButton() {
+		return btnBack;
+	}
+	
+	public JButton getLoadButton() {
+		return btnLoad;
 	}
 }
