@@ -47,9 +47,9 @@ public class ContainerLog {
 		try {
 			BufferedWriter write = new BufferedWriter(new FileWriter("ContainerDatabase.txt", true));
 			
-			write.newLine();
+			//write.newLine();
 			
-			write.write(c.toString(true));
+			write.write(c.toString(1));
 			write.close();
 			
 		} catch(Exception e) {
