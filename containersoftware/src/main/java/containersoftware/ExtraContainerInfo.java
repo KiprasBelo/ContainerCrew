@@ -22,21 +22,8 @@ public class ExtraContainerInfo extends JFrame {
 	private JButton btnLoad;
 	private JLabel humidityLbl;
 	private JLabel pressureLbl;
-	/**
-	 * Launch the application.
-	 */
-	//public static void main(String[] args) {
-	//	EventQueue.invokeLater(new Runnable() {
-	//		public void run() {
-	//			try {
-	//				ExtraContainerInfo frame = new ExtraContainerInfo();
-	//				frame.setVisible(true);
-	//			} catch (Exception e) {
-	//				e.printStackTrace();
-	//			}
-	//		}
-	//	});
-	//}
+	private LineChart chart;
+	
 
 	/**
 	 * Create the frame.
@@ -68,6 +55,7 @@ public class ExtraContainerInfo extends JFrame {
 		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				chart.dispose();
 				dispose();
 				ContainerTracker track = new ContainerTracker();
 				track.setVisible(true);
@@ -88,6 +76,10 @@ public class ExtraContainerInfo extends JFrame {
 		});
 		btnLoad.setBounds(96, 65, 89, 23);
 		contentPane.add(btnLoad);
+	}
+	
+	public void getChart(LineChart c) {
+		chart = c;
 	}
 	
 	public void setContainer(Container c) {

@@ -125,9 +125,9 @@ public class ContainerLog {
 		OrderLog log3 = new OrderLog();
 		Order o;
 		
-		ResponceObject responce = log2.getSelectedClient().addShipments(this);
+		boolean add = log2.getSelectedClient().addShipments(this);
 		
-		if(responce.getErrorMessage().contentEquals("Could not find available container")) {
+		if(!add) {
 			
 			c = new Container();
 			

@@ -39,22 +39,6 @@ public class ContainerTracker extends JFrame {
 	private JButton btnFindbyLoad;
 
 	/**
-	 * Launch the application.
-	 */
-	//public static void main(String[] args) {
-	//	EventQueue.invokeLater(new Runnable() {
-	//		public void run() {
-	//			try {
-	//				ContainerTracker frame = new ContainerTracker();
-	//				frame.setVisible(true);
-	//			} catch (Exception e) {
-	//				e.printStackTrace();
-	//			}
-	//		}
-	//	});
-	//}
-
-	/**
 	 * Create the frame.
 	 */
 	public ContainerTracker() {
@@ -85,6 +69,7 @@ public class ContainerTracker extends JFrame {
 						dispose();
 						LineChart chart = new LineChart("Container Temperature", "Container Temperature for the last 48 hours", current);
 						ExtraContainerInfo info = new ExtraContainerInfo();
+						info.getChart(chart);
 						info.setContainer(current);
 						chart.pack();
 						chart.setVisible(true);

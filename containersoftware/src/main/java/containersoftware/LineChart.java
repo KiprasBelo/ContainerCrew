@@ -15,7 +15,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class LineChart extends ApplicationFrame {
 	
-	ClientLog log = new ClientLog();
+	private ClientLog log = new ClientLog();
 
    public LineChart( String applicationTitle , String chartTitle, Container c) {
       super(applicationTitle);
@@ -34,7 +34,7 @@ public class LineChart extends ApplicationFrame {
       for(double x : c.getDataPoints()) {
     	  
     	  num = ""+i;
-    	  dataset.addValue(c.getTemperature(), "Preferred Temperatrue", num);
+    	  dataset.addValue(c.getTemperature(), "Preferred Temperature", num);
     	  dataset.addValue(x, "Recorded Temperature", num);
     	  
     	  i++;

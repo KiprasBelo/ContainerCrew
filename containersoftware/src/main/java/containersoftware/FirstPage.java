@@ -22,9 +22,9 @@ import java.awt.Toolkit;
 public class FirstPage {
 
 	private JFrame frame;
-	ClientLog log = new ClientLog();
-	ContainerLog log2 = new ContainerLog();
-	OrderLog log3 = new OrderLog();
+	private ClientLog log = new ClientLog();
+	private ContainerLog log2 = new ContainerLog();
+	private OrderLog log3 = new OrderLog();
 	public int screenHeight;
 	public int screenWidth;
 	

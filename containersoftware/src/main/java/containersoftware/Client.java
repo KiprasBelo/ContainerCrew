@@ -77,17 +77,16 @@ public class Client extends Account {
 	}
 	
 	//Mostly setters and getters after this
-	public ResponceObject addShipments(ContainerLog log) throws FileNotFoundException {
-		ResponceObject responce;
+	public boolean addShipments(ContainerLog log) throws FileNotFoundException {
 		//log.updateDatabase();
 		for(Container x : log.getContainers()) {
 			if(!x.getInTransit()) {
 				x.setInTransit(true);
 				shipments.add(x);
-				return responce = new ResponceObject("Successfully added container");
+				return true;
 			}
 		}
-		return responce = new ResponceObject("Could not find available container");
+		return false;
 	}
 	
 	public void addShipments(Container c) {
@@ -110,12 +109,11 @@ public class Client extends Account {
 		}
 	}
 	
-	public ResponceObject hasShipments(){
-		ResponceObject responce = new ResponceObject("Has shipments");
+	public boolean hasShipments(){
 		if(shipments.isEmpty()) {
-			return responce = new ResponceObject("Has no shipments");
+			return false;
 		}
-		return responce;
+		return true;
 	}
 
 	public Container getShipment(int location) {

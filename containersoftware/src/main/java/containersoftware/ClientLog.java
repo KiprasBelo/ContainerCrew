@@ -167,9 +167,7 @@ public class ClientLog {
 	}
 	
 	//Registers a new client object and adds to database
-	public ResponceObject Register(String user, String pass, String checkPass, String name, String email, String number, String address, String reference) {
-		
-		ResponceObject responce;
+	public boolean Register(String user, String pass, String checkPass, String name, String email, String number, String address, String reference) {
 		
 		if(pass.contentEquals(checkPass)) {
 			Client c = new Client(user, pass);
@@ -181,11 +179,11 @@ public class ClientLog {
 			c.setReferencePerson(reference);
 			this.addToDatabase(c);
 			
-			return responce = new ResponceObject("Client Registered");
+			return true;
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "Passwords do not match!");
-			return responce = new ResponceObject("Client not Registered");
+			return false;
 		}
 		
 	}

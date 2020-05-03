@@ -16,13 +16,13 @@ public class StepDefinitions {
 	//Successful login
 	Client client = new Client("john123", "password");
 	Client client1;
-	ResponceObject responce;
+	//ResponceObject responce;
 	Order o = new Order();
 	Order order;
 	ClientLog log = new ClientLog();
 	ContainerLog containLog = new ContainerLog();
 	OrderLog orderLog = new OrderLog();
-	ResponceObject responce2;
+	//ResponceObject responce2;
 	Container contains;
 	String username;
 	String password;
@@ -53,12 +53,12 @@ public class StepDefinitions {
 
 	@When("Hit register button")
 	public void hit_register_button() {
-		responce = log.Register(username, password, password, null, null, null, null, null);
+		temp = log.Register(username, password, password, null, null, null, null, null);
 	}
 
 	@Then("Display message about successful register")
 	public void display_message_about_successful_register() {
-		assertEquals(responce.getErrorMessage(), "Client Registered");
+		assertEquals(temp, true);
 	}
 	
 	//Login
@@ -146,12 +146,12 @@ public class StepDefinitions {
 
 	@When("access container info")
 	public void access_container_info() {
-		responce = client.hasShipments();
+		temp = client.hasShipments();
 	}
 
 	@Then("Displays message about basic container logistic information")
 	public void displays_message_about_basic_container_logistic_information() {
-		assertEquals(responce.getErrorMessage(), "Has shipments");
+		assertEquals(temp, true);
 		assertEquals(client.getShipment(0).getOrder(0).getCargo(), "Bananas");
 	}
 	
@@ -196,12 +196,12 @@ public class StepDefinitions {
 	
 	@Given("account has no valid shipments")
 	public void account_has_no_valid_shipments() {
-		responce = client.hasShipments();
+		temp = client.hasShipments();
 	}
 
 	@Then("Displays message about no valid shipments")
 	public void displays_message_about_no_valid_shipments() {
-		assertEquals(responce.getErrorMessage(), "Has no shipments");
+		assertEquals(temp, false);
 	}
 	
 	// Client Management
