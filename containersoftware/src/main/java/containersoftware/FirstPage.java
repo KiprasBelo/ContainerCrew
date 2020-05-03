@@ -63,8 +63,8 @@ public class FirstPage {
 	private void initialize() {
 		//Finding screen size to center JFrame
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		screenHeight = screenSize.height;
-		screenWidth = screenSize.width;
+		int screenHeight = screenSize.height;
+		int screenWidth = screenSize.width;
 		
 		frame = new JFrame();
 		frame.setBounds(screenWidth/2 - 450/2, screenHeight/2 - 300/2, 450, 300);

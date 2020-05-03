@@ -41,9 +41,12 @@ public class MainMenu extends JFrame {
 	
 	
 	public MainMenu() {
+		//Adjust the position of the frame
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenHeight = screenSize.height;
+		int screenWidth = screenSize.width;
+		setBounds(screenWidth/2 - 450/2, screenHeight/2 - 300/2, 450, 300);
 		
-		//frame = new JFrame();
-		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		

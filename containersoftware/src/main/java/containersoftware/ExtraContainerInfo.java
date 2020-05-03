@@ -1,7 +1,9 @@
 package containersoftware;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,8 +31,13 @@ public class ExtraContainerInfo extends JFrame {
 	 * Create the frame.
 	 */
 	public ExtraContainerInfo() {
+		//Adjust the position of the frame
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenHeight = screenSize.height;
+		int screenWidth = screenSize.width;
+		setBounds(screenWidth/2 - 450/2, screenHeight/2 - 300/2, 450, 138);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 138);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
