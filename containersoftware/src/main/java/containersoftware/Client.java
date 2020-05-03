@@ -78,9 +78,9 @@ public class Client extends Account {
 	
 	//Mostly setters and getters after this
 	public boolean addShipments(ContainerLog log) throws FileNotFoundException {
-		//log.updateDatabase();
+		log.updateDatabase();
 		for(Container x : log.getContainers()) {
-			if(!x.getInTransit()) {
+			if(!x.getInTransit() && x.getOwnerID() == -1) {
 				x.setInTransit(true);
 				shipments.add(x);
 				return true;
@@ -95,12 +95,17 @@ public class Client extends Account {
 		
 	}
 	
-	public void removeShipments(int containerID) {
+	public void removeShipments(int containerID) throws FileNotFoundException {
 		int count = 0;
 		
 		for(Container x : shipments) {
 			
 			if(x.getContainerID() == containerID) {
+				Order o;
+				OrderLog log = new OrderLog();
+				o = x.getCurrentOrder();
+				o.setCurrentOrder(false);
+				log.updateOrderDatabaseInfo(o);
 				x.setInTransit(false);
 				shipments.remove(count);
 			}

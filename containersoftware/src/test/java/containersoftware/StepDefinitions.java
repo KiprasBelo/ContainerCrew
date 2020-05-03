@@ -13,16 +13,13 @@ import io.cucumber.java.en.When;
 
 public class StepDefinitions {
 	
-	//Successful login
 	Client client = new Client("john123", "password");
 	Client client1;
-	//ResponceObject responce;
 	Order o = new Order();
 	Order order;
 	ClientLog log = new ClientLog();
 	ContainerLog containLog = new ContainerLog();
 	OrderLog orderLog = new OrderLog();
-	//ResponceObject responce2;
 	Container contains;
 	String username;
 	String password;
@@ -139,8 +136,7 @@ public class StepDefinitions {
 	@Given("account has valid shipments")
 	public void account_has_valid_shipments() throws FileNotFoundException {
 		Container c = new Container(o);
-		containLog.addContainer(c);
-		client.addShipments(containLog);
+		client.addShipments(c);
 		client.getShipment(0).getOrder(0).setCargo("Bananas");
 	}
 
@@ -209,19 +205,17 @@ public class StepDefinitions {
 	
 	@Given("A client account with the name {string}")
 	public void a_client_account_with_the_name(String string) {
-		client1 = new Client("johnjohn", "123");
-		client1.setName("John Johnson");
+		assertNotNull(log.getClients().get(3));
 	}
 	
 	@Given("the same account has the email {string}")
 	public void the_same_account_has_the_email(String string) {
-		client1.setEmail("jjohnson@gmail.com");
+		log.getClients().get(3).setEmail("jjohnson@gmail.com");
 	}
 	
 	@When("Enter a valid name or email in name lookup")
 	public void enter_a_valid_name_or_email_in_name_lookup() {
-		log.addClients(client1);
-		temp = log.findClients("jjohnson@gmail.com", "John Johnson");
+		temp = log.findClients("jjohnson@gmail.com","test");
 	}
 
 	@Then("Display message that the client account is selected for view")
@@ -241,14 +235,46 @@ public class StepDefinitions {
 		assertEquals(temp, false);
 	}
 	
+	//No container available
+	
+	@Given("No containers in the containerLog")
+	public void no_containers_in_the_containerLog() {
+		contains = new Container();
+		o = new Order(contains.getContainerID(),"nowhere","nowhere","nothing");
+		contains.addOrders(o);
+		contains.setCurrentOrder(o);
+		contains.setOwnerID(-1);
+		contains.setInTransit(false);
+		containLog.addContainer(contains);
+		containLog.addToDatabase(contains);
+	}
+
+	@Given("An order with a destination of {string}")
+	public void an_order_with_a_destination_of(String string) {
+		destination = "New York";
+	}
+		
+	@When("I try to assign the container to the client")
+	public void i_try_to_assign_the_container_to_the_client() {
+		log.getClients().get(6).setLoginStatus(true);
+		try {
+			temp = containLog.addContainerToClient(null, destination, null, 10);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Then("Display message that a container is not available")
+	public void display_message_that_a_container_is_not_available() {
+		assertEquals(temp, true);
+		log.getClients().get(6).setLoginStatus(false);
+	}
+		
 	//Add containers to accounts
 	
 	@Given("A container in ContainerLog with inTransit staus (true|false)$")
 	public void a_container_in_ContainerLog_with_inTransit_staus_false(boolean transit) {
-		//contains = new Container();
-		//contains.setInTransit(transit);
-		//containLog.addContainer(contains);
-		//containLog.addToDatabase(contains);
+		
 	}
 
 	@Given("A destination of {string}")
@@ -277,34 +303,6 @@ public class StepDefinitions {
 		log.getClients().get(6).setLoginStatus(false);
 	}
 	
-	//No container available
-	
-	@Given("No containers in the containerLog")
-	public void no_containers_in_the_containerLog() {
-		//containLog.getContainers().clear();
-	}
-
-	@Given("An order with a destination of {string}")
-	public void an_order_with_a_destination_of(String string) {
-		destination = "New York";
-	}
-	
-	@When("I try to assign the container to the client")
-	public void i_try_to_assign_the_container_to_the_client() {
-		log.getClients().get(6).setLoginStatus(true);
-		try {
-			temp = containLog.addContainerToClient(null, destination, null, 10);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Then("Display message that a container is not available")
-	public void display_message_that_a_container_is_not_available() {
-		assertEquals(temp, true);
-		log.getClients().get(6).setLoginStatus(false);
-	}
-	
 	//Build Container temperature Data
 	
 	@Given("Todays date along with Container start or last login date")
@@ -322,7 +320,6 @@ public class StepDefinitions {
 
 	@Then("A number of hours of temperature are generated")
 	public void a_number_of_hours_of_temperature_are_generated() {
-		//assertEquals(log.getSelectedClient().getTimeDifference(),24);
 		log.getClients().get(6).setLoginStatus(false);
 	}
 	

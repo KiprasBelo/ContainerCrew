@@ -62,7 +62,8 @@ public class ExtraContainerInfo extends JFrame {
 		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				chart.dispose();
+				if(chart != null)
+					chart.dispose();
 				dispose();
 				ContainerTracker track = new ContainerTracker();
 				track.setVisible(true);

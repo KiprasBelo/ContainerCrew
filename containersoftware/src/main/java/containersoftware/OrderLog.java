@@ -4,7 +4,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 //Database that stores all orders ever created and manipulates orders
@@ -38,7 +44,6 @@ public class OrderLog {
 	public void addToDatabase(Order o) {
 		try {
 			BufferedWriter write = new BufferedWriter(new FileWriter("OrderDatabase.txt", true));
-			write.newLine();
 			write.write(o.toString());
 			write.close();
 			
@@ -62,6 +67,27 @@ public class OrderLog {
 			o.setCurrentOrder(Boolean.parseBoolean(data[5]));
 			o.setOrderID(Integer.parseInt(data[0]));
 			this.addOrders(o);
+		}
+		
+	}
+	
+	public void updateOrderDatabaseInfo(Order o) throws FileNotFoundException {
+		Path path = Paths.get("OrderDatabase.txt");
+		try {
+			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
+			
+			for(int i = 0; i < content.size(); i++) {
+				if(content.get(i).charAt(0) == (o.toString(true).charAt(0))){
+					content.set(i, o.toString(true));
+					break;
+				}
+			}
+			
+			Files.write(path, content, StandardCharsets.UTF_8);
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
 	}

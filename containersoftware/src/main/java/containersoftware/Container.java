@@ -35,7 +35,7 @@ public class Container {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			
 			for(int i = 0; i < content.size(); i++) {
-				if(content.get(i).charAt(0) > counter){
+				if(content.get(i).charAt(0) >= counter){
 					counter++;
 				}
 			}
@@ -53,7 +53,7 @@ public class Container {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			
 			for(int i = 0; i < content.size(); i++) {
-				if(content.get(i).charAt(0) > counter){
+				if(content.get(i).charAt(0) >= counter){
 					counter++;
 				}
 			}

@@ -22,7 +22,7 @@ public class ExtraContainerInfoTest {
 	@Before
 	public void setUp() throws FileNotFoundException {
 		log.updateDatabase();
-		c = log.getContainers().get(6);
+		c = log.getContainers().get(0);
 		info = new ExtraContainerInfo();
 	}
 	

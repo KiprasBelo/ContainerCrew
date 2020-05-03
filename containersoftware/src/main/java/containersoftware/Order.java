@@ -118,6 +118,10 @@ public class Order {
 	}
 	
 	public String toString() {
+		return this.getOrderID()+","+this.getAssignedContainerId()+","+this.getStartLocation()+","+this.getEndLocation()+","+this.getCargo()+","+this.isCurrentOrder()+"\n";
+	}
+	
+	public String toString(boolean bool) {
 		return this.getOrderID()+","+this.getAssignedContainerId()+","+this.getStartLocation()+","+this.getEndLocation()+","+this.getCargo()+","+this.isCurrentOrder();
 	}
 	

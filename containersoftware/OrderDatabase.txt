@@ -4,6 +4,4 @@
 3,3,asdf,asdf,asdf,true
 4,4,asdf,asdf,asdf,true
 5,5,Copenhagen,Oslo,Bananas,true
-6,6,Tokyo,Seol,apples,true
-7,7,Chicago,Dover,Cars,true
-8,9,Oslo,Kiel,Salmon,true
+11,6,asdf,asdf,asdf,true
