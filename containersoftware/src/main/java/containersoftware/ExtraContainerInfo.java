@@ -26,7 +26,6 @@ public class ExtraContainerInfo extends JFrame {
 	private JLabel pressureLbl;
 	private LineChart chart;
 	
-
 	/**
 	 * Create the frame.
 	 */

@@ -1,8 +1,10 @@
 package containersoftware;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -19,6 +21,7 @@ public class OrderLog {
 	
 	private static ArrayList<Order> orders = new ArrayList<Order>();
 	private File file;
+	private File tempFile;
 	
 	public OrderLog() {}
 	
@@ -68,10 +71,10 @@ public class OrderLog {
 			o.setOrderID(Integer.parseInt(data[0]));
 			this.addOrders(o);
 		}
-		
+		scan.close();
 	}
 	
-	public void updateOrderDatabaseInfo(Order o) throws FileNotFoundException {
+	public void updateDatabaseInfo(Order o) throws FileNotFoundException {
 		Path path = Paths.get("OrderDatabase.txt");
 		try {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
@@ -90,5 +93,28 @@ public class OrderLog {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void removeOrder(Order o) throws IOException {
+		tempFile = new File("tempFile.txt");
+		tempFile.createNewFile();
+		Path path = Paths.get("OrderDatabase.txt");
+		
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+		BufferedWriter write = new BufferedWriter(new FileWriter(tempFile));
+		
+		String remove = o.toString(true);
+		String currentLine;
+		
+		while((currentLine = reader.readLine()) != null) {
+			String trimmedLine = currentLine.trim();
+			if(trimmedLine.contentEquals(remove)) continue;
+			write.write(currentLine + System.getProperty("line.separator"));
+		}
+		reader.close();
+		write.close();
+		
+		Files.delete(path);
+		boolean success = tempFile.renameTo(file);
 	}
 }

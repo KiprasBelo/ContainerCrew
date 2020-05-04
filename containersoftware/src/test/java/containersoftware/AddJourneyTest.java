@@ -3,6 +3,7 @@ package containersoftware;
 import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JButton;
 
@@ -13,6 +14,8 @@ import org.junit.Test;
 public class AddJourneyTest {
 	
 	ClientLog log = new ClientLog();
+	ContainerLog log2 = new ContainerLog();
+	OrderLog orderLog = new OrderLog();
 	Client c;
 	
 	AddJourney journey;
@@ -37,7 +40,7 @@ public class AddJourneyTest {
 	}
 	
 	@Test
-	public void testRegisterButton() {
+	public void testRegisterButton() throws IOException {
 		journey.getOriginField().setText("jUnitOriginTest");
 		journey.getDestinationField().setText("jUnitDestinationTest");
 		journey.getCargoField().setText("jUnitCargoTest");
@@ -48,11 +51,17 @@ public class AddJourneyTest {
 		register.doClick(250);
 		
 		assertEquals("jUnitCargoTest",c.getShipment(0).getCurrentOrder().getCargo());
+		
+		log2.updateDatabase();
+		orderLog.updateDatabase();
+		log2.removeContainer(log2.getContainers().get(log2.getContainers().size()-1));
+		log2.getContainers().remove(log2.getContainers().size()-1);
+		orderLog.removeOrder(orderLog.getOrders().get(orderLog.getOrders().size()-1));
+		orderLog.getOrders().remove(orderLog.getOrders().size()-1);
 	}
 	
 	@After
-	public void tearDown() throws FileNotFoundException {
-		
+	public void tearDown() throws IOException {
 		log.Logout();
 	}
 

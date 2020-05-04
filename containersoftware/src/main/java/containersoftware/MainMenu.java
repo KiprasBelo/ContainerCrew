@@ -19,27 +19,10 @@ public class MainMenu extends JFrame {
 	JButton btnAdminLogin;
 	JButton goToClientLogin;
 	JButton btnClientRegister;
-	/**
-	 * Launch the application.
-	 */
-	//public static void main(String[] args) {
-	//	EventQueue.invokeLater(new Runnable() {
-	//		public void run() {
-	//			try {
-	//				MainMenu frame = new MainMenu();
-	//				frame.setVisible(true);
-	//			} catch (Exception e) {
-	//				e.printStackTrace();
-	//			}
-	//		}
-	//	});
-	//}
-
+	
 	/**
 	 * Create the frame.
 	 */
-	
-	
 	public MainMenu() {
 		//Adjust the position of the frame
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

@@ -3,6 +3,7 @@ package containersoftware;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class StepDefinitions {
 	ArrayList<Container> cont = new ArrayList<Container>();
 	boolean temp = false;
 	int id;
+	int idToRemove;
 	
 	//Register Client
 	
@@ -49,13 +51,16 @@ public class StepDefinitions {
 	}
 
 	@When("Hit register button")
-	public void hit_register_button() {
+	public void hit_register_button() throws FileNotFoundException {
 		temp = log.Register(username, password, password, null, null, null, null, null);
 	}
 
 	@Then("Display message about successful register")
-	public void display_message_about_successful_register() {
+	public void display_message_about_successful_register() throws IOException {
+		log.updateDatabase();
 		assertEquals(temp, true);
+		log.removeClient(log.getClients().get(log.getClients().size()-1));
+		log.getClients().remove(log.getClients().size()-1);
 	}
 	
 	//Login
@@ -237,8 +242,8 @@ public class StepDefinitions {
 	
 	//No container available
 	
-	@Given("No containers in the containerLog")
-	public void no_containers_in_the_containerLog() {
+	@Given("No available containers in the containerLog")
+	public void no_available_containers_in_the_containerLog() throws FileNotFoundException {
 		contains = new Container();
 		o = new Order(contains.getContainerID(),"nowhere","nowhere","nothing");
 		contains.addOrders(o);
@@ -271,11 +276,6 @@ public class StepDefinitions {
 	}
 		
 	//Add containers to accounts
-	
-	@Given("A container in ContainerLog with inTransit staus (true|false)$")
-	public void a_container_in_ContainerLog_with_inTransit_staus_false(boolean transit) {
-		
-	}
 
 	@Given("A destination of {string}")
 	public void a_destination_of(String string) {
@@ -389,12 +389,23 @@ public class StepDefinitions {
 	}
 
 	@Then("Login status is false and Container is removed from client")
-	public void login_status_is_false_and_Container_is_removed_from_client() {
+	public void login_status_is_false_and_Container_is_removed_from_client() throws IOException {
 		for(Container x : containLog.getContainers()) {
 			if(x.getContainerID() == id) {
 				assertEquals(x.getInTransit(), false);
 			}
 		}
+		containLog.updateDatabase();
+		orderLog.updateDatabase();
+		containLog.removeContainer(containLog.getContainers().get(containLog.getContainers().size()-1));
+		containLog.getContainers().remove(containLog.getContainers().size()-1);
+		containLog.removeContainer(containLog.getContainers().get(containLog.getContainers().size()-1));
+		containLog.getContainers().remove(containLog.getContainers().size()-1);
+		orderLog.removeOrder(orderLog.getOrders().get(orderLog.getOrders().size()-1));
+		orderLog.getOrders().remove(orderLog.getOrders().size()-1);
+		orderLog.removeOrder(orderLog.getOrders().get(orderLog.getOrders().size()-1));
+		orderLog.getOrders().remove(orderLog.getOrders().size()-1);
+
 	}
 
 

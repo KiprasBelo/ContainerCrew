@@ -30,6 +30,7 @@ public class ClientLog {
 	private Client foundClient;
 	private File file;
 	private static String tempDate;
+	private File tempFile;
 	
 	public ClientLog() {}
 	
@@ -77,7 +78,7 @@ public class ClientLog {
 			c.setLastLoggedIn(data[9]);
 			
 		}
-		
+		scan.close();
 	}
 	
 	//Updates textfile to fit ArrayList
@@ -94,7 +95,6 @@ public class ClientLog {
 			}
 			
 			Files.write(path, content, StandardCharsets.UTF_8);
-			
 			
 		} catch (IOException e) {
 			//e.printStackTrace();
@@ -167,19 +167,35 @@ public class ClientLog {
 	}
 	
 	//Registers a new client object and adds to database
-	public boolean Register(String user, String pass, String checkPass, String name, String email, String number, String address, String reference) {
+	public boolean Register(String user, String pass, String checkPass, String name, String email, String number, String address, String reference) throws FileNotFoundException {
+		
+		boolean found = false;
+		
+		this.updateDatabase();
+		for(Client x : clients) {
+			if(x.getUsername().contentEquals(user)) {
+				found = true;
+				break;
+			}
+		}
 		
 		if(pass.contentEquals(checkPass)) {
-			Client c = new Client(user, pass);
-			this.addClients(c);
-			c.setName(name);
-			c.setEmail(email);
-			c.setPhoneNumber(number);
-			c.setAddress(address);
-			c.setReferencePerson(reference);
-			this.addToDatabase(c);
-			
-			return true;
+			if(!found) {
+				Client c = new Client(user, pass);
+				this.addClients(c);
+				c.setName(name);
+				c.setEmail(email);
+				c.setPhoneNumber(number);
+				c.setAddress(address);
+				c.setReferencePerson(reference);
+				this.addToDatabase(c);
+				
+				return true;
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Username already taken!");
+				return false;
+			}
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "Passwords do not match!");
@@ -235,6 +251,29 @@ public class ClientLog {
 			return true;
 		}
 		return false;
+	}
+	
+	public void removeClient(Client c) throws IOException {
+		tempFile = new File("tempFile.txt");
+		tempFile.createNewFile();
+		Path path = Paths.get("ClientDatabase.txt");
+		
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+		BufferedWriter write = new BufferedWriter(new FileWriter(tempFile));
+		
+		String remove = c.toString(true);
+		String currentLine;
+		
+		while((currentLine = reader.readLine()) != null) {
+			String trimmedLine = currentLine.trim();
+			if(trimmedLine.contentEquals(remove)) continue;
+			write.write(currentLine + System.getProperty("line.separator"));
+		}
+		reader.close();
+		write.close();
+		
+		Files.delete(path);
+		boolean success = tempFile.renameTo(file);
 	}
 	
 	//Getters and Setters

@@ -37,6 +37,7 @@ public class Container {
 			for(int i = 0; i < content.size(); i++) {
 				if(content.get(i).charAt(0) >= counter){
 					counter++;
+					counter++;
 				}
 			}
 		}catch(Exception e) {
@@ -54,6 +55,7 @@ public class Container {
 			
 			for(int i = 0; i < content.size(); i++) {
 				if(content.get(i).charAt(0) >= counter){
+					counter++;
 					counter++;
 				}
 			}

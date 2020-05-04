@@ -105,7 +105,7 @@ public class Client extends Account {
 				OrderLog log = new OrderLog();
 				o = x.getCurrentOrder();
 				o.setCurrentOrder(false);
-				log.updateOrderDatabaseInfo(o);
+				log.updateDatabaseInfo(o);
 				x.setInTransit(false);
 				shipments.remove(count);
 			}

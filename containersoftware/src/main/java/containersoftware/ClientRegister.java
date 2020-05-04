@@ -31,23 +31,6 @@ public class ClientRegister extends JFrame {
 	private JButton Register;
 
 	/**
-	 * Launch the application.
-	 */
-	
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					ClientRegister frame = new ClientRegister();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
 	 * Create the frame.
 	 */
 	public ClientRegister() {

@@ -21,13 +21,12 @@ Feature: Access and edit features of containers
 
   @tag1
   Scenario: Add container to account
-    Given A container in ContainerLog with inTransit staus false
     And A destination of 'New York'
     When I assign the container to the client
     Then Display message that the Container has been added
     
    Scenario: No containers availabe
-    Given No containers in the containerLog
+    Given No available containers in the containerLog
     And An order with a destination of 'New York'
     When I try to assign the container to the client
     Then Display message that a container is not available
