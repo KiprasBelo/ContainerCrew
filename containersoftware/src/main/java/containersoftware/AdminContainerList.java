@@ -39,6 +39,7 @@ public class AdminContainerList extends JFrame {
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
 		setBounds(screenWidth/2 - 450/2, screenHeight/2 - 300/2, 450, 300);
+		setResizable( false );
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
