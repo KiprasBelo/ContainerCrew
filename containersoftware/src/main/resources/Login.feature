@@ -33,7 +33,7 @@ Feature: Login to account
     Then Displays message about unsuccessful login
 
     Scenario: Register Client
-    Given An entered username 'John123'
+    Given An entered username 'john123'
     And An entered password 'pass'
     When Hit register button
     Then Display message about successful register

@@ -28,6 +28,7 @@ public class FirstPage {
 	private OrderLog log3 = new OrderLog();
 	public int screenHeight;
 	public int screenWidth;
+	private JButton btnProceed;
 	
 
 	/**
@@ -51,13 +52,16 @@ public class FirstPage {
 	 * Create the application.
 	 * @throws IOException 
 	 */
-	public FirstPage() throws IOException {
-		log.createDatabase();
-		log2.createDatabase();
-		log3.createDatabase();
+	public FirstPage(){
+		try {
+			log.createDatabase();
+			log2.createDatabase();
+			log3.createDatabase();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		initialize();
 	}
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -72,7 +76,7 @@ public class FirstPage {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnProceed = new JButton("Proceed");
+		btnProceed = new JButton("Proceed");
 		btnProceed.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -99,5 +103,9 @@ public class FirstPage {
 		lblForImage.setIcon(new ImageIcon(img));
 		lblForImage.setBounds(26, 50, 398, 110);
 		frame.getContentPane().add(lblForImage);
+	}
+	
+	public JButton getProceedButton() {
+		return btnProceed;
 	}
 }

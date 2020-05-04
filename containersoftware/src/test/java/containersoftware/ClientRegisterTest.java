@@ -2,13 +2,17 @@ package containersoftware;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import javax.swing.JButton;
 
+import org.junit.After;
 import org.junit.Test;
 
 public class ClientRegisterTest {
 
 	ClientRegister register = new ClientRegister();
+	ClientLog log = new ClientLog();
 	JButton back;
 	JButton btnRegister;
 	
@@ -20,7 +24,7 @@ public class ClientRegisterTest {
 	}
 	
 	@Test
-	public void testRegisterButton() {
+	public void testRegisterButton() throws IOException {
 		btnRegister = register.getRegisterButton();
 		assertNotNull(btnRegister);
 		register.getNameField().setText("jUnitTestName");
@@ -32,6 +36,9 @@ public class ClientRegisterTest {
 		register.getPasswordField().setText("testpassword");
 		register.getConfirmPasswordField().setText("testpassword");
 		btnRegister.doClick(250);
+		
+		log.updateDatabase();
+		log.removeClient(log.getClients().get(log.getClients().size()-1));
 	}
 
 }

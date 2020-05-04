@@ -51,7 +51,7 @@ public class StepDefinitions {
 	}
 
 	@When("Hit register button")
-	public void hit_register_button() {
+	public void hit_register_button() throws FileNotFoundException {
 		temp = log.Register(username, password, password, null, null, null, null, null);
 	}
 

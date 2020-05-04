@@ -167,19 +167,35 @@ public class ClientLog {
 	}
 	
 	//Registers a new client object and adds to database
-	public boolean Register(String user, String pass, String checkPass, String name, String email, String number, String address, String reference) {
+	public boolean Register(String user, String pass, String checkPass, String name, String email, String number, String address, String reference) throws FileNotFoundException {
+		
+		boolean found = false;
+		
+		this.updateDatabase();
+		for(Client x : clients) {
+			if(x.getUsername().contentEquals(user)) {
+				found = true;
+				break;
+			}
+		}
 		
 		if(pass.contentEquals(checkPass)) {
-			Client c = new Client(user, pass);
-			this.addClients(c);
-			c.setName(name);
-			c.setEmail(email);
-			c.setPhoneNumber(number);
-			c.setAddress(address);
-			c.setReferencePerson(reference);
-			this.addToDatabase(c);
-			
-			return true;
+			if(!found) {
+				Client c = new Client(user, pass);
+				this.addClients(c);
+				c.setName(name);
+				c.setEmail(email);
+				c.setPhoneNumber(number);
+				c.setAddress(address);
+				c.setReferencePerson(reference);
+				this.addToDatabase(c);
+				
+				return true;
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Username already taken!");
+				return false;
+			}
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "Passwords do not match!");
