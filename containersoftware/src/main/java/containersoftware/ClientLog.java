@@ -30,6 +30,7 @@ public class ClientLog {
 	private Client foundClient;
 	private File file;
 	private static String tempDate;
+	private File tempFile;
 	
 	public ClientLog() {}
 	
@@ -77,7 +78,7 @@ public class ClientLog {
 			c.setLastLoggedIn(data[9]);
 			
 		}
-		
+		scan.close();
 	}
 	
 	//Updates textfile to fit ArrayList
@@ -94,7 +95,6 @@ public class ClientLog {
 			}
 			
 			Files.write(path, content, StandardCharsets.UTF_8);
-			
 			
 		} catch (IOException e) {
 			//e.printStackTrace();
@@ -235,6 +235,29 @@ public class ClientLog {
 			return true;
 		}
 		return false;
+	}
+	
+	public void removeClient(Client c) throws IOException {
+		tempFile = new File("tempFile.txt");
+		tempFile.createNewFile();
+		Path path = Paths.get("ClientDatabase.txt");
+		
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+		BufferedWriter write = new BufferedWriter(new FileWriter(tempFile));
+		
+		String remove = c.toString(true);
+		String currentLine;
+		
+		while((currentLine = reader.readLine()) != null) {
+			String trimmedLine = currentLine.trim();
+			if(trimmedLine.contentEquals(remove)) continue;
+			write.write(currentLine + System.getProperty("line.separator"));
+		}
+		reader.close();
+		write.close();
+		
+		Files.delete(path);
+		boolean success = tempFile.renameTo(file);
 	}
 	
 	//Getters and Setters

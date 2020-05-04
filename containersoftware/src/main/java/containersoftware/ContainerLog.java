@@ -1,9 +1,11 @@
 package containersoftware;
 
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -20,6 +22,7 @@ public class ContainerLog {
 	
 	private static ArrayList<Container> containers = new ArrayList<Container>();
 	private File file;
+	private File tempFile;
 	private static Container selectedContainer;
 	
 	public ContainerLog() {}
@@ -90,7 +93,7 @@ public class ContainerLog {
 			}
 			
 		}
-		
+		scan.close();
 	}
 	
 	//updates Textfile based on ArrayList
@@ -216,6 +219,29 @@ public class ContainerLog {
 			}
 			
 		}
+	}
+	
+	public void removeContainer(Container c) throws IOException {
+		tempFile = new File("tempFile.txt");
+		tempFile.createNewFile();
+		Path path = Paths.get("ContainerDatabase.txt");
+		
+		BufferedReader reader = new BufferedReader(new FileReader("ContainerDatabase.txt"));
+		BufferedWriter write = new BufferedWriter(new FileWriter(tempFile));
+		
+		String remove = c.toString(true);
+		String currentLine;
+		
+		while((currentLine = reader.readLine()) != null) {
+			String trimmedLine = currentLine.trim();
+			if(trimmedLine.contentEquals(remove)) continue;
+			write.write(currentLine + System.getProperty("line.separator"));
+		}
+		reader.close();
+		write.close();
+		
+		Files.delete(path);
+		boolean success = tempFile.renameTo(file);
 	}
 
 }

@@ -29,22 +29,6 @@ public class ContainerEditor extends JFrame {
 	private JButton btnEnd;
 
 	/**
-	 * Launch the application.
-	 */
-	//public static void main(String[] args) {
-	//	EventQueue.invokeLater(new Runnable() {
-	//		public void run() {
-	//			try {
-	//				ContainerEditor frame = new ContainerEditor();
-	//				frame.setVisible(true);
-	//			} catch (Exception e) {
-	//				e.printStackTrace();
-	//			}
-	//		}
-	//	});
-	//}
-
-	/**
 	 * Create the frame.
 	 */
 	public ContainerEditor() {

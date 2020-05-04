@@ -23,22 +23,6 @@ public class AccountInfoDisplay extends JFrame {
 	private ClientLog log = new ClientLog();
 
 	/**
-	 * Launch the application.
-	 */
-	//public static void main(String[] args) {
-	//	EventQueue.invokeLater(new Runnable() {
-	//		public void run() {
-	//			try {
-	//				AccountInfoDisplay frame = new AccountInfoDisplay();
-	//				frame.setVisible(true);
-	//			} catch (Exception e) {
-	//				e.printStackTrace();
-	//			}
-	//		}
-	//	});
-	//}
-
-	/**
 	 * Create the frame.
 	 */
 	public AccountInfoDisplay() {

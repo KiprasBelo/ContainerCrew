@@ -35,22 +35,6 @@ public class ClientFinder extends JFrame {
 	private JList list;
 
 	/**
-	 * Launch the application.
-	 */
-	//public static void main(String[] args) {
-	//	EventQueue.invokeLater(new Runnable() {
-	//		public void run() {
-	//			try {
-	//				ClientFinder frame = new ClientFinder();
-	//				frame.setVisible(true);
-	//			} catch (Exception e) {
-	//				e.printStackTrace();
-	//			}
-	//		}
-	//	});
-	//}
-
-	/**
 	 * Create the frame.
 	 */
 	public ClientFinder() {
