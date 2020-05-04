@@ -2,6 +2,8 @@ package containersoftware;
 
 import org.jfree.chart.ChartPanel;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import org.jfree.chart.ChartFactory;
@@ -18,9 +20,15 @@ public class LineChart extends ApplicationFrame {
    public LineChart( String applicationTitle , String chartTitle, Container c) {
       super(applicationTitle);
       JFreeChart lineChart = ChartFactory.createLineChart(chartTitle,"Hours","Temperature (C)",createDataset(c),PlotOrientation.VERTICAL,true,true,false);
-         
+      
+      //Finding screen size to center JFrame
+      Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+      int screenHeight = screenSize.height;
+      int screenWidth = screenSize.width;
+      
       ChartPanel chartPanel = new ChartPanel( lineChart );
-      chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
+      //chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 370 ) );
+      chartPanel.setBounds(screenWidth/2 - 560/2, screenHeight/2 - 370/2, 560, 370);
       setContentPane( chartPanel );
    }
 

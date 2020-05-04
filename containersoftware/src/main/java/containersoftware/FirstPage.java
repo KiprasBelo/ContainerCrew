@@ -72,6 +72,7 @@ public class FirstPage {
 		int screenWidth = screenSize.width;
 		
 		frame = new JFrame();
+		frame.setResizable( false );
 		frame.setBounds(screenWidth/2 - 450/2, screenHeight/2 - 300/2, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);

@@ -49,6 +49,7 @@ public class ContainerTracker extends JFrame {
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
 		setBounds(screenWidth/2 - 540/2, screenHeight/2 - 300/2, 540, 300);
+		setResizable( false );
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
