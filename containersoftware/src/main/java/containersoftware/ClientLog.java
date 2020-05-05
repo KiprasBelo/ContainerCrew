@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 
 //Database and database functionalities for Clients
 
-public class ClientLog {
+public class ClientLog implements Database{
 
 	private static ArrayList<Client> clients = new ArrayList<Client>();
 	private static Client selectedClient;
