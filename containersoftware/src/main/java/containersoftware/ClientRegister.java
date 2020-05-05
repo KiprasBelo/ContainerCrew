@@ -107,15 +107,15 @@ public class ClientRegister extends JFrame {
 		contentPane.add(btnBack);
 		
 		JLabel lblName = new JLabel("Name");
-		lblName.setBounds(46, 11, 46, 14);
+		lblName.setBounds(46, 11, 89, 14);
 		contentPane.add(lblName);
 		
 		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds(46, 36, 58, 14);
+		lblUsername.setBounds(46, 36, 110, 14);
 		contentPane.add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(46, 161, 58, 14);
+		lblPassword.setBounds(46, 161, 89, 14);
 		contentPane.add(lblPassword);
 		
 		nameField = new JTextField();
@@ -124,11 +124,11 @@ public class ClientRegister extends JFrame {
 		nameField.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(46, 61, 46, 14);
+		lblEmail.setBounds(46, 61, 89, 14);
 		contentPane.add(lblEmail);
 		
 		JLabel lblNumber = new JLabel("Phone Number");
-		lblNumber.setBounds(46, 86, 89, 14);
+		lblNumber.setBounds(46, 86, 110, 14);
 		contentPane.add(lblNumber);
 		
 		usernameField = new JTextField();
@@ -157,11 +157,11 @@ public class ClientRegister extends JFrame {
 		confirmPassword.setColumns(10);
 		
 		JLabel lblConfirmPassword = new JLabel("Confirm Password");
-		lblConfirmPassword.setBounds(46, 186, 89, 14);
+		lblConfirmPassword.setBounds(46, 186, 110, 14);
 		contentPane.add(lblConfirmPassword);
 		
 		JLabel lblAddress = new JLabel("Address");
-		lblAddress.setBounds(46, 111, 46, 14);
+		lblAddress.setBounds(46, 111, 89, 14);
 		contentPane.add(lblAddress);
 		
 		JLabel lblReference = new JLabel("Reference Person");
