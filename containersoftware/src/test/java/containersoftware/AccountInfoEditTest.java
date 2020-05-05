@@ -37,8 +37,8 @@ public class AccountInfoEditTest {
 	
 	@Test
 	public void testSaveButton() {
-		back = edit.getBackButton();
-		assertNotNull(back);
+		save = edit.getSaveButton();
+		assertNotNull(save);
 		
 		edit.getNameField().setText("JunitEditName");
 		edit.getNumberField().setText("1231231234");
@@ -46,7 +46,7 @@ public class AccountInfoEditTest {
 		edit.getReferenceField().setText("JunitEditReference");
 		edit.getEmailField().setText("JunitEditEmail");
 		
-		back.doClick(250);
+		save.doClick(250);
 	}
 	
 	@After

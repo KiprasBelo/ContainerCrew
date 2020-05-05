@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 
 //Screen to edit Client account info
@@ -70,33 +71,34 @@ public class AccountInfoEdit extends JFrame {
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				
-				try {
-					
-					if(nameEdit.getText().length() > 0) {
-						client.getSelectedClient().setName(nameEdit.getText());
-					}
-					if(emailEdit.getText().length() > 0) {
-						client.getSelectedClient().setEmail(emailEdit.getText());
-					}
-					if(numberEdit.getText().length() > 0) {
-						client.getSelectedClient().setPhoneNumber(numberEdit.getText());
-					}
-					if(addressEdit.getText().length() > 0) {
-						client.getSelectedClient().setPhoneNumber(addressEdit.getText());
-					}
-					if(referenceEdit.getText().length() > 0) {
-						client.getSelectedClient().setReferencePerson(referenceEdit.getText());
-					}
-					
-					client.updateClientDatabaseInfo(client.getSelectedClient());
-					
-					dispose();
-					AccountInfoDisplay display = new AccountInfoDisplay();
-					display.setVisible(true);
-					
-				} catch(Exception e) {
-					JOptionPane.showMessageDialog(null, e);
+				System.out.println("why");
+				
+				if(nameEdit.getText().length() > 0) {
+					client.getSelectedClient().setName(nameEdit.getText());
 				}
+				if(emailEdit.getText().length() > 0) {
+					client.getSelectedClient().setEmail(emailEdit.getText());
+				}
+				if(numberEdit.getText().length() > 0) {
+					client.getSelectedClient().setPhoneNumber(numberEdit.getText());
+				}
+				if(addressEdit.getText().length() > 0) {
+					client.getSelectedClient().setPhoneNumber(addressEdit.getText());
+				}
+				if(referenceEdit.getText().length() > 0) {
+					client.getSelectedClient().setReferencePerson(referenceEdit.getText());
+				}
+					
+				try {
+					client.updateClientDatabaseInfo(client.getSelectedClient());
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+					
+				dispose();
+				AccountInfoDisplay display = new AccountInfoDisplay();
+				display.setVisible(true);
+				
 				
 			}
 		});

@@ -177,7 +177,7 @@ public class ClientFinder extends JFrame {
 		return nameField;
 	}
 	
-	public JTextField getEamilField() {
+	public JTextField getEmailField() {
 		return emailField;
 	}
 	
