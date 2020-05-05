@@ -37,3 +37,4 @@ Feature: Login to account
     And An entered password 'pass'
     When Hit register button
     Then Display message about successful register
+    
