@@ -51,19 +51,19 @@ public class AccountInfoEdit extends JFrame {
 		contentPane.add(lblName);
 		
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(50, 62, 46, 14);
+		lblEmail.setBounds(50, 62, 66, 14);
 		contentPane.add(lblEmail);
 		
 		JLabel lblNumber = new JLabel("Phone Number");
-		lblNumber.setBounds(50, 87, 91, 14);
+		lblNumber.setBounds(50, 87, 106, 14);
 		contentPane.add(lblNumber);
 		
 		JLabel lblAddress = new JLabel("Address");
-		lblAddress.setBounds(50, 112, 46, 14);
+		lblAddress.setBounds(50, 112, 106, 14);
 		contentPane.add(lblAddress);
 		
 		JLabel lblReference = new JLabel("Reference Person");
-		lblReference.setBounds(50, 137, 91, 14);
+		lblReference.setBounds(50, 137, 106, 14);
 		contentPane.add(lblReference);
 		
 		saveButton = new JButton("Save");

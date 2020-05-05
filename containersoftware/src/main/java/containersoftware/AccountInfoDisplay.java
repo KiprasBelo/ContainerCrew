@@ -44,19 +44,19 @@ public class AccountInfoDisplay extends JFrame {
 		contentPane.add(lblName);
 		
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(50, 36, 46, 14);
+		lblEmail.setBounds(50, 36, 106, 14);
 		contentPane.add(lblEmail);
 		
 		JLabel lblNumber = new JLabel("Phone Number");
-		lblNumber.setBounds(50, 61, 91, 14);
+		lblNumber.setBounds(50, 61, 131, 14);
 		contentPane.add(lblNumber);
 		
 		JLabel lblAddress = new JLabel("Address");
-		lblAddress.setBounds(50, 86, 46, 14);
+		lblAddress.setBounds(50, 86, 131, 14);
 		contentPane.add(lblAddress);
 		
 		JLabel lblReferencePerson = new JLabel("Reference Person");
-		lblReferencePerson.setBounds(50, 111, 91, 14);
+		lblReferencePerson.setBounds(50, 111, 131, 14);
 		contentPane.add(lblReferencePerson);
 		
 		JLabel nameLbl = new JLabel(log.getSelectedClient().getName());
