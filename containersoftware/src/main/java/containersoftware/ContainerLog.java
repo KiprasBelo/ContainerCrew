@@ -35,7 +35,6 @@ public class ContainerLog implements Database {
 		return containers;
 	}
 	
-	//creation of database
 	public void createDatabase() {
 		try {
 			file = new File("ContainerDatabase.txt");
@@ -45,7 +44,11 @@ public class ContainerLog implements Database {
 		}
 	}
 	
-	//Adds new entries to Textfile database
+	/**
+	 * Adds objects directly to the Text file database
+	 * 
+	 * @param c the container to be added
+	 */
 	public void addToDatabase(Container c) {
 		try {
 			BufferedWriter write = new BufferedWriter(new FileWriter("ContainerDatabase.txt", true));
@@ -96,12 +99,18 @@ public class ContainerLog implements Database {
 		scan.close();
 	}
 	
-	//updates Textfile based on ArrayList
+	/**
+	 * Updates a Text file line to match one in the ArrayList
+	 * 
+	 * @param c the container object to be updated
+	 * @throws FileNotFoundException
+	 */
 	public void updateContainerDatabaseInfo(Container c) throws FileNotFoundException {
 		Path path = Paths.get("ContainerDatabase.txt");
 		try {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			
+			//Finds the same object id and updates the line
 			for(int i = 0; i < content.size(); i++) {
 				if(content.get(i).charAt(0) == (c.toString(true).charAt(0))){
 					content.set(i, c.toString(true));
@@ -118,7 +127,16 @@ public class ContainerLog implements Database {
 		
 	}
 	
-	//Assigns an unassigned or creates a new container for a client
+	/**
+	 * Uses the addShipments method to either assign a new journey to an existing container or create one
+	 * 
+	 * @param origin the port of origin of the order
+	 * @param destination the port of destination of the order
+	 * @param cargo the cargo the container will carry
+	 * @param temp the preferred temperature of the cargo
+	 * @return
+	 * @throws FileNotFoundException
+	 */
 	public boolean addContainerToClient(String origin, String destination, String cargo, int temp) throws FileNotFoundException {
 		
 		Container c;
@@ -126,8 +144,10 @@ public class ContainerLog implements Database {
 		OrderLog log3 = new OrderLog();
 		Order o;
 		
+		//checks if there are available containers
 		boolean add = log2.getSelectedClient().addShipments(this);
 		
+		//if not, new container is created and teh order is assigned
 		if(!add) {
 			
 			c = new Container();
@@ -151,6 +171,7 @@ public class ContainerLog implements Database {
 			log2.getSelectedClient().addShipments(c);
 			return true;
 		}
+		//Assigns a found container the new order
 		else {
 			if(log2.getSelectedClient().getShipments().size() > 0)
 				c = log2.getSelectedClient().getShipment(log2.getSelectedClient().getShipments().size()-1);
@@ -180,8 +201,11 @@ public class ContainerLog implements Database {
 			return true;
 		}
 	}
-	
-	//sets currently selected containers to work on
+	/**
+	 * Selects the container to work on
+	 * 
+	 * @param c the container to select
+	 */
 	public void setSelectedContainer(Container c) {
 		for(Container x : containers) {
 			if(x.getContainerID() == c.getContainerID()) {
@@ -195,10 +219,15 @@ public class ContainerLog implements Database {
 		return selectedContainer;
 	}
 	
-	//ends journey for a container
+	/**
+	 * Ends the current journey for a container and unassigns from client
+	 * 
+	 * @throws FileNotFoundException
+	 */
 	public void end() throws FileNotFoundException {
 		ClientLog log = new ClientLog();
 		
+		//find and remove container from shipments ArrayList
 		for(Client c : log.getClients()) {
 			
 			if(c.getClientID() == this.getSelectedContainer().getOwnerID()) {
@@ -209,6 +238,7 @@ public class ContainerLog implements Database {
 			
 		}
 		
+		//find and set unassign the owner for a container
 		for(Container x : this.getContainers()) {
 			
 			if(x.getSelectedContainer()) {
@@ -221,6 +251,12 @@ public class ContainerLog implements Database {
 		}
 	}
 	
+	/**
+	 * Completely deletes a container from the database
+	 * 
+	 * @param c the container to delete
+	 * @throws IOException
+	 */
 	public void removeContainer(Container c) throws IOException {
 		tempFile = new File("tempFile.txt");
 		tempFile.createNewFile();
@@ -232,6 +268,7 @@ public class ContainerLog implements Database {
 		String remove = c.toString(true);
 		String currentLine;
 		
+		//reads through the database and writes all but the selected container to the new database
 		while((currentLine = reader.readLine()) != null) {
 			String trimmedLine = currentLine.trim();
 			if(trimmedLine.contentEquals(remove)) continue;

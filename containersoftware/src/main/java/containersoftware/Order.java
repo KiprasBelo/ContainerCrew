@@ -24,6 +24,7 @@ public class Order {
 		Path path = Paths.get("OrderDatabase.txt");
 		int counter = 0;
 		
+		//auto increments the id
 		try {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			
@@ -46,6 +47,7 @@ public class Order {
 		Path path = Paths.get("OrderDatabase.txt");
 		int counter = 0;
 		
+		//auto increments the id
 		try {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			

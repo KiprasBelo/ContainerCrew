@@ -31,6 +31,7 @@ public class Container {
 		Path path = Paths.get("ContainerDatabase.txt");
 		int counter = 0;
 		
+		//auto increments id
 		try {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			
@@ -50,6 +51,7 @@ public class Container {
 		Path path = Paths.get("ContainerDatabase.txt");
 		int counter = 0;
 		
+		//auto increments id
 		try {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			
@@ -66,18 +68,31 @@ public class Container {
 		history.add(o);
 	}
 	
-	//sets start date for a Journey (two methods with override)
+	/**
+	 * Automatically sets the start date of a journey to today
+	 */
 	public void setStartDate() {
 		Date created = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("MM:dd:hh");
 		startDate = format.format(created);
 	}
 	
+	/**
+	 * sets start date to arbitrary value
+	 * 
+	 * @param string the date in the correct format to set
+	 */
 	public void setStartDate(String string) {
 		startDate = string;
 	}
 	
-	//Adds random temperature data based on a threshold
+	/**
+	 * Adds random temperature data based on how many hours have passed and a threshold
+	 * 
+	 * @param location the location in the dataPoints Array of where to start adding data
+	 * @param end the location to stop adding data points in the Array
+	 * @param temp the preferred temperature used as a threshold for the generation
+	 */
 	public void addData(int location, int end, double temp) {
 		
 		double bottomThreshhold = temperature - 2;
@@ -92,14 +107,13 @@ public class Container {
 		
 	}
 	
-	//ends current Journey
+	//Ends a journey for a container
 	public void endJourney() {
 		this.setInTransit(false);
 		this.getCurrentOrder().setCurrentOrder(false);
 		this.setSelectedContainer(false);
 	}
 	
-	//Mainly getters and Setters from here
 	public double[] getDataPoints() {
 		return dataPoints;
 	}
