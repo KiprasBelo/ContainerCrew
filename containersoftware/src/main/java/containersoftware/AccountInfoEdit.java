@@ -83,7 +83,7 @@ public class AccountInfoEdit extends JFrame {
 					client.getSelectedClient().setPhoneNumber(numberEdit.getText());
 				}
 				if(addressEdit.getText().length() > 0) {
-					client.getSelectedClient().setPhoneNumber(addressEdit.getText());
+					client.getSelectedClient().setAddress(addressEdit.getText());
 				}
 				if(referenceEdit.getText().length() > 0) {
 					client.getSelectedClient().setReferencePerson(referenceEdit.getText());
