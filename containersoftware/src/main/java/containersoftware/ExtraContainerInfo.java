@@ -34,7 +34,7 @@ public class ExtraContainerInfo extends JFrame {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
-		setBounds(screenWidth/2 - 450/2, screenHeight/2 - 300/2, 450, 138);
+		setBounds(screenWidth/2 - 450/2, 470, 450, 138);
 		setResizable( false );
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

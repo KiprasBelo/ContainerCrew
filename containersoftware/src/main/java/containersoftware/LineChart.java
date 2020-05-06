@@ -21,14 +21,14 @@ public class LineChart extends ApplicationFrame {
       super(applicationTitle);
       JFreeChart lineChart = ChartFactory.createLineChart(chartTitle,"Hours","Temperature (C)",createDataset(c),PlotOrientation.VERTICAL,true,true,false);
       
-      //Finding screen size to center JFrame
+      //Finding screen size to center linechart
       Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
       int screenHeight = screenSize.height;
       int screenWidth = screenSize.width;
       
       ChartPanel chartPanel = new ChartPanel( lineChart );
-      //chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 370 ) );
-      chartPanel.setBounds(screenWidth/2 - 560/2, screenHeight/2 - 370/2, 560, 370);
+      chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 370 ) );
+      chartPanel.setLocation(screenWidth/2 - 560/2, 100);
       setContentPane( chartPanel );
    }
 
