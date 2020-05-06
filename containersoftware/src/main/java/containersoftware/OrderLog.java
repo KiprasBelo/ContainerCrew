@@ -33,7 +33,6 @@ public class OrderLog implements Database{
 		return orders;
 	}
 	
-	//Creates Database
 	public void createDatabase() {
 		try {
 			file = new File("OrderDatabase.txt");
@@ -43,7 +42,11 @@ public class OrderLog implements Database{
 		}
 	}
 	
-	//Adds new entries to database
+	/**
+	 * Adds objects directly to the Text file database
+	 * 
+	 * @param o the order to be added
+	 */
 	public void addToDatabase(Order o) {
 		try {
 			BufferedWriter write = new BufferedWriter(new FileWriter("OrderDatabase.txt", true));
@@ -56,7 +59,6 @@ public class OrderLog implements Database{
 		
 	}
 	
-	//Updates ArrayList based on Textfile
 	public void updateDatabase() throws FileNotFoundException {
 		file = new File("OrderDatabase.txt");
 		Scanner scan = new Scanner(file);
@@ -74,6 +76,12 @@ public class OrderLog implements Database{
 		scan.close();
 	}
 	
+	/**
+	 * Updates a Text file line to match one in the ArrayList
+	 * 
+	 * @param o the order object to be updated
+	 * @throws FileNotFoundException
+	 */
 	public void updateDatabaseInfo(Order o) throws FileNotFoundException {
 		Path path = Paths.get("OrderDatabase.txt");
 		try {
@@ -95,6 +103,12 @@ public class OrderLog implements Database{
 		
 	}
 	
+	/**
+	 * Completely deletes an order from the database
+	 * 
+	 * @param o the order to delete
+	 * @throws IOException
+	 */
 	public void removeOrder(Order o) throws IOException {
 		tempFile = new File("tempFile.txt");
 		tempFile.createNewFile();
@@ -106,6 +120,7 @@ public class OrderLog implements Database{
 		String remove = o.toString(true);
 		String currentLine;
 		
+		//Finds the same object id and updates the line
 		while((currentLine = reader.readLine()) != null) {
 			String trimmedLine = currentLine.trim();
 			if(trimmedLine.contentEquals(remove)) continue;

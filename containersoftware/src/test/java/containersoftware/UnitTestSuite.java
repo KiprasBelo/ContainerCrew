@@ -19,6 +19,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		ContainerEditorTest.class,
 		ContainerTrackerTest.class,
 		ExtraContainerInfoTest.class,
+		FirstPageTest.class,
+		LineChartTest.class
 		})
 
 public class UnitTestSuite {

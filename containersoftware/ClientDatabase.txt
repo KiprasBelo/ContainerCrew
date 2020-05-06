@@ -1,7 +1,7 @@
 0,will,pass,Will,will@gmail.com,+4794430495,123thisway st,Steve,false,05:06:10
-1,kip,pass,BeloKip,kip@gmail.com,12324234,123thisway st,Steve,false,05:06:10
-2,hi,pass,asdf,asfd,asdf,123thisway st,Steve,false,4:24:11
+1,kip,pass,BeloKip,kip@gmail.com,12324234,123thisway st,Steve,false,05:06:08
+2,hi,pass,JunitEditName,JunitEditEmail,123 Junit lane,123thisway st,JunitEditReference,false,4:24:11
 3,test,pass,test,test,test,123thisway st,Steve,false,4:24:11
 4,asdf,asdf,asdf,asdf,asdf,123thisway st,Steve,false,4:24:11
 5,asdf,asdf,asdf,asdf,asdf,123thisway st,Steve,false,4:24:11
-6,John123,pass,null,null,null,123thisway st,Steve,false,05:03:12
+6,John123,pass,null,null,null,123thisway st,Steve,false,05:06:08

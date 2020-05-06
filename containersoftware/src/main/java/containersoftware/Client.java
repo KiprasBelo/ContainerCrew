@@ -21,7 +21,6 @@ public class Client extends Account {
 	private int clientID;
 	private String lastLoggedIn;
 	private int timeDifference;
-	//private String lastLoggedInTemp;
 
 	//Non-Default Constructor
 	public Client(String username, String password) {
@@ -31,6 +30,7 @@ public class Client extends Account {
 		Path path = Paths.get("ClientDatabase.txt");
 		int counter = 0;
 		
+		//auto increments id
 		try {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			
@@ -46,9 +46,12 @@ public class Client extends Account {
 		clientID = counter;
 	}
 	
-	//Compares a given date with todays date and returns the time in hours
+	/**
+	 * Compares the time difference in hours of a given date and today's date
+	 * 
+	 * @param last the time represented in the given date format to compare
+	 */
 	public void compareDates(String last) {
-		
 		
 		Date now = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("MM:dd:hh");
@@ -60,10 +63,12 @@ public class Client extends Account {
 		String[] curr = current.split(":");
 		String[] past = last.split(":");
 		
+		//Calculates difference between the Months, Days, and Hours
 		monthDifference = Math.abs(Integer.parseInt(curr[0])-Integer.parseInt(past[0]));
 		dateDifference = Math.abs(Integer.parseInt(curr[1])-Integer.parseInt(past[1]));
 		hourDifference = Integer.parseInt(curr[2])-Integer.parseInt(past[2]);
 		
+		//Hours are calculated based on difference of Months and Days
 		if(monthDifference == 0) {
 			timeDifference = (dateDifference*24) + hourDifference;
 		}
@@ -76,7 +81,13 @@ public class Client extends Account {
 		
 	}
 	
-	//Mostly setters and getters after this
+	/**
+	 * Adds a container to a client if it is not owned and not in transit
+	 * 
+	 * @param log the container database object
+	 * @return a boolean representing whether or not an available container was found
+	 * @throws FileNotFoundException
+	 */
 	public boolean addShipments(ContainerLog log) throws FileNotFoundException {
 		log.updateDatabase();
 		for(Container x : log.getContainers()) {
@@ -89,12 +100,23 @@ public class Client extends Account {
 		return false;
 	}
 	
+	/**
+	 * Adds a container to the shipments ArrayList
+	 * 
+	 * @param c the container to add
+	 */
 	public void addShipments(Container c) {
 		
 		shipments.add(c);
 		
 	}
 	
+	/**
+	 * Removes a container from the shipments ArrayList
+	 * 
+	 * @param containerID the id of the container to remove
+	 * @throws FileNotFoundException
+	 */
 	public void removeShipments(int containerID) throws FileNotFoundException {
 		int count = 0;
 		
@@ -119,6 +141,16 @@ public class Client extends Account {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * Automatically sets the last login of a user
+	 */
+	public void setLastDate() {
+		Date lastLogin = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("MM:dd:hh");
+				
+		lastLoggedIn = format.format(lastLogin);
 	}
 
 	public Container getShipment(int location) {
@@ -151,14 +183,6 @@ public class Client extends Account {
 	
 	public String getReferencePerson() {
 		return referencePerson;
-	}
-	
-	//Sets last login for client
-	public void setLastDate() {
-		Date lastLogin = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("MM:dd:hh");
-				
-		lastLoggedIn = format.format(lastLogin);
 	}
 	
 	public void setLastLoggedIn(String date) {

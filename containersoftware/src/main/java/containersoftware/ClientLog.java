@@ -43,7 +43,6 @@ public class ClientLog implements Database{
 	}
 	
 	
-	//Following 4 methods are for database manipulation
 	public void createDatabase() throws IOException {
 		try {
 			file = new File("ClientDatabase.txt");
@@ -53,7 +52,6 @@ public class ClientLog implements Database{
 		}
 	}
 	
-	//Updates the ArrayList to fit textfile
 	public void updateDatabase() throws FileNotFoundException {
 		file = new File("ClientDatabase.txt");
 		Scanner scan = new Scanner(file);
@@ -63,6 +61,7 @@ public class ClientLog implements Database{
 			String temp = scan.nextLine();
 			String[] data = temp.split(",");
 			
+			//Creates client object with same info to be added to the ArrayList
 			Client c = new Client(data[1], data[2]);
 			this.addClients(c);
 			c.setClientID(Integer.parseInt(data[0]));
@@ -71,6 +70,8 @@ public class ClientLog implements Database{
 			c.setPhoneNumber(data[5]);
 			c.setAddress(data[6]);
 			c.setReferencePerson(data[7]);
+			
+			//Used to track clients
 			if(Boolean.parseBoolean(data[8])) {
 				selectedClient = c;
 				c.setLoginStatus(true);
@@ -81,12 +82,18 @@ public class ClientLog implements Database{
 		scan.close();
 	}
 	
-	//Updates textfile to fit ArrayList
+	/**
+	 * Updates a Text file line to match one in the ArrayList
+	 * 
+	 * @param c the client object to be updated
+	 * @throws FileNotFoundException
+	 */
 	public void updateClientDatabaseInfo(Client c) throws FileNotFoundException {
 		Path path = Paths.get("ClientDatabase.txt");
 		try {
 			List<String> content = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
 			
+			//Finds the same object id and updates the line
 			for(int i = 0; i < content.size(); i++) {
 				if(content.get(i).charAt(0) == (c.toString(true).charAt(0))){
 					content.set(i, c.toString(true));
@@ -102,7 +109,11 @@ public class ClientLog implements Database{
 		
 	}
 	
-	//Add new entries to database
+	/**
+	 * Adds objects directly to the Text file database
+	 * 
+	 * @param c the client to be added
+	 */
 	public void addToDatabase(Client c) {
 		try {
 			BufferedWriter write = new BufferedWriter(new FileWriter("ClientDatabase.txt", true));
@@ -115,10 +126,16 @@ public class ClientLog implements Database{
 		
 	}
 	
-	//Creation of datapoints for temperature graph based on time since creation or last login
+	/**
+	 * Uses compareDates from client class to know how much graph data to update
+	 * 
+	 * @param x the container for which the dates are checked
+	 */
 	public void checkDates(Container x) {
 		
 		this.getSelectedClient();
+		
+		//checks if the start date for the journey is less than 48 hours
 		selectedClient.compareDates(x.getStartDate());
 			
 		if(selectedClient.getTimeDifference() < 48) {
@@ -127,12 +144,15 @@ public class ClientLog implements Database{
 			}
 		}
 		else {
+			
+			//checks if the last login date is over or under 48 hours
 			selectedClient.compareDates(this.getTempDate());
 				
 			if(selectedClient.getTimeDifference() < 48) {
 					
 				for(int i = selectedClient.getTimeDifference(); i > 0; i--) {
-						
+					
+					//shifts unaltered data left to add more temperature data to the end
 					for(int j = 0; j < 48-1; j++) {
 						x.getDataPoints()[j] = x.getDataPoints()[j+1];
 					}
@@ -151,7 +171,7 @@ public class ClientLog implements Database{
 		
 	}
 	
-	//Selects current client that is being used
+	//Finds the logged in client and sets them as the selected client
 	public Client getSelectedClient() {
 		
 		Client c = null;
@@ -166,11 +186,25 @@ public class ClientLog implements Database{
 		return c;
 	}
 	
-	//Registers a new client object and adds to database
+	/**
+	 * Used by UI to register a client given all the info
+	 * 
+	 * @param user the username of the new account
+	 * @param pass the password of the new account
+	 * @param checkPass a field to make sure password is entered as desired
+	 * @param name the name of the new client
+	 * @param email the email of the new client
+	 * @param number the phone number of the new client
+	 * @param address the address of the new client
+	 * @param reference a reference person of the new client
+	 * @return a boolean expressing the success of the registration or an error pane
+	 * @throws FileNotFoundException
+	 */
 	public boolean Register(String user, String pass, String checkPass, String name, String email, String number, String address, String reference) throws FileNotFoundException {
 		
 		boolean found = false;
 		
+		//checks that there are no duplicate usernames
 		this.updateDatabase();
 		for(Client x : clients) {
 			if(x.getUsername().contentEquals(user)) {
@@ -179,6 +213,7 @@ public class ClientLog implements Database{
 			}
 		}
 		
+		//checks to see if both password fields match then creates the client
 		if(pass.contentEquals(checkPass)) {
 			if(!found) {
 				Client c = new Client(user, pass);
@@ -204,11 +239,18 @@ public class ClientLog implements Database{
 		
 	}
 	
-	//Finds clients based on criteria
+	/**
+	 * Used by Admin UI to find clients based on criteria
+	 * 
+	 * @param email the email of the client to find
+	 * @param name the name of the client to find
+	 * @return a boolean confirmin whether or not the client was found
+	 */
 	public boolean findClients(String email, String name) {
 		
 		boolean found = false;
 		
+		//if client is found they are set as the selected client
 		for(Client x : clients) {
 			if(x.getEmail().contentEquals(email) || x.getName().contentEquals(name)) {
 				foundClient = x;
@@ -219,12 +261,20 @@ public class ClientLog implements Database{
 		return found;
 	}
 	
-	//Checks database for valid login
+	/**
+	 * Logs a client in
+	 * 
+	 * @param user the username of the client logging in
+	 * @param password the password of the client loggin in
+	 * @return a boolean confirming the login
+	 * @throws FileNotFoundException
+	 */
 	public boolean Login(String user, String password) throws FileNotFoundException {
 		
 		this.updateDatabase();
 		boolean found = false;
 		
+		//checks if the given username and password match a client in the database
 		for(Client x : clients) {
 			
 			if(x.getUsername().contentEquals(user) && x.getPassword().contentEquals(password)) {
@@ -242,9 +292,16 @@ public class ClientLog implements Database{
 		return found;
 	}
 	
-	//Logs account out
+	/**
+	 * Logs the current client out
+	 * 
+	 * @return a boolean confirming whether or not the client was logged out
+	 * @throws FileNotFoundException
+	 */
 	public boolean Logout() throws FileNotFoundException {
 		Client c = this.getSelectedClient();
+		
+		//logs client out and updates database
 		if(c != null) {
 			c.setLoginStatus(false);
 			this.updateClientDatabaseInfo(c);
@@ -253,6 +310,12 @@ public class ClientLog implements Database{
 		return false;
 	}
 	
+	/**
+	 * Completely removes a client from the database by creating and renaming a tempfile
+	 * 
+	 * @param c the client to be removed from the system
+	 * @throws IOException if any file accessing or writing goes wrong
+	 */
 	public void removeClient(Client c) throws IOException {
 		tempFile = new File("tempFile.txt");
 		tempFile.createNewFile();
@@ -264,6 +327,7 @@ public class ClientLog implements Database{
 		String remove = c.toString(true);
 		String currentLine;
 		
+		//reads through the database and writes all but the selected client to the new database
 		while((currentLine = reader.readLine()) != null) {
 			String trimmedLine = currentLine.trim();
 			if(trimmedLine.contentEquals(remove)) continue;
