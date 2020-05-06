@@ -73,11 +73,11 @@ public class AccountInfoDisplay extends JFrame {
 		contentPane.add(numberLbl);
 		
 		JLabel addressLbl = new JLabel(log.getSelectedClient().getAddress());
-		addressLbl.setBounds(192, 152, 175, 20);
+		addressLbl.setBounds(192, 130, 175, 20);
 		contentPane.add(addressLbl);
 		
 		JLabel referencePersonLbl = new JLabel(log.getSelectedClient().getReferencePerson());
-		referencePersonLbl.setBounds(192, 127, 175, 20);
+		referencePersonLbl.setBounds(192, 155, 175, 20);
 		contentPane.add(referencePersonLbl);
 		
 		accountinfoback = new JButton("Back");
