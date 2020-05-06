@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 //Screen to add a new Journey for a Client
 
@@ -51,23 +52,23 @@ public class AddJourney extends JFrame {
 				menu.setVisible(true);
 			}
 		});
-		btnBack.setBounds(10, 237, 89, 23);
+		btnBack.setBounds(10, 237, 118, 23);
 		contentPane.add(btnBack);
 		
 		JLabel lblOrigin = new JLabel("Port of Origin");
-		lblOrigin.setBounds(63, 33, 103, 14);
+		lblOrigin.setBounds(64, 61, 103, 14);
 		contentPane.add(lblOrigin);
 		
 		JLabel lblDestination = new JLabel("Destination");
-		lblDestination.setBounds(63, 71, 103, 14);
+		lblDestination.setBounds(64, 87, 165, 14);
 		contentPane.add(lblDestination);
 		
 		JLabel lblCargo = new JLabel("Cargo");
-		lblCargo.setBounds(63, 107, 46, 14);
+		lblCargo.setBounds(64, 135, 165, 14);
 		contentPane.add(lblCargo);
 		
-		JLabel lblTemp = new JLabel("Prefered Temp Celcius");
-		lblTemp.setBounds(63, 132, 118, 14);
+		JLabel lblTemp = new JLabel("Prefered Temp Celsius");
+		lblTemp.setBounds(64, 160, 151, 14);
 		contentPane.add(lblTemp);
 		
 		//Button to Register Journey
@@ -92,28 +93,33 @@ public class AddJourney extends JFrame {
 		});
 		
 		
-		btnRegister.setBounds(150, 177, 118, 23);
+		btnRegister.setBounds(10, 207, 118, 23);
 		contentPane.add(btnRegister);
 		
 		cargoField = new JTextField();
-		cargoField.setBounds(214, 104, 151, 20);
+		cargoField.setBounds(227, 135, 165, 20);
 		contentPane.add(cargoField);
 		cargoField.setColumns(10);
 		
 		destinationField = new JTextField();
-		destinationField.setBounds(214, 68, 151, 20);
+		destinationField.setBounds(227, 87, 165, 20);
 		contentPane.add(destinationField);
 		destinationField.setColumns(10);
 		
 		originField = new JTextField();
-		originField.setBounds(214, 30, 151, 20);
+		originField.setBounds(227, 61, 165, 20);
 		contentPane.add(originField);
 		originField.setColumns(10);
 		
 		tempField = new JTextField();
-		tempField.setBounds(214, 129, 151, 20);
+		tempField.setBounds(227, 160, 165, 20);
 		contentPane.add(tempField);
 		tempField.setColumns(10);
+		
+		JLabel lblHeader = new JLabel("Add new journey");
+		lblHeader.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblHeader.setBounds(142, 15, 165, 24);
+		contentPane.add(lblHeader);
 	}
 	
 	public JButton getBackButton() {
@@ -139,6 +145,4 @@ public class AddJourney extends JFrame {
 	public JTextField getTempField() {
 		return tempField;
 	}
-	
-	
 }

@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 //All menu options for the admin
 
@@ -19,6 +21,7 @@ public class AdminMainMenu extends JFrame {
 	private JPanel contentPane;
 	private JButton btnLogout;
 	private JButton btnFindClients;
+	private JLabel lblHeader;
 
 	/**
 	 * Create the frame.
@@ -46,7 +49,7 @@ public class AdminMainMenu extends JFrame {
 				admin.setVisible(true);
 			}
 		});
-		btnLogout.setBounds(128, 137, 156, 54);
+		btnLogout.setBounds(145, 165, 160, 55);
 		contentPane.add(btnLogout);
 		
 		btnFindClients = new JButton("Find Clients");
@@ -57,8 +60,13 @@ public class AdminMainMenu extends JFrame {
 				find.setVisible(true);
 			}
 		});
-		btnFindClients.setBounds(125, 60, 163, 49);
+		btnFindClients.setBounds(145, 80, 160, 55);
 		contentPane.add(btnFindClients);
+		
+		lblHeader = new JLabel("Admin main menu");
+		lblHeader.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblHeader.setBounds(136, 16, 178, 24);
+		contentPane.add(lblHeader);
 	}
 	
 	public JButton getLogoutButton() {

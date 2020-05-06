@@ -77,7 +77,7 @@ public class FirstPage {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		btnProceed = new JButton("Proceed");
+		btnProceed = new JButton("Proceed to application");
 		btnProceed.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -87,7 +87,7 @@ public class FirstPage {
 				
 			}
 		});
-		btnProceed.setBounds(125, 180, 200, 50);
+		btnProceed.setBounds(125, 189, 200, 50);
 		frame.getContentPane().add(btnProceed);
 		
 		JLabel lblAgile = new JLabel("Agile Object Oriented Software Development 02160");

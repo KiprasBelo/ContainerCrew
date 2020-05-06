@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 //Screen with Client functionality options
 
@@ -22,6 +24,7 @@ public class ClientMainMenu extends JFrame {
 	private JButton btnTrackJourney;
 	private JButton btnLogout;
 	private JButton btnAccount;
+	private JLabel lblHeader;
 
 	/**
 	 * Create the frame.
@@ -50,7 +53,7 @@ public class ClientMainMenu extends JFrame {
 		});
 		
 		
-		btnAddJourney.setBounds(124, 67, 175, 47);
+		btnAddJourney.setBounds(135, 92, 180, 50);
 		contentPane.add(btnAddJourney);
 		
 		btnTrackJourney = new JButton("Track Jounies");
@@ -66,7 +69,7 @@ public class ClientMainMenu extends JFrame {
 		});
 		
 		
-		btnTrackJourney.setBounds(124, 125, 175, 50);
+		btnTrackJourney.setBounds(135, 142, 180, 50);
 		contentPane.add(btnTrackJourney);
 		
 		btnLogout = new JButton("Logout");
@@ -90,7 +93,7 @@ public class ClientMainMenu extends JFrame {
 		
 		
 		
-		btnLogout.setBounds(124, 186, 175, 47);
+		btnLogout.setBounds(135, 208, 180, 50);
 		contentPane.add(btnLogout);
 		
 		btnAccount = new JButton("Account");
@@ -107,8 +110,13 @@ public class ClientMainMenu extends JFrame {
 		});
 		
 		
-		btnAccount.setBounds(124, 11, 175, 45);
+		btnAccount.setBounds(135, 42, 180, 50);
 		contentPane.add(btnAccount);
+		
+		lblHeader = new JLabel("Client menu");
+		lblHeader.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblHeader.setBounds(167, 6, 116, 24);
+		contentPane.add(lblHeader);
 	}
 	
 	public JButton getLogoutButton() {

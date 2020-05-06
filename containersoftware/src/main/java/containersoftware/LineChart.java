@@ -28,7 +28,8 @@ public class LineChart extends ApplicationFrame {
       
       ChartPanel chartPanel = new ChartPanel( lineChart );
       chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 370 ) );
-      chartPanel.setLocation(screenWidth/2 - 560/2, 100);
+      //chartPanel.setLocation(screenWidth/2 - 560/2, 100);
+      this.setLocation(screenWidth/2 - 560/2, 100);
       setContentPane( chartPanel );
    }
 

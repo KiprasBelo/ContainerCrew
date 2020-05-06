@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 //Displays Client Account Info
 
@@ -40,43 +41,43 @@ public class AccountInfoDisplay extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblName = new JLabel("Name");
-		lblName.setBounds(50, 11, 106, 14);
+		lblName.setBounds(47, 58, 150, 14);
 		contentPane.add(lblName);
 		
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(50, 36, 106, 14);
+		lblEmail.setBounds(47, 83, 150, 14);
 		contentPane.add(lblEmail);
 		
 		JLabel lblNumber = new JLabel("Phone Number");
-		lblNumber.setBounds(50, 61, 131, 14);
+		lblNumber.setBounds(47, 108, 150, 14);
 		contentPane.add(lblNumber);
 		
 		JLabel lblAddress = new JLabel("Address");
-		lblAddress.setBounds(50, 86, 131, 14);
+		lblAddress.setBounds(47, 133, 150, 14);
 		contentPane.add(lblAddress);
 		
 		JLabel lblReferencePerson = new JLabel("Reference Person");
-		lblReferencePerson.setBounds(50, 111, 131, 14);
+		lblReferencePerson.setBounds(47, 158, 150, 14);
 		contentPane.add(lblReferencePerson);
 		
 		JLabel nameLbl = new JLabel(log.getSelectedClient().getName());
-		nameLbl.setBounds(191, 11, 139, 14);
+		nameLbl.setBounds(192, 52, 175, 20);
 		contentPane.add(nameLbl);
 		
 		JLabel emailLbl = new JLabel(log.getSelectedClient().getEmail());
-		emailLbl.setBounds(191, 36, 139, 14);
+		emailLbl.setBounds(192, 77, 175, 20);
 		contentPane.add(emailLbl);
 		
 		JLabel numberLbl = new JLabel(log.getSelectedClient().getPhoneNumber());
-		numberLbl.setBounds(191, 61, 139, 14);
+		numberLbl.setBounds(192, 102, 175, 20);
 		contentPane.add(numberLbl);
 		
 		JLabel addressLbl = new JLabel(log.getSelectedClient().getAddress());
-		addressLbl.setBounds(191, 86, 139, 14);
+		addressLbl.setBounds(192, 152, 175, 20);
 		contentPane.add(addressLbl);
 		
 		JLabel referencePersonLbl = new JLabel(log.getSelectedClient().getReferencePerson());
-		referencePersonLbl.setBounds(191, 111, 139, 14);
+		referencePersonLbl.setBounds(192, 127, 175, 20);
 		contentPane.add(referencePersonLbl);
 		
 		accountinfoback = new JButton("Back");
@@ -95,7 +96,7 @@ public class AccountInfoDisplay extends JFrame {
 			}
 		});
 		
-		accountinfoback.setBounds(10, 227, 89, 23);
+		accountinfoback.setBounds(7, 227, 89, 23);
 		contentPane.add(accountinfoback);
 		
 		
@@ -117,8 +118,13 @@ public class AccountInfoDisplay extends JFrame {
 		});
 		
 		
-		editinfobutton.setBounds(10, 195, 89, 23);
+		editinfobutton.setBounds(7, 197, 89, 23);
 		contentPane.add(editinfobutton);
+		
+		JLabel lblHeader = new JLabel("Account info");
+		lblHeader.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblHeader.setBounds(165, 16, 120, 24);
+		contentPane.add(lblHeader);
 		
 	}
 	

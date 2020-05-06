@@ -106,7 +106,7 @@ public class ContainerTracker extends JFrame {
 				return values[index];
 			}
 		});
-		list.setBounds(185, 44, 324, 206);
+		list.setBounds(207, 14, 302, 236);
 		contentPane.add(list);
 		
 		//Loads all containers for a client
@@ -135,7 +135,7 @@ public class ContainerTracker extends JFrame {
 		});
 		
 		
-		btnLoadAll.setBounds(10, 11, 149, 23);
+		btnLoadAll.setBounds(29, 14, 149, 23);
 		contentPane.add(btnLoadAll);
 		
 		btnBack = new JButton("Back");
@@ -148,38 +148,38 @@ public class ContainerTracker extends JFrame {
 				
 			}
 		});
-		btnBack.setBounds(10, 227, 89, 23);
+		btnBack.setBounds(7, 227, 89, 23);
 		contentPane.add(btnBack);
 		
-		JLabel lblFind = new JLabel("Find by:");
-		lblFind.setBounds(10, 45, 46, 14);
+		JLabel lblFind = new JLabel("Search by");
+		lblFind.setBounds(20, 49, 60, 14);
 		contentPane.add(lblFind);
 		
 		originField = new JTextField();
-		originField.setBounds(10, 70, 86, 20);
+		originField.setBounds(109, 69, 86, 20);
 		contentPane.add(originField);
 		originField.setColumns(10);
 		
 		destinationField = new JTextField();
-		destinationField.setBounds(10, 101, 86, 20);
+		destinationField.setBounds(109, 100, 86, 20);
 		contentPane.add(destinationField);
 		destinationField.setColumns(10);
 		
 		cargoField = new JTextField();
-		cargoField.setBounds(10, 132, 86, 20);
+		cargoField.setBounds(109, 131, 86, 20);
 		contentPane.add(cargoField);
 		cargoField.setColumns(10);
 		
 		JLabel lblOrigin = new JLabel("Origin");
-		lblOrigin.setBounds(106, 73, 46, 14);
+		lblOrigin.setBounds(20, 75, 73, 14);
 		contentPane.add(lblOrigin);
 		
 		JLabel lblDestination = new JLabel("Destination");
-		lblDestination.setBounds(106, 104, 69, 14);
+		lblDestination.setBounds(20, 106, 73, 14);
 		contentPane.add(lblDestination);
 		
 		JLabel lblCargo = new JLabel("Cargo");
-		lblCargo.setBounds(106, 135, 46, 14);
+		lblCargo.setBounds(20, 137, 73, 14);
 		contentPane.add(lblCargo);
 		
 		//loads containers via certain criteria
@@ -208,7 +208,7 @@ public class ContainerTracker extends JFrame {
 				
 			}
 		});
-		btnFindbyLoad.setBounds(10, 163, 89, 23);
+		btnFindbyLoad.setBounds(109, 163, 86, 23);
 		contentPane.add(btnFindbyLoad);
 		
 	}

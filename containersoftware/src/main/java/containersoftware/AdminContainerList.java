@@ -48,11 +48,11 @@ public class AdminContainerList extends JFrame {
 		contentPane.setLayout(null);
 		
 		JList list = new JList();
-		list.setBounds(139, 11, 262, 239);
+		list.setBounds(139, 27, 262, 223);
 		contentPane.add(list);
 		
 		JLabel lblContainer = new JLabel("All Client Containers");
-		lblContainer.setBounds(10, 12, 119, 14);
+		lblContainer.setBounds(6, 12, 130, 14);
 		contentPane.add(lblContainer);
 		
 		
@@ -81,7 +81,7 @@ public class AdminContainerList extends JFrame {
 				}
 			}
 		});
-		btnLoad.setBounds(10, 37, 119, 23);
+		btnLoad.setBounds(6, 38, 126, 23);
 		contentPane.add(btnLoad);
 		
 		list.addListSelectionListener(new ListSelectionListener() {
@@ -91,7 +91,7 @@ public class AdminContainerList extends JFrame {
 				
 			}
 		});
-		list.setBounds(139, 11, 262, 239);
+		list.setBounds(145, 11, 262, 239);
 		contentPane.add(list);
 		
 		btnBack = new JButton("Back");
