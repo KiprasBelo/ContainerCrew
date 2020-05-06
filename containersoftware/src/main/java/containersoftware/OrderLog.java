@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 //Database that stores all orders ever created and manipulates orders
 
-public class OrderLog {
+public class OrderLog implements Database{
 	
 	private static ArrayList<Order> orders = new ArrayList<Order>();
 	private File file;

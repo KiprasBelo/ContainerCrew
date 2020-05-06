@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 //Database for storing and manipulating containers
 
-public class ContainerLog {
+public class ContainerLog implements Database {
 	
 	private static ArrayList<Container> containers = new ArrayList<Container>();
 	private File file;

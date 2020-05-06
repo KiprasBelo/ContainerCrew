@@ -44,7 +44,14 @@ public class AddJourney extends JFrame {
 		contentPane.setLayout(null);
 		
 		btnBack = new JButton("Back");
-		btnBack.setBounds(0, 227, 89, 23);
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				ClientMainMenu menu = new ClientMainMenu();
+				menu.setVisible(true);
+			}
+		});
+		btnBack.setBounds(10, 237, 89, 23);
 		contentPane.add(btnBack);
 		
 		JLabel lblOrigin = new JLabel("Port of Origin");

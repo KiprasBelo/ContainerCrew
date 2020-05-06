@@ -18,7 +18,7 @@ public class ClientFinderTest {
 	JButton loadAll;
 	JButton loadCriteria;
 	JList list;
-	ListModel<Class<?>> model;
+	ListModel<Client> model;
 
 	@Test
 	public void testBackButton() {
@@ -37,8 +37,7 @@ public class ClientFinderTest {
 		model = list.getModel();
 		
 		log.updateDatabase();
-		
-		//assertEquals(log.getClients().get(0),model.getElementAt(0));
+		assertEquals(log.getClients().get(0).toString(),model.getElementAt(0).toString());
 	}
 	
 	@Test
@@ -46,14 +45,14 @@ public class ClientFinderTest {
 		loadCriteria = find.getLoadByCriteriaButton();
 		assertNotNull(loadCriteria);
 		
-		find.getNameField().setText("kip");
-		find.getNameField().setText("kip@gmail.com");
+		find.getNameField().setText("BeloKip");
+		find.getEmailField().setText("kip@gmail.com");
 		
 		loadCriteria.doClick(250);
 		
 		list = find.getList();
 		model = list.getModel();
-		//assertEquals(log.getClients().get(1),model.getElementAt(0));
+		assertEquals(log.getClients().get(1),model.getElementAt(0));
 	}
 
 }

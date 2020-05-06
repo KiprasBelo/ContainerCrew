@@ -17,8 +17,6 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class LineChart extends ApplicationFrame {
 	
-	private ClientLog log = new ClientLog();
-
    public LineChart( String applicationTitle , String chartTitle, Container c) {
       super(applicationTitle);
       JFreeChart lineChart = ChartFactory.createLineChart(chartTitle,"Hours","Temperature (C)",createDataset(c),PlotOrientation.VERTICAL,true,true,false);

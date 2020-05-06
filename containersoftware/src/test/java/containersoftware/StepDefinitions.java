@@ -305,8 +305,8 @@ public class StepDefinitions {
 	
 	//Build Container temperature Data
 	
-	@Given("Todays date along with Container start or last login date")
-	public void todays_date_along_with_Container_start_or_last_login_date() {
+	@Given("Todays date along with Container start date")
+	public void todays_date_along_with_Container_start_date() {
 		log.getClients().get(6).setLoginStatus(true);
 		log.getSelectedClient().getShipment(0).setStartDate("4:20:01");
 		assertEquals(true,log.getSelectedClient().getShipment(0).getInTransit());
@@ -320,6 +320,44 @@ public class StepDefinitions {
 
 	@Then("A number of hours of temperature are generated")
 	public void a_number_of_hours_of_temperature_are_generated() {
+		log.getClients().get(6).setLoginStatus(false);
+	}
+	
+	//Different Time for Temperature data
+	@Given("Todays date along with Container start or last login date")
+	public void todays_date_along_with_Container_start_or_last_login_date() {
+		log.getClients().get(6).setLoginStatus(true);
+		log.getSelectedClient().getShipment(0).setStartDate("4:20:01");
+		assertEquals(true,log.getSelectedClient().getShipment(0).getInTransit());
+	}
+	
+	@When("Check dates of login")
+	public void check_dates_of_login() {
+		log.setTempDate("5:4:12");
+		log.checkDates(log.getSelectedClient().getShipment(0));
+	}
+
+	@Then("A number of hours of new temperature are generated")
+	public void a_number_of_hours_of_new_temperature_are_generated() {
+		log.getClients().get(6).setLoginStatus(false);
+	}
+	
+	//Different Time for Temperature data
+	@Given("Todays date along with Container start as todays date")
+	public void todays_date_along_with_Container_start_as_todays_date() {
+		log.getClients().get(6).setLoginStatus(true);
+		log.getSelectedClient().getShipment(0).setStartDate("5:4:12");
+		assertEquals(true,log.getSelectedClient().getShipment(0).getInTransit());
+	}
+
+	@When("Check dates of Container start")
+	public void check_dates_of_Container_start() {
+		log.setTempDate(log.getSelectedClient().getShipment(0).getStartDate());
+		log.checkDates(log.getSelectedClient().getShipment(0));
+	}
+
+	@Then("A number of hours of new temperature are created")
+	public void a_number_of_hours_of_new_temperature_are_created() {
 		log.getClients().get(6).setLoginStatus(false);
 	}
 	

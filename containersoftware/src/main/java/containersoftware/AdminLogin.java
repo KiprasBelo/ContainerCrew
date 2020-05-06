@@ -44,7 +44,7 @@ public class AdminLogin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblAdmin = new JLabel("This page is for Administrator login only");
-		lblAdmin.setBounds(120, 11, 190, 14);
+		lblAdmin.setBounds(113, 11, 249, 14);
 		contentPane.add(lblAdmin);
 		
 		JLabel lblUser = new JLabel("Username");

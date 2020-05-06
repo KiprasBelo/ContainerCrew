@@ -39,9 +39,21 @@ Feature: Access and edit features of containers
     
     Scenario: Get container temperature data
     Given A container in the containerLog
-    And Todays date along with Container start or last login date
+    And Todays date along with Container start date
     When Check dates of container access
     Then A number of hours of temperature are generated
+    
+    Scenario: Get container temperature data for login less than 48 hours ago
+    Given A container in the containerLog
+    And Todays date along with Container start or last login date
+    When Check dates of login
+    Then A number of hours of new temperature are generated
+    
+    Scenario: Get container temperature data for Contianer Creation less than 48 hours ago
+    Given A container in the containerLog
+    And Todays date along with Container start as todays date
+    When Check dates of Container start
+    Then A number of hours of new temperature are created
     
     Scenario: Edit Container data as Admin
     Given A container in the containerLog
