@@ -15,6 +15,7 @@ import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 //Screen where a client can login
 
@@ -26,6 +27,7 @@ public class ClientLogin extends JFrame {
 	private JButton btnClientLoginBack;
 	private JButton btnLogin;
 	ClientLog c = new ClientLog();
+	private JLabel lblHeader;
 
 	/**
 	 * Create the frame.
@@ -45,15 +47,15 @@ public class ClientLogin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds(145, 80, 65, 14);
+		lblUsername.setBounds(120, 93, 62, 14);
 		contentPane.add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(145, 121, 65, 14);
+		lblPassword.setBounds(120, 118, 62, 14);
 		contentPane.add(lblPassword);
 		
 		userField = new JTextField();
-		userField.setBounds(237, 77, 109, 20);
+		userField.setBounds(192, 90, 118, 20);
 		contentPane.add(userField);
 		userField.setColumns(10);
 		
@@ -79,11 +81,11 @@ public class ClientLogin extends JFrame {
 			}
 		});
 		
-		btnLogin.setBounds(169, 162, 109, 35);
+		btnLogin.setBounds(202, 147, 89, 23);
 		contentPane.add(btnLogin);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(237, 118, 109, 20);
+		passwordField.setBounds(192, 115, 118, 20);
 		contentPane.add(passwordField);
 		
 		btnClientLoginBack = new JButton("Back");
@@ -103,8 +105,13 @@ public class ClientLogin extends JFrame {
 			}
 		});
 		
-		btnClientLoginBack.setBounds(10, 227, 89, 23);
+		btnClientLoginBack.setBounds(7, 227, 89, 23);
 		contentPane.add(btnClientLoginBack);
+		
+		lblHeader = new JLabel("Client login");
+		lblHeader.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblHeader.setBounds(170, 16, 110, 24);
+		contentPane.add(lblHeader);
 	}
 	
 	public JButton getLoginButton() {

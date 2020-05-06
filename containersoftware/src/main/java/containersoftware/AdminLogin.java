@@ -15,6 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 //Uses a hard coded admin login to access admin features
 
@@ -43,8 +44,9 @@ public class AdminLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblAdmin = new JLabel("This page is for Administrator login only");
-		lblAdmin.setBounds(113, 11, 249, 14);
+		JLabel lblAdmin = new JLabel("Admin login");
+		lblAdmin.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblAdmin.setBounds(166, 16, 118, 24);
 		contentPane.add(lblAdmin);
 		
 		JLabel lblUser = new JLabel("Username");
@@ -80,7 +82,7 @@ public class AdminLogin extends JFrame {
 				
 			}
 		});
-		btnLogin.setBounds(174, 199, 89, 23);
+		btnLogin.setBounds(202, 147, 89, 23);
 		contentPane.add(btnLogin);
 		
 		btnBack = new JButton("Back");
@@ -91,7 +93,7 @@ public class AdminLogin extends JFrame {
 				menu.setVisible(true);
 			}
 		});
-		btnBack.setBounds(10, 227, 89, 23);
+		btnBack.setBounds(7, 227, 89, 23);
 		contentPane.add(btnBack);
 	}
 	

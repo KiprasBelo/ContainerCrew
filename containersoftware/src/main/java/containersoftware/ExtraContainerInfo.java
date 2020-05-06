@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 //Displayed along side temp graph to provide all needed container info
 
@@ -25,6 +26,9 @@ public class ExtraContainerInfo extends JFrame {
 	private JLabel humidityLbl;
 	private JLabel pressureLbl;
 	private LineChart chart;
+	private JLabel lblHumidityUnit;
+	private JLabel lblPressureUnit;
+	private JLabel lblHeader;
 	
 	/**
 	 * Create the frame.
@@ -43,20 +47,20 @@ public class ExtraContainerInfo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblHumidity = new JLabel("Humidity Percentage");
-		lblHumidity.setBounds(86, 11, 130, 14);
+		JLabel lblHumidity = new JLabel("Humidity");
+		lblHumidity.setBounds(101, 35, 137, 14);
 		contentPane.add(lblHumidity);
 		
 		JLabel lblPressure = new JLabel("Atmospheric Pressure");
-		lblPressure.setBounds(86, 36, 130, 14);
+		lblPressure.setBounds(101, 60, 137, 14);
 		contentPane.add(lblPressure);
 		
 		humidityLbl = new JLabel(""+0);
-		humidityLbl.setBounds(239, 11, 114, 14);
+		humidityLbl.setBounds(293, 35, 23, 14);
 		contentPane.add(humidityLbl);
 		
 		pressureLbl = new JLabel(""+0);
-		pressureLbl.setBounds(239, 36, 114, 14);
+		pressureLbl.setBounds(293, 60, 23, 14);
 		contentPane.add(pressureLbl);
 		
 		btnBack = new JButton("Back");
@@ -69,7 +73,7 @@ public class ExtraContainerInfo extends JFrame {
 				track.setVisible(true);
 			}
 		});
-		btnBack.setBounds(207, 65, 89, 23);
+		btnBack.setBounds(112, 80, 89, 23);
 		contentPane.add(btnBack);
 		
 		//Button to load additional info
@@ -82,8 +86,21 @@ public class ExtraContainerInfo extends JFrame {
 				
 			}
 		});
-		btnLoad.setBounds(96, 65, 89, 23);
+		btnLoad.setBounds(247, 80, 89, 23);
 		contentPane.add(btnLoad);
+		
+		lblHumidityUnit = new JLabel("%");
+		lblHumidityUnit.setBounds(321, 34, 26, 16);
+		contentPane.add(lblHumidityUnit);
+		
+		lblPressureUnit = new JLabel("Atm");
+		lblPressureUnit.setBounds(321, 59, 26, 16);
+		contentPane.add(lblPressureUnit);
+		
+		lblHeader = new JLabel("Last measured values");
+		lblHeader.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblHeader.setBounds(122, 6, 206, 24);
+		contentPane.add(lblHeader);
 	}
 	
 	public void getChart(LineChart c) {

@@ -44,7 +44,7 @@ public class MainMenu extends JFrame {
 				
 			}
 		});
-		btnAdminLogin.setBounds(120, 167, 218, 56);
+		btnAdminLogin.setBounds(120, 179, 210, 55);
 		getContentPane().add(btnAdminLogin);
 		
 		btnClientRegister = new JButton("Client Register");
@@ -68,7 +68,7 @@ public class MainMenu extends JFrame {
 		});
 		
 		
-		btnClientRegister.setBounds(120, 82, 218, 56);
+		btnClientRegister.setBounds(120, 88, 210, 55);
 		getContentPane().add(btnClientRegister);
 		
 		goToClientLogin = new JButton("Client Login");
@@ -87,7 +87,7 @@ public class MainMenu extends JFrame {
 			}
 		});
 		
-		goToClientLogin.setBounds(120, 30, 218, 47);
+		goToClientLogin.setBounds(120, 30, 210, 55);
 		getContentPane().add(goToClientLogin);
 		goToClientLogin.setName("ClientLogin");
 		

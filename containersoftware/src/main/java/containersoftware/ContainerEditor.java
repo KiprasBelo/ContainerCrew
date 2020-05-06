@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 //Screen allowing Admin to edit some aspects of a Container
 
@@ -27,6 +28,9 @@ public class ContainerEditor extends JFrame {
 	private JButton btnBack;
 	private JButton btnSave;
 	private JButton btnEnd;
+	private JLabel lblHumidityUnit;
+	private JLabel lblPressureUnit;
+	private JLabel lblHeader;
 
 	/**
 	 * Create the frame.
@@ -53,7 +57,7 @@ public class ContainerEditor extends JFrame {
 				find.setVisible(true);
 			}
 		});
-		btnBack.setBounds(10, 227, 89, 23);
+		btnBack.setBounds(7, 227, 89, 23);
 		contentPane.add(btnBack);
 		
 		btnSave = new JButton("Save");
@@ -85,24 +89,24 @@ public class ContainerEditor extends JFrame {
 				
 			}
 		});
-		btnSave.setBounds(10, 193, 89, 23);
+		btnSave.setBounds(7, 193, 89, 23);
 		contentPane.add(btnSave);
 		
 		JLabel lblHumidity = new JLabel("Humidity");
-		lblHumidity.setBounds(112, 93, 46, 14);
+		lblHumidity.setBounds(72, 96, 116, 14);
 		contentPane.add(lblHumidity);
 		
 		JLabel lblPressure = new JLabel("Atmpsphereic Pressure");
-		lblPressure.setBounds(42, 118, 116, 14);
+		lblPressure.setBounds(72, 118, 156, 14);
 		contentPane.add(lblPressure);
 		
 		humidityField = new JTextField();
-		humidityField.setBounds(168, 90, 86, 20);
+		humidityField.setBounds(253, 90, 86, 20);
 		contentPane.add(humidityField);
 		humidityField.setColumns(10);
 		
 		pressureField = new JTextField();
-		pressureField.setBounds(168, 115, 86, 20);
+		pressureField.setBounds(253, 115, 86, 20);
 		contentPane.add(pressureField);
 		pressureField.setColumns(10);
 		
@@ -122,8 +126,21 @@ public class ContainerEditor extends JFrame {
 				
 			}
 		});
-		btnEnd.setBounds(152, 193, 116, 23);
+		btnEnd.setBounds(108, 193, 126, 57);
 		contentPane.add(btnEnd);
+		
+		lblHumidityUnit = new JLabel("%");
+		lblHumidityUnit.setBounds(351, 92, 20, 16);
+		contentPane.add(lblHumidityUnit);
+		
+		lblPressureUnit = new JLabel("Atm");
+		lblPressureUnit.setBounds(351, 117, 61, 16);
+		contentPane.add(lblPressureUnit);
+		
+		lblHeader = new JLabel("Edit measurement info");
+		lblHeader.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblHeader.setBounds(116, 30, 217, 24);
+		contentPane.add(lblHeader);
 	}
 	
 	public JButton getBackButton() {

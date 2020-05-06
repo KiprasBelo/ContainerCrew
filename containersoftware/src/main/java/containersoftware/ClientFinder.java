@@ -60,7 +60,7 @@ public class ClientFinder extends JFrame {
 				menu.setVisible(true);
 			}
 		});
-		btnBack.setBounds(10, 227, 86, 23);
+		btnBack.setBounds(7, 227, 89, 23);
 		contentPane.add(btnBack);
 		
 		list = new JList();
@@ -87,7 +87,7 @@ public class ClientFinder extends JFrame {
 				
 			}
 		});
-		list.setBounds(150, 11, 274, 239);
+		list.setBounds(150, 11, 283, 239);
 		contentPane.add(list);
 		
 		//Button to load all clients
@@ -112,29 +112,29 @@ public class ClientFinder extends JFrame {
 				}
 			}
 		});
-		btnLoad.setBounds(10, 11, 130, 23);
+		btnLoad.setBounds(8, 11, 130, 23);
 		contentPane.add(btnLoad);
 		
-		JLabel lblName = new JLabel("Find by Name");
-		lblName.setBounds(10, 45, 130, 14);
+		JLabel lblName = new JLabel("Search by Name");
+		lblName.setBounds(10, 46, 130, 14);
 		contentPane.add(lblName);
 		
 		nameField = new JTextField();
-		nameField.setBounds(10, 70, 86, 20);
+		nameField.setBounds(10, 70, 104, 20);
 		contentPane.add(nameField);
 		nameField.setColumns(10);
 		
-		JLabel lblEmail = new JLabel("Find by Email");
-		lblEmail.setBounds(10, 101, 130, 14);
+		JLabel lblEmail = new JLabel("Search by Email");
+		lblEmail.setBounds(10, 102, 130, 14);
 		contentPane.add(lblEmail);
 		
 		emailField = new JTextField();
-		emailField.setBounds(10, 126, 86, 20);
+		emailField.setBounds(10, 126, 104, 20);
 		contentPane.add(emailField);
 		emailField.setColumns(10);
 		
 		//Button to find clients by criteria
-		btnLoadEmail = new JButton("Load");
+		btnLoadEmail = new JButton("Search");
 		btnLoadEmail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -157,7 +157,7 @@ public class ClientFinder extends JFrame {
 			}
 				
 		});
-		btnLoadEmail.setBounds(7, 157, 89, 23);
+		btnLoadEmail.setBounds(7, 158, 89, 23);
 		contentPane.add(btnLoadEmail);
 	}
 	
