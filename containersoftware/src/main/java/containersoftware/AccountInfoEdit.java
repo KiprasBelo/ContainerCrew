@@ -73,8 +73,6 @@ public class AccountInfoEdit extends JFrame {
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg) {
 				
-				System.out.println("why");
-				
 				if(nameEdit.getText().length() > 0) {
 					client.getSelectedClient().setName(nameEdit.getText());
 				}
