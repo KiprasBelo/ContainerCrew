@@ -120,7 +120,7 @@ public class OrderLog implements Database{
 		String remove = o.toString(true);
 		String currentLine;
 		
-		//Finds the same object id and updates the line
+		//reads through the database and writes all but the selected order to the new database
 		while((currentLine = reader.readLine()) != null) {
 			String trimmedLine = currentLine.trim();
 			if(trimmedLine.contentEquals(remove)) continue;

@@ -268,7 +268,7 @@ public class ContainerLog implements Database {
 		String remove = c.toString(true);
 		String currentLine;
 		
-		//Finds the same object id and updates the line
+		//reads through the database and writes all but the selected container to the new database
 		while((currentLine = reader.readLine()) != null) {
 			String trimmedLine = currentLine.trim();
 			if(trimmedLine.contentEquals(remove)) continue;
