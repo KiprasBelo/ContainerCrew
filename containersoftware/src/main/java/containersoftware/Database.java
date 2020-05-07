@@ -3,6 +3,9 @@ package containersoftware;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/*
+ * This interface creates the most basic methods of the database manipulation
+ */
 public interface Database {
 
 	/**

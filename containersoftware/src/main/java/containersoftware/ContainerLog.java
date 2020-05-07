@@ -27,10 +27,20 @@ public class ContainerLog implements Database {
 	
 	public ContainerLog() {}
 	
+	/**
+	 * Adds a container to the ArrayList database
+	 * 
+	 * @param contain the container to add
+	 */
 	public void addContainer(Container contain) {
 		containers.add(contain);
 	}
 	
+	/**
+	 * Gets the entire container database
+	 * 
+	 * @return an ArrayList with all containers
+	 */
 	public ArrayList<Container> getContainers() {
 		return containers;
 	}
@@ -62,7 +72,6 @@ public class ContainerLog implements Database {
 		
 	}
 	
-	//Updates ArrayList based on Textfile
 	public void updateDatabase() throws FileNotFoundException {
 		file = new File("ContainerDatabase.txt");
 		Scanner scan = new Scanner(file);

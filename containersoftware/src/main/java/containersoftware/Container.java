@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//Container object to be assigned to client and store an order(Journey)
-
+/**
+ * This class creates and manages container objects
+ *
+ */
 public class Container {
 	
 	private int containerId = 0;
@@ -26,7 +28,9 @@ public class Container {
 	private String startDate;
 	private boolean selectedContainer = false;
 	
-	//default and nondefault constructors
+	/**
+	 *Default constructor auto increments id
+	 */
 	public Container() {
 		Path path = Paths.get("ContainerDatabase.txt");
 		int counter = 0;
@@ -47,6 +51,11 @@ public class Container {
 		containerId = counter;
 	}
 	
+	/**
+	 * Container constructor auto increments id
+	 * 
+	 * @param o the order to assign to the container
+	 */
 	public Container(Order o) {
 		Path path = Paths.get("ContainerDatabase.txt");
 		int counter = 0;
@@ -107,97 +116,201 @@ public class Container {
 		
 	}
 	
-	//Ends a journey for a container
+	/**
+	 * Ends a journey for a container
+	 */
 	public void endJourney() {
 		this.setInTransit(false);
 		this.getCurrentOrder().setCurrentOrder(false);
 		this.setSelectedContainer(false);
 	}
 	
+	/**
+	 * Gets all the data points of temperature data
+	 * 
+	 * @return an array of data points
+	 */
 	public double[] getDataPoints() {
 		return dataPoints;
 	}
 	
+	/**
+	 * Gets the start date of a container order
+	 * 
+	 * @return a string in the format "mm:dd:hh"
+	 */
 	public String getStartDate() {
 		return startDate;
 	}
 	
+	/**
+	 * Adds an order to the container history(can be current order)
+	 * 
+	 * @param o the order to add
+	 */
 	public void addOrders(Order o) {
 		history.add(o);
 	}
 	
+	/**
+	 * Gets the preferred temperature of a container
+	 * 
+	 * @return double of the temperature
+	 */
 	public double getTemperature() {
 		return temperature;
 	}
 
+	/**
+	 * Manually sets the preferred temperature
+	 * 
+	 * @param temperature the new temperature
+	 */
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
 	}
 
+	/**
+	 * Gets the container humidity
+	 * 
+	 * @return an int of humidity percentage
+	 */
 	public int getHumidity() {
 		return humidity;
 	}
 
+	/**
+	 * Manually sets the current container humidity
+	 * 
+	 * @param humidity the humidity percentage to set
+	 */
 	public void setHumidity(int humidity) {
 		this.humidity = humidity;
 	}
 
+	/**
+	 * Gets the current container atmospheric pressure
+	 * 
+	 * @return and int of the current atmospheric pressure
+	 */
 	public int getPressure() {
 		return pressure;
 	}
 
+	/**
+	 * Manually sets the atmospheric pressure
+	 * 
+	 * @param pressure the new pressure to set
+	 */
 	public void setPressure(int pressure) {
 		this.pressure = pressure;
 	}
 	
+	/**
+	 * Gets the container's id
+	 * 
+	 * @return an int with the id
+	 */
 	public int getContainerID() {
 		return containerId;
 	}
 	
+	/**
+	 * Manually sets the client owner of a container
+	 * 
+	 * @param owner the id of the owning client
+	 */
 	public void setOwnerID(int owner) {
 		ownerID = owner;
 	}
 	
+	/**
+	 * Gets the id of the owning client
+	 * 
+	 * @return an int of the owner's id
+	 */
 	public int getOwnerID() {
 		return ownerID;
 	}
 	
+	/**
+	 * Gets whether or not a container is on a journey
+	 * 
+	 * @return a boolean saying whether or not a container is moving
+	 */
 	public boolean getInTransit() {
 		return inTransit;
 	}
 	
+	/**
+	 * Manually sets whether or not a container is on a journey
+	 * 
+	 * @param transit the boolean to set whether or not the container is moving
+	 */
 	public void setInTransit(boolean transit) {
 		inTransit = transit;
 	}
 	
+	/**
+	 * Gets an order from the container history
+	 * 
+	 * @param pos the position of the order in the ArrayList
+	 * @return an Order from the histroy ArrayList
+	 */
 	public Order getOrder(int pos) {
 		return history.get(pos);
 	}
 	
+	/**
+	 * Gets all the orders a container ever had
+	 * 
+	 * @return and ArrayList of all orders for a container
+	 */
 	public ArrayList<Order> getHistory() {
 		return history;
 	}
 	
+	/**
+	 * Gets the current order the container is transporting
+	 * 
+	 * @return an order that is in transit
+	 */
 	public Order getCurrentOrder() {
 		return currentOrder;
 	}
 	
+	/**
+	 * Manually sets the current order to transport
+	 * 
+	 * @param o the new order to set
+	 */
 	public void setCurrentOrder(Order o) {
 		currentOrder = o;
 	}
 	
+	/**
+	 * Manually sets container id
+	 * 
+	 * @param id the new id to set
+	 */
 	public void setContainerID(int id) {
 		containerId = id;
 	}
-	
-	public boolean isSelectedContainer() {
-		return selectedContainer;
-	}
 
+	/**
+	 * Manually sets this container to the selected container
+	 * 
+	 * @param selectedContainer the boolean to set
+	 */
 	public void setSelectedContainer(boolean selectedContainer) {
 		this.selectedContainer = selectedContainer;
 	}
 	
+	/**
+	 * Gets whether or not the container is selected for admin purposes
+	 * 
+	 * @return a boolean stating whether or not the container is selected
+	 */
 	public boolean getSelectedContainer() {
 		return selectedContainer;
 	}

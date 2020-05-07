@@ -25,8 +25,16 @@ public class OrderLog implements Database{
 	private File file;
 	private File tempFile;
 	
+	/**
+	 * Non Default Constructor
+	 */
 	public OrderLog() {}
 	
+	/**
+	 * Adds an order to the Database ArrayList
+	 * 
+	 * @param o the order to be added
+	 */
 	public void addOrders(Order o) {
 		orders.add(o);
 	}

@@ -21,8 +21,10 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-//Database and database functionalities for Clients
-
+/**
+ * This class creates and manages the Client account database
+ *
+ */
 public class ClientLog implements Database{
 
 	private static ArrayList<Client> clients = new ArrayList<Client>();
@@ -34,14 +36,23 @@ public class ClientLog implements Database{
 	
 	public ClientLog() {}
 	
+	/**
+	 * Adds a client to the Database ArrayList
+	 * 
+	 * @param c the client to add
+	 */
 	public void addClients(Client c) {
 		clients.add(c);
 	}
 	
+	/**
+	 * Gets the whole client Database
+	 * 
+	 * @return an ArrayList of the Database
+	 */
 	public ArrayList<Client> getClients() {
 		return clients;
 	}
-	
 	
 	public void createDatabase() throws IOException {
 		try {
@@ -171,7 +182,11 @@ public class ClientLog implements Database{
 		
 	}
 	
-	//Finds the logged in client and sets them as the selected client
+	/**
+	 * Sets and Gets the logged in client as the selected client
+	 * 
+	 * @return the logged in client
+	 */
 	public Client getSelectedClient() {
 		
 		Client c = null;
@@ -340,19 +355,38 @@ public class ClientLog implements Database{
 		boolean success = tempFile.renameTo(file);
 	}
 	
-	//Getters and Setters
+	/**
+	 * Gets the client found by criteria
+	 * 
+	 * @return the client matching criteria
+	 */
 	public Client getFoundClient() {
 		return foundClient;
 	}
 
+	/**
+	 * Manually sets the found client
+	 * 
+	 * @param foundClient the new client to set
+	 */
 	public void setFoundClient(Client foundClient) {
 		this.foundClient = foundClient;
 	}
 	
+	/**
+	 * Manually sets the date the checkDates method uses
+	 * 
+	 * @param string the date in proper format "mm:dd:hh"to check
+	 */
 	public void setTempDate(String string) {
 		tempDate = string;
 	}
 	
+	/**
+	 * Gets the date checkDates method uses
+	 * 
+	 * @return a string of the date in the given format
+	 */
 	public String getTempDate() {
 		return tempDate;
 	}

@@ -12,8 +12,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-//Creation of individual Client objects
-
+/**
+ * This class creates and manages Client objects
+ *
+ */
 public class Client extends Account {
 	
 	private ArrayList<Container> shipments = new ArrayList<Container>();
@@ -22,7 +24,12 @@ public class Client extends Account {
 	private String lastLoggedIn;
 	private int timeDifference;
 
-	//Non-Default Constructor
+	/**
+	 * Client constructor auto increments the id
+	 * 
+	 * @param username the new client username
+	 * @param password the new client password
+	 */
 	public Client(String username, String password) {
 		this.setUsername(username);
 		this.setPassword(password);
@@ -136,6 +143,11 @@ public class Client extends Account {
 		}
 	}
 	
+	/**
+	 * Tells whether or not the client has any current orders
+	 * 
+	 * @return a boolean saying whether or not the ArrayList is empty
+	 */
 	public boolean hasShipments(){
 		if(shipments.isEmpty()) {
 			return false;
@@ -153,38 +165,84 @@ public class Client extends Account {
 		lastLoggedIn = format.format(lastLogin);
 	}
 
+	/**
+	 * Gets a container from the shipments list
+	 * 
+	 * @param location the location of the container to return
+	 * @return a container in the given position
+	 */
 	public Container getShipment(int location) {
 		return shipments.get(location);
 	}
 	
+	/**
+	 * Gets the entire shipments list
+	 * 
+	 * @return an ArrayList with all client orders
+	 */
 	public ArrayList<Container> getShipments(){
 		return shipments;
 	}
 	
+	/**
+	 * Gets the client id
+	 * 
+	 * @return an int with the id
+	 */
 	public int getClientID() {
 		return clientID;
 	}
 	
+	/**
+	 * Manually sets the client id
+	 * 
+	 * @param id the new id
+	 */
 	public void setClientID(int id) {
 		clientID = id;
 	}
 	
+	/**
+	 * Gets the last date of login for a client
+	 * 
+	 * @return a string with the last login in the form "mm:dd:hh"
+	 */
 	public String getLastLoggedIn() {
 		return lastLoggedIn;
 	}
 	
+	/**
+	 * Gets the calculated time difference between dates in hours
+	 * 
+	 * @return an int of hours of difference
+	 */
 	public int getTimeDifference() {
 		return timeDifference;
 	}
 	
+	/**
+	 * Manually sets the client's reference person
+	 * 
+	 * @param the new reference person name
+	 */
 	public void setReferencePerson(String person) {
 		referencePerson = person;
 	}
 	
+	/**
+	 * Gets the client's reference person
+	 * 
+	 * @return person a string with the reference name
+	 */
 	public String getReferencePerson() {
 		return referencePerson;
 	}
 	
+	/**
+	 * Manually sets the last logged in date
+	 * 
+	 * @param date the new date in the format "mm:dd:hh"
+	 */
 	public void setLastLoggedIn(String date) {
 		lastLoggedIn = date;
 	}
