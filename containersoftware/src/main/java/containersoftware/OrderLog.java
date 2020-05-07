@@ -15,8 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//Database that stores all orders ever created and manipulates orders
-
+/**
+ * This class creates and manages the Order(Journey) database
+ *
+ */
 public class OrderLog implements Database{
 	
 	private static ArrayList<Order> orders = new ArrayList<Order>();
@@ -29,6 +31,11 @@ public class OrderLog implements Database{
 		orders.add(o);
 	}
 	
+	/**
+	 * Gets the entire order Database
+	 * 
+	 * @return an ArrayList containing all orders
+	 */
 	public ArrayList<Order> getOrders(){
 		return orders;
 	}
