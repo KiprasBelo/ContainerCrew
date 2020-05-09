@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -23,7 +24,7 @@ import java.awt.Toolkit;
 public class FirstPage {
 
 	private JFrame frame;
-	private ClientLog log = new ClientLog();
+	ClientLog log = new ClientLog();
 	private ContainerLog log2 = new ContainerLog();
 	private OrderLog log3 = new OrderLog();
 	public int screenHeight;
@@ -60,8 +61,11 @@ public class FirstPage {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
 		initialize();
 	}
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -81,6 +85,11 @@ public class FirstPage {
 		btnProceed.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				try {
+					log.resetLoginStatuses();
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				}
 				frame.dispose();
 				MainMenu menu = new MainMenu();
 				menu.setVisible(true);

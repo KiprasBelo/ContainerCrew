@@ -390,6 +390,15 @@ public class ClientLog implements Database{
 	public String getTempDate() {
 		return tempDate;
 	}
+
+	public void resetLoginStatuses() throws FileNotFoundException {
+		this.updateDatabase();
+		for(Client c : clients) {
+			
+			c.setLoginStatus(false);
+			this.updateClientDatabaseInfo(c);
+		}
+	}
 	
 	
 }
