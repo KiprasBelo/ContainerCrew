@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project containersoftware">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="C:/Users/LTMC4/eclipse-workspace"/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/ContainerTracker.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="containersoftware.FirstPage"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="C:/Users/LTMC4/git/ContainerCrew/containersoftware/target/classes"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/io/cucumber/cucumber-java/4.8.0/cucumber-java-4.8.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/io/cucumber/cucumber-core/4.8.0/cucumber-core-4.8.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/io/cucumber/gherkin/5.1.0/gherkin-5.1.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/io/cucumber/tag-expressions/1.1.1/tag-expressions-1.1.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/io/cucumber/cucumber-expressions/7.0.2/cucumber-expressions-7.0.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/io/cucumber/datatable/1.1.14/datatable-1.1.14.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/io/cucumber/datatable-dependencies/1.1.14/datatable-dependencies-1.1.14.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/io/cucumber/cucumber-junit/4.8.0/cucumber-junit-4.8.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/io/cucumber/cucumber-picocontainer/4.8.0/cucumber-picocontainer-4.8.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/org/picocontainer/picocontainer/2.15/picocontainer-2.15.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/junit/junit/4.12/junit-4.12.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/org/jfree/jfreechart/1.0.19/jfreechart-1.0.19.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="C:/Users/LTMC4/.m2/repository/org/jfree/jcommon/1.0.23/jcommon-1.0.23.jar"/>
+        </jar>
+    </target>
+</project>
