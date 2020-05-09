@@ -1,4 +1,0 @@
-0,6,New York,Oslo,Bananas,true
-2,2,New York,Oslo,Apples,true
-3,3,Sydney,Copenhagen,Batteries,true
-4,8,null,New York,null,false

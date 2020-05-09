@@ -1,7 +1,0 @@
-0,will,pass,William Eikrem,william.eikrem@hotmail.no,93430495,Marstalsgade 43,Elvis,true,05:09:08
-1,kip,pass,BeloKip,kip@gmail.com,12324234,123thisway st,Steve,false,05:09:08
-2,test,pass,JunitEditName,JunitEditEmail,1231231234,123 Junit lane,JunitEditReference,false,4:24:11
-3,steve123,pass,Steve,,steve@gmail.com,123123,321 Whichway st,mike,false,05:06:07
-4,adam123,pass,Adam,adam@gmail.com,123123,321 Whichway st,mike,false,05:06:07
-5,frank123,pass,Frank,frank@gmail.com,123123,321 Whichway st,mike,false,05:06:07
-6,John123,pass,null,null,null,123thisway st,Steve,false,05:08:10
